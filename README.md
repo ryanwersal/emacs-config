@@ -4,7 +4,7 @@ This is my new Emacs configuration (old one can be [found here](https://github.c
 
 Why a new config?
 -----------------
-There are a couple motivations for the new configuration. The largest was that for the past 6-8 months I have been using [Sublime Text 2](http://www.sublimetext.com/). It has mostly been a good experience except I have experienced numerous performance issues largely related to the plugins (I'm looking at you [SublimeRope](http://www.sublimetext.com/)!) which were admittedly related to conditions outside their control. 
+There are a couple motivations for the new configuration. The largest was that for the past 6-8 months I have been using [Sublime Text 2](http://www.sublimetext.com/). It has mostly been a good experience except I have run into a handful of impactful performance issues largely related to installed plugins (I'm looking at you [SublimeRope](http://www.sublimetext.com/)!) which were admittedly related to conditions outside their control. 
 
 Between that and my growing affection for Clojure (and probably Lisps in general), I've decided to "come back home" to Emacs. 
 
