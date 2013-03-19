@@ -141,12 +141,6 @@
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
 (setq ac-auto-show-menu 0.1)
 
-;; Snippets!
-(require 'yasnippet)
-(yas-global-mode t)
-(yas/load-directory (libdir-file "elpa/yasnippet-0.8.0/snippets"))
-(yas/load-directory (libdir-file "snippets"))
-
 ;; Enable fancy window switching.
 (require 'switch-window)
 
@@ -165,11 +159,20 @@
 ;; Start with the minimap
 (require 'minimap)
 
-;; Configure Helm/Anything.el just for find-files uses for now.
+;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+
+;; Configure yasnippet with helm-c-yasnippet.
+(require 'yasnippet)
+(require 'helm-c-yasnippet)
+(yas-global-mode t)
+(yas/load-directory (libdir-file "elpa/yasnippet-0.8.0/snippets"))
+(yas/load-directory (libdir-file "snippets"))
+(global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
@@ -190,6 +193,12 @@
 (add-hook 'clojure-mode-hook
 		  (lambda ()
 			(paredit-mode 1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Additional Keybinds
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+(global-set-key (kbd "C-c C-c") 'whitespace-cleanup-region)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
