@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: foritr
+# key: foritr
+# --
+for ($1::const_iterator itr = $2.constBegin(); itr != $2.constEnd(); ++itr)
+{
+	$0
+}

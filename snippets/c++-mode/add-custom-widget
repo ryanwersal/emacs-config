@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: add-custom-widget
+# key: add-custom-widget
+# --
+QVBoxLayout* layout = new QVBoxLayout(${1:frm}, 0, 6);
+${2:var} = new $3($4);
+layout->addWidget(${2:var});

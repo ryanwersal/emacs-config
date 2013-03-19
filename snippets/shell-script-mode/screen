@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: screen
+# key: screen
+# --
+SOURCES += ${1:folder}/${2:name}.cpp
+HEADERS += $1/$2.h
+FORMS 	+= $1/$2_ui.ui

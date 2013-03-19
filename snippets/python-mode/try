@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: try
+# key: try
+# --
+try:
+	${0}
+except Exception, e:
+	print zutil.get_stack_string()
+	print e
+	raise

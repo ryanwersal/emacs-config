@@ -1,0 +1,60 @@
+# -*- mode: snippet -*-
+# name: listviewscreen
+# key: listviewscreen
+# --
+#ifndef ${1:$(upcase text)}_H
+#define ${1:$(upcase text)}_H
+
+#include "listviewscreen.h"
+
+class ${1:ClassName} : public ListviewScreen
+{
+Q_OBJECT
+
+public:
+	$1(QWidget* parent = 0, const char* name = 0, WFlags f = 0);
+	virtual ~$1();
+
+protected:
+	virtual bool newItem();
+	virtual bool editItem(const QString& $5id);
+	virtual bool allowRemoveItem(const QString& $5id);
+};
+
+#endif$0
+#include "${1:$(downcase text)}.h"
+
+#include <initializer.h>
+
+//==============================================================================
+$1::$1(QWidget* parent, const char* name, WFlags f)
+: ListviewScreen("${2:Singular Title}", "${3:table}", parent, name, f)
+{
+	QStringList titles;
+	QStringList column_sort_params;
+	QString sql;
+
+	ListviewScreen::setListviewAttributes(titles, column_sort_params, sql);
+}
+
+//==============================================================================
+$1::~$1()
+{}
+
+//==============================================================================
+bool $1::newItem()
+{
+	
+}
+
+//==============================================================================
+bool $1::editItem(const QString& $5id)
+{
+	
+}
+
+//==============================================================================
+bool $1::allowRemoveItem(const QString& $5id)
+{
+	
+}

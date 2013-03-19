@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connect-chk
+# key: connect-chk
+# --
+connect(${1:chk}, SIGNAL(toggled(bool)), this, SLOT(${2:handleToggled}(bool)));

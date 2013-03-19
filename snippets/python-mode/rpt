@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: rpt
+# key: rpt
+# --
+#!/usr/bin/env leds_python
+
+# ==============================================================================
+from reporter import *
+from leds_style import *
+# ==============================================================================
+
+title = "${1:Title}"
+comments = ""
+category = ""
+dialog = ""
+
+report_template = "${2:portrait}"
+
+# ==============================================================================
+def build_report(env):
+	rpt = Report()
+	env.extend("${3:reportname}")
+	# ----------------------------
+
+	$0
+
+	env.pop()
+	return rpt

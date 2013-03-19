@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: function
+# key: function
+# --
+CREATE OR REPLACE FUNCTION $1($4) RETURNS ${2:trigger} AS
+\$body\$
+DECLARE
+	$0
+BEGIN
+	
+END;
+\$body\$
+LANGUAGE 'plpgsql' ${3:VOLATILE};
+ALTER FUNCTION $1($4) OWNER TO leds;

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: trigger
+# key: trigger
+# --
+CREATE TRIGGER ${1:name}
+${2:AFTER} ${3:INSERT OR UPDATE} ON ${4:table}
+${5:FOR EACH ROW} EXECUTE PROCEDURE ${6:function}();

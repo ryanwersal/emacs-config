@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connect
+# key: connect
+# --
+connect(${1:widget}, SIGNAL(${2:signal}), ${3:this}, SLOT(${4:slot}));

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: zdebug
+# key: zdebug
+# --
+zdebug << __FUNCTION__ << "(" << __LINE__ << "): " << ZVAR(${1:var}) << endl;

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: model-dirty-widget
+# key: model-dirty-widget
+# --
+${1:_model}->dirtyWatcher()->insert(static_cast<QObject*>(${2:widget}));

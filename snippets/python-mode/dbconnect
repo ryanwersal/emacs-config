@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dbconnect
+# key: dbconnect
+# --
+db_args = db.parse_connection_args(database=${1:options.database}, user=${2:options.user}, password=${3:options.password}, port=${4:options.port})
+db.psycopgconnect(**db_args)

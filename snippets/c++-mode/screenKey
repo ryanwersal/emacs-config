@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: screenKey
+# key: screenKey
+# binding: direct-keybinding
+# expand-env: ((some-var some-value))
+# type: command
+# --
+QString ${1:ScreenName}::screenKey(const QString& id)
+{
+	if (id.isEmpty())
+	{
+		return $1_scr::screenKey(id) + "new" + QString::number(int(this));
+	}
+	return $1_scr::screenKey(id) + id;
+}

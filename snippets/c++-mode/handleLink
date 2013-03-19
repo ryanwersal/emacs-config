@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: handleLink
+# key: handleLink
+# --
+QStringList args = QStringList::split("\t", link);
+args << "" << "" << "";
+
+if (args[0] == "${1:name}") { $1($2); }$0
+else
+{
+	Core::intercom()->handleLink(link);
+}

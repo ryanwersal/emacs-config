@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: zsqlmodel
+# key: zsqlmodel
+# --
+${1:_model}.addField("$2", $3);
+$1.setRequired($3, true, "$4");
+connectModel(&$1);

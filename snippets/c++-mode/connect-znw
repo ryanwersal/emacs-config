@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connect-znw
+# key: connect-znw
+# --
+connect(${1:znw}, SIGNAL(recordSelected(const QString&)), this, SLOT(${2:handleNameSelected}(const QString&)));

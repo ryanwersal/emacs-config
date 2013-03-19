@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hasPermission
+# key: hasPermission
+# --
+Core::hasPermission("${1:perm}", ${2:Core::currentAgenciesid()})$0

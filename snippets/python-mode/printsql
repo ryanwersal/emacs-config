@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: printsql
+# key: printsql
+# --
+print zutil.subst_vars(${1:sql}, ${2:zutil.upvars(1)})

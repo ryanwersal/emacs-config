@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: stacktrace
+# key: stacktrace
+# --
+zdebug << ZStackTrace() << endl;

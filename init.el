@@ -17,17 +17,23 @@
 
 (defvar default-font-name
   (cond (is-windows-p "PragmataPro-8")
-		(is-linux-p "PragmataPro-14")
+		(is-linux-p "PragmataPro-8")
 		("PragmataPro-10")))
 
 (defun libdir-file (file)
   (concat (expand-file-name "~/.emacs.d") "/" file))
 
 ;; Close Emacs with a confirmation to prevent accidental closings.
-(defun confirm-exit-from-emacs ()
+(defun confirm-exit ()
   (interactive)
   (if (yes-or-no-p "Do you want to exit? ")
       (save-buffers-kill-emacs)))
+
+;; Confirm before we minimize/suspend Emacs.
+(defun confirm-suspend ()
+  (interactive)
+  (if (yes-or-no-p "Do you want to suspend? ")
+	  (suspend-emacs)))
 
 ;; Start correct shell per platform.
 (defun start-shell ()
@@ -43,7 +49,7 @@
 
 ;; Configure tabs
 (setq-default tab-width 4)
-(setq-default indent-tabs-mode is-windows-p)
+(setq-default indent-tabs-mode t)
 
 ;; Configure title bar
 (setq-default 
@@ -159,7 +165,10 @@
 ;; Global Key Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Prevent accidentally killing emacs.
-(global-set-key (kbd "C-x C-c") 'confirm-exist-from-emacs)
+(global-set-key (kbd "C-x C-c") 'confirm-exit)
+
+;; Prevent accidentally suspending emacs.
+(global-set-key (kbd "C-z") 'confirm-suspend)
 
 ;; Open correct shell depending on system.
 (global-set-key (kbd "<f5>") 'start-shell)

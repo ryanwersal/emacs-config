@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: function-anon
+# key: function-anon
+# --
+DO \$\$
+DECLARE
+	$0
+BEGIN
+	
+END \$\$;

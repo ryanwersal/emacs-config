@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: intercom
+# key: intercom
+# --
+Core::intercom()->${1:callFunction}($2);

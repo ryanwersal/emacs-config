@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: setting
+# key: setting
+# --
+Core::instance()->settings()->lookup("${1:category}", "${2:setting}")$0
