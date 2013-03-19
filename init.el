@@ -141,7 +141,7 @@
 (add-hook 'window-setup-hook 'split-window-horizontally)
 
 ;; Enable syntax highlighting/theme.
-(require 'tomorrow-night-bright-theme)
+(require 'base16-dark-theme)
 
 ;; Enable autocompletion.
 (require 'auto-complete-config)
