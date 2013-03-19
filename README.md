@@ -18,3 +18,7 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 - Actually get Clang working with Emacs for code completion etc. (And hopefully code navigation as well!)
 - Get something similar to Clang working for Python. (Looking at [ropemacs](http://rope.sourceforge.net/ropemacs.html).)
 - Implement a Base16 Dark theme (or find someone who has done so already).
+
+Installation Notes
+------------------
+The only step is to clone this repo into ~/.emacs.d and you should be good to go! With Windows you have a couple extra steps. Namely, you have to install [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added it to the PATH, and everything was set.
