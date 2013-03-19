@@ -28,12 +28,14 @@
   (interactive)
   (if (yes-or-no-p "Do you want to exit? ")
       (save-buffers-kill-emacs)))
+(global-set-key (kbd "C-x C-c") 'confirm-exit)
 
 ;; Confirm before we minimize/suspend Emacs.
 (defun confirm-suspend ()
   (interactive)
   (if (yes-or-no-p "Do you want to suspend? ")
 	  (suspend-emacs)))
+(global-set-key (kbd "C-z") 'confirm-suspend)
 
 ;; Start correct shell per platform.
 (defun start-shell ()
@@ -41,6 +43,7 @@
   (if is-windows-p
       (shell)
     (ansi-term "/bin/bash")))
+(global-set-key (kbd "<f5>") 'start-shell)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
@@ -115,7 +118,8 @@
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-						 ("marmalade" . "http://marmalade-repo.org/packages/")))
+						 ("marmalade" . "http://marmalade-repo.org/packages/")
+						 ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -161,17 +165,11 @@
 ;; Start with the minimap
 (require 'minimap)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Global Key Bindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Prevent accidentally killing emacs.
-(global-set-key (kbd "C-x C-c") 'confirm-exit)
-
-;; Prevent accidentally suspending emacs.
-(global-set-key (kbd "C-z") 'confirm-suspend)
-
-;; Open correct shell depending on system.
-(global-set-key (kbd "<f5>") 'start-shell)
+;; Configure Helm/Anything.el just for find-files uses for now.
+(require 'helm-config)
+(setq helm-idle-delay 0.1)
+(setq helm-input-idle-delay 0.1)
+(global-set-key (kbd "C-x C-f") 'helm-for-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
