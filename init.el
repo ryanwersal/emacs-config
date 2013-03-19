@@ -38,10 +38,20 @@
 (global-set-key (kbd "C-z") 'confirm-suspend)
 
 ;; Start correct shell per platform.
+(defun start-msys-shell ()
+  (interactive)
+  (setq shell-file-name "bash.exe")
+  (setq explicit-shell-file-name shell-file-name)
+  (setenv "SHELL" explicit-shell-file-name)
+  (setq w32-quote-process-args t)
+  (setq explicit-bash.exe-args '("--login" "-i"))
+  (setq shell-command-switch "-c")
+  (shell))
+
 (defun start-shell ()
   (interactive)
   (if is-windows-p
-      (shell)
+      (start-msys-shell)
     (ansi-term "/bin/bash")))
 (global-set-key (kbd "<f5>") 'start-shell)
 
@@ -197,7 +207,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Additional Keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "C-c w") 'whitespace-mode)
+(global-set-key (kbd "C-c C-w") 'whitespace-mode)
 (global-set-key (kbd "C-c C-c") 'whitespace-cleanup-region)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
