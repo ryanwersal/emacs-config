@@ -17,3 +17,4 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 - Add some form of the "Go to Anything" panel from ST2. (Currently investigating [Helm](https://github.com/emacs-helm/helm).)
 - Actually get Clang working with Emacs for code completion etc. (And hopefully code navigation as well!)
 - Get something similar to Clang working for Python. (Looking at [ropemacs](http://rope.sourceforge.net/ropemacs.html).)
+- Implement a Base16 Dark theme (or find someone who has done so already).
