@@ -1,6 +1,7 @@
-;; -*-emacs-lisp-*-
-
-(require 'cl)
+;;; init --- My Emacs initialization file
+;;; Commentary:
+;;; Nothing too out of the ordinary here.
+;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utilities
@@ -8,30 +9,33 @@
 (defvar is-windows-p (eq system-type 'windows-nt))
 (defvar is-linux-p (eq system-type 'gnu/linux))
 
-(defvar office-email-address "ryan.wersal@zuerchertech.com")
-(defvar home-email-address "ryan@ryanwersal.com")
+(defvar office-email-address-p "ryan.wersal@zuerchertech.com")
+(defvar home-email-address-p "ryan@ryanwersal.com")
 
-(defvar default-email-address
-  (cond (is-windows-p office-email-address)
-	(home-email-address)))
+(defvar default-email-address-p
+  (cond (is-windows-p office-email-address-p)
+	(home-email-address-p)))
 
-(defvar default-font-name
+(defvar default-font-name-p
   (cond (is-windows-p "PragmataPro-8")
 		(is-linux-p "PragmataPro-8")
 		("PragmataPro-10")))
 
 (defun libdir-file (file)
+  "Create a valid path to FILE that is located in the Emacs lib folder (~/.emacs.d)."
   (concat (expand-file-name "~/.emacs.d") "/" file))
 
 ;; Close Emacs with a confirmation to prevent accidental closings.
 (defun confirm-exit ()
+  "Prompt before exitting."
   (interactive)
   (if (yes-or-no-p "Do you want to exit? ")
-      (save-buffers-kill-emacs)))
+	  (save-buffers-kill-emacs)))
 (global-set-key (kbd "C-x C-c") 'confirm-exit)
 
 ;; Confirm before we minimize/suspend Emacs.
 (defun confirm-suspend ()
+  "Prompt before suspending."
   (interactive)
   (if (yes-or-no-p "Do you want to suspend? ")
 	  (suspend-emacs)))
@@ -39,48 +43,54 @@
 
 ;; Start correct shell per platform.
 (defun start-msys-shell ()
+  "Attempt to create a good shell on Windows."
   (interactive)
+  (defvar explicit-shell-file-name)
+  (defvar explicit-bash.exe-args)
+
   (setq shell-file-name "bash.exe")
   (setq explicit-shell-file-name shell-file-name)
   (setenv "SHELL" explicit-shell-file-name)
   (setq w32-quote-process-args t)
   (setq explicit-bash.exe-args '("--login" "-i"))
   (setq shell-command-switch "-c")
+
   (shell))
 
 (defun start-shell ()
+  "Start the proper shell based on platform."
   (interactive)
   (if is-windows-p
-      (start-msys-shell)
-    (ansi-term "/bin/bash")))
+	  (start-msys-shell)
+	(ansi-term "/bin/bash")))
 (global-set-key (kbd "<f5>") 'start-shell)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-default-font default-font-name)
+(set-frame-font default-font-name-p)
 
 ;; Configure tabs
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 
 ;; Configure title bar
-(setq-default 
+(setq-default
  frame-title-format
- (list '((buffer-file-name 
+ (list '((buffer-file-name
 	  "Emacs - %f"
 	  (dired-directory
 	   dired-directory
 	   (revert-buffer-function " %b" ("%b - Dir: " default-directory)))))))
 
-(setq-default icon-title-format 'frame-title-format)			   
+(setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
 (setq user-mail-address 'default-email-address)
 
 ;; Fully setup PATH
 (if is-linux-p
-    (progn (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
+	(progn (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 	   (setq exec-path (append exec-path '("~/bin")))))
 
 ;; Typing replaces selected region.
@@ -127,7 +137,7 @@
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(mapcar #'(lambda (path) (add-to-list 'load-path (libdir-file path))) '("themes" "themes/base16"))
+(dolist (path '("themes" "themes/base16")) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
@@ -185,19 +195,23 @@
 (yas/load-directory (libdir-file "snippets"))
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
+(require 'flycheck)
+(add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'text-mode-hook 'flycheck-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'c-mode-common-hook
 	  (lambda ()
-	    ;; Make these patterns more evident in code.
-	    (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
-	    ;; Make it easier to jump between .h/.cpp files
-	    (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+		;; Make these patterns more evident in code.
+		(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+		;; Make it easier to jump between .h/.cpp files
+		(local-set-key (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    (setq tab-width 4
+		(setq tab-width 4
 		  py-indent-offset 4
 		  python-indent 4)))
 
@@ -216,3 +230,6 @@
 ;; Start Emacs Server
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (server-start)
+
+(provide 'init)
+;;; init.el ends here
