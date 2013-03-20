@@ -89,9 +89,11 @@
 (setq user-mail-address 'default-email-address)
 
 ;; Fully setup PATH
-(if is-linux-p
-	(progn (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
-	   (setq exec-path (append exec-path '("~/bin")))))
+(defun append-to-path (dir)
+  "Add DIR to path and 'exec-path'."
+  (setenv "PATH" (concat (getenv "PATH") ":" dir))
+  (setq exec-path (append exec-path 'dir)))
+(if is-linux-p (dolist (dir '("~/bin")) (append-to-path dir)))
 
 ;; Typing replaces selected region.
 (delete-selection-mode t)
@@ -213,7 +215,9 @@
 	  (lambda ()
 		(setq tab-width 4
 		  py-indent-offset 4
-		  python-indent 4)))
+		  python-indent 4)
+		;; Disable flycheck-mode (for now) until I can get certain errors/warnings disabled
+		(flycheck-mode -1)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
