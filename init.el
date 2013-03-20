@@ -112,6 +112,8 @@
  '(show-paren-mode t)
  '(sound-load-list nil)
  '(tool-bar-mode nil)
+ '(menu-bar-mode nil)
+ '(scroll-bar-mode nil)
  '(visible-bell t)
  '(inhibit-startup-screen t))
 (custom-set-faces
@@ -121,24 +123,19 @@
  ;; If there is more than one, they won't work right.
  )
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Configure ELPA
+;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Setup load-path
 (mapcar #'(lambda (path) (add-to-list 'load-path (libdir-file path))) '("themes" "themes/base16"))
 
+;; Configure ELPA
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 						 ("marmalade" . "http://marmalade-repo.org/packages/")
 						 ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Setup Packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Maximize window and start with 50/50 vertical split.
 (require 'maxframe)
 (add-hook 'window-setup-hook 'maximize-frame t)
