@@ -25,10 +25,8 @@ First, clone this repo into ~/.emacs.d. You'll also need to init the git submodu
 ```git submodule update --init```
 With those steps done, you have a majority of the config in a workable state. There are, however, a few more tweaks to be made.
 
-Helm
-====
+#### Helm
 Using [Helm](https://github.com/emacs-helm/helm) on Windows requires installing [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added that directory to the PATH, and everything was set. 
 
-Flycheck
-========
+#### Flycheck
 Flycheck has numerous linters available. This config is currently setup to leverage only two though: python-flake8 and emacs-lisp. Emacs-lisp works out of the box but you'll need to [install flake8](https://pypi.python.org/pypi/flake8) to get linting in python-mode.
