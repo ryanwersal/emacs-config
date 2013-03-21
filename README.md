@@ -21,4 +21,14 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 
 Installation Notes
 ------------------
-The only step is to clone this repo into ~/.emacs.d and you should be good to go! With Windows you have a couple extra steps. Namely, you have to install [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added it to the PATH, and everything was set.
+First, clone this repo into ~/.emacs.d. You'll also need to init the git submodules that house a few of the packages: 
+```git submodule update --init```
+With those steps done, you have a majority of the config in a workable state. There are, however, a few more tweaks to be made.
+
+Helm
+====
+Using [Helm](https://github.com/emacs-helm/helm) on Windows requires installing [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added that directory to the PATH, and everything was set. 
+
+Flycheck
+========
+Flycheck has numerous linters available. This config is currently setup to leverage only two though: python-flake8 and emacs-lisp. Emacs-lisp works out of the box but you'll need to [install flake8](https://pypi.python.org/pypi/flake8) to get linting in python-mode.
