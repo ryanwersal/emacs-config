@@ -45,16 +45,12 @@
 (defun start-msys-shell ()
   "Attempt to create a good shell on Windows."
   (interactive)
-  (defvar explicit-shell-file-name)
-  (defvar explicit-bash.exe-args)
-
   (setq shell-file-name "bash.exe")
-  (setq explicit-shell-file-name shell-file-name)
+  (defvar explicit-shell-file-name shell-file-name)
+  (defvar explicit-bash.exe-args '("--login" "-i"))
+  (defvar w32-quote-process-args t)
   (setenv "SHELL" explicit-shell-file-name)
-  (setq w32-quote-process-args t)
-  (setq explicit-bash.exe-args '("--login" "-i"))
   (setq shell-command-switch "-c")
-
   (shell))
 
 (defun start-shell ()
@@ -113,21 +109,27 @@
 (add-to-list 'auto-mode-alist '("\\.conf\\'" . shell-script-mode))
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(bell-volumne 0)
  '(c-basic-offset 4)
  '(c-default-style (quote ((c-mode . "bsd") (c++-mode . "bsd") (java-mode . "java") (other . "bsd"))))
  '(column-number-mode t)
  '(get-frame-for-buffer-default-instance-limit nil)
  '(gutter-buffers-tab-visible-p nil)
+ '(inhibit-startup-screen t)
  '(make-backup-files nil)
+ '(menu-bar-mode nil)
  '(paren-mode (quote paren) nil (paren))
+ '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(sound-load-list nil)
  '(tool-bar-mode nil)
- '(menu-bar-mode nil)
- '(scroll-bar-mode nil)
  '(visible-bell t)
- '(inhibit-startup-screen t))
+ '(flycheck-flake8rc (libdir-file "configs/.flake8rc")) ; flycheck: Set flake8 config file.
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -215,9 +217,7 @@
 	  (lambda ()
 		(setq tab-width 4
 		  py-indent-offset 4
-		  python-indent 4)
-		;; Disable flycheck-mode (for now) until I can get certain errors/warnings disabled
-		(flycheck-mode -1)))
+		  python-indent 4)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()

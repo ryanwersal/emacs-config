@@ -1,3 +1,6 @@
 [submodule "themes/base16"]
 	path = themes/base16
 	url = git@github.com:ryanwersal/base16-emacs.git
+[submodule "packages/flycheck"]
+	path = packages/flycheck
+	url = git@github.com:ryanwersal/flycheck.git
