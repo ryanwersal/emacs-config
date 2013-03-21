@@ -141,7 +141,7 @@
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(dolist (path '("themes" "themes/base16")) (add-to-list 'load-path (libdir-file path)))
+(dolist (path '("themes" "themes/base16" "packages" "packages/minimap")) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
