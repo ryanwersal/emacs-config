@@ -82,7 +82,7 @@
 (setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
-(setq user-mail-address 'default-email-address)
+(setq user-mail-address 'default-email-address-p)
 
 ;; Fully setup PATH
 (defun append-to-path (dir)
@@ -99,14 +99,6 @@
 
 ;; Always show line numbers.
 (global-linum-mode t)
-
-;; Configure the basic filetypes and their modes.
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
-
-(add-to-list 'auto-mode-alist '("\\.pro\\'" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("\\.pri\\'" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("\\.conf\\'" . shell-script-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -203,6 +195,10 @@
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'text-mode-hook 'flycheck-mode)
 
+(autoload 'js2-mode "js2-mode" "Major mode for editing javascript files" t)
+
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -224,11 +220,25 @@
 			(paredit-mode 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configure file type/mode associations.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+
+(add-to-list 'auto-mode-alist '("\\.pro\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.pri\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.conf\\'" . shell-script-mode))
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Additional Keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-c C-w") 'whitespace-mode)
 (global-set-key (kbd "C-c C-c") 'whitespace-cleanup-region)
-(define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server

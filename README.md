@@ -14,10 +14,10 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 
 - ~~Add in a Minimap feature~~ (Added thanks to [MiniMap](http://www.emacswiki.org/emacs/MiniMap).)
 - Handle multi selection in a vaguely ST2 way (including the "select next instance of this token" functionality.) (Looking at [multiple-cursors.el](https://github.com/magnars/multiple-cursors.el) currently.)
-- Add some form of the "Go to Anything" panel from ST2. (Currently investigating [Helm](https://github.com/emacs-helm/helm).)
+- ~~Add some form of the "Go to Anything" panel from ST2.~~ ([Helm](https://github.com/emacs-helm/helm) is proving to be quite capable so far.)
 - Actually get Clang working with Emacs for code completion etc. (And hopefully code navigation as well!)
 - Get something similar to Clang working for Python. (Looking at [ropemacs](http://rope.sourceforge.net/ropemacs.html).)
-- Implement a Base16 Dark theme (or find someone who has done so already).
+- ~~Implement a Base16 Dark theme (or find someone who has done so already).~~ (A start can be found in my [base16-emacs repo](https://github.com/ryanwersal/base16-emacs/blob/master/base16-dark-theme.el).)
 
 Installation Notes
 ------------------
