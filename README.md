@@ -19,6 +19,8 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 - Get something similar to Clang working for Python. (Looking at [ropemacs](http://rope.sourceforge.net/ropemacs.html).)
 - ~~Implement a Base16 Dark theme (or find someone who has done so already).~~ (A start can be found in my [base16-emacs repo](https://github.com/ryanwersal/base16-emacs/blob/master/base16-dark-theme.el).)
 
+Also see the [Ongoing Ideas](https://github.com/ryanwersal/emacs-config/issues/1) issue for additional smaller items.
+
 Installation Notes
 ------------------
 First, clone this repo into ~/.emacs.d. You'll also need to init the git submodules that house a few of the packages: 
