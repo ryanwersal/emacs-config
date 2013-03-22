@@ -12,14 +12,14 @@
 (defvar office-email-address-p "ryan.wersal@zuerchertech.com")
 (defvar home-email-address-p "ryan@ryanwersal.com")
 
-(defvar default-email-address-p
+(defvar my-email-address-p
   (cond (is-windows-p office-email-address-p)
-	(home-email-address-p)))
+		(t home-email-address-p)))
 
 (defvar default-font-name-p
   (cond (is-windows-p "PragmataPro-8")
 		(is-linux-p "PragmataPro-8")
-		("PragmataPro-10")))
+		(t "PragmataPro-10")))
 
 (defun libdir-file (file)
   "Create a valid path to FILE that is located in the Emacs lib folder (~/.emacs.d)."
@@ -82,7 +82,7 @@
 (setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
-(setq user-mail-address 'default-email-address-p)
+(setq user-mail-address my-email-address-p)
 
 ;; Fully setup PATH
 (defun append-to-path (dir)
