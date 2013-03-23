@@ -181,13 +181,13 @@
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 ;; Configure yasnippet with helm-c-yasnippet.
 (require 'yasnippet)
 (require 'helm-c-yasnippet)
 (yas-global-mode t)
-(yas/load-directory (libdir-file "elpa/yasnippet-0.8.0/snippets"))
 (yas/load-directory (libdir-file "snippets"))
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 

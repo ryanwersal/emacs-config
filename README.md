@@ -31,4 +31,7 @@ With those steps done, you have a majority of the config in a workable state. Th
 Using [Helm](https://github.com/emacs-helm/helm) on Windows requires installing [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added that directory to the PATH, and everything was set. 
 
 #### Flycheck
-Flycheck has numerous linters available. This config is currently setup to leverage only two though: python-flake8 and emacs-lisp. Emacs-lisp works out of the box but you'll need to [install flake8](https://pypi.python.org/pypi/flake8) to get linting in python-mode.
+Flycheck has numerous linters available. This config is currently setup to leverage only three though: python-flake8, emacs-lisp, and javascript-jshint. 
+ - python-flake8 will require you to [install flake8](https://pypi.python.org/pypi/flake8) before it works.
+ - Emacs-lisp works out of the box.
+ - javascript-jshint requires [installing jshint](http://www.jshint.com/install/). You will need to install Node first.
