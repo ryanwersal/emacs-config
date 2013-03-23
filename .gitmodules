@@ -4,6 +4,3 @@
 [submodule "packages/minimap"]
 	path = packages/minimap
 	url = git@github.com:ryanwersal/emacs-minimap.git
-[submodule "packages/js2-mode"]
-	path = packages/js2-mode
-	url = https://github.com/mooz/js2-mode.git
