@@ -204,16 +204,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'c-mode-common-hook
 	  (lambda ()
-		;; Make these patterns more evident in code.
+		;; Highlight certain tokens in comments.
 		(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
 		;; Make it easier to jump between .h/.cpp files
 		(local-set-key (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'python-mode-hook
 	  (lambda ()
+		;; Highlight certain tokens in comments.
+		(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+		;; Fully configure tab settings
 		(setq tab-width 4
-		  py-indent-offset 4
-		  python-indent 4)))
+			  py-indent-offset 4
+			  python-indent 4)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
