@@ -25,7 +25,6 @@
   "Create a valid path to FILE that is located in the Emacs lib folder (~/.emacs.d)."
   (concat (expand-file-name "~/.emacs.d") "/" file))
 
-;; Close Emacs with a confirmation to prevent accidental closings.
 (defun confirm-exit ()
   "Prompt before exitting."
   (interactive)
@@ -33,7 +32,6 @@
 	  (save-buffers-kill-emacs)))
 (global-set-key (kbd "C-x C-c") 'confirm-exit)
 
-;; Confirm before we minimize/suspend Emacs.
 (defun confirm-suspend ()
   "Prompt before suspending."
   (interactive)
@@ -41,7 +39,6 @@
 	  (suspend-emacs)))
 (global-set-key (kbd "C-z") 'confirm-suspend)
 
-;; Start correct shell per platform.
 (defun start-msys-shell ()
   "Attempt to create a good shell on Windows."
   (interactive)
