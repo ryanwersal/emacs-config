@@ -58,6 +58,16 @@
 	(ansi-term "/bin/bash")))
 (global-set-key (kbd "<f5>") 'start-shell)
 
+(defun st2-like-beginning-of-line ()
+  "Reproduce ST2 beginning of line functionality.
+Go to the position of the first non-whitespace character.
+If already there, go to actual beginning of line."
+  (interactive)
+  (let ((col (current-column)))
+	  (back-to-indentation)
+	  (if (= col (current-column)) (move-beginning-of-line nil))))
+(global-set-key (kbd "C-a") 'st2-like-beginning-of-line)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
