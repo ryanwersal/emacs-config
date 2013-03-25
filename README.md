@@ -13,7 +13,7 @@ Goals
 There are a few long term goals that I wish to work towards. Some are old goals made new again and others are directly inspired by my favorite features from Sublime Text:
 
 - ~~Add in a Minimap feature~~ (Added thanks to [MiniMap](http://www.emacswiki.org/emacs/MiniMap).)
-- Handle multi selection in a vaguely ST2 way (including the "select next instance of this token" functionality.) (Looking at [multiple-cursors.el](https://github.com/magnars/multiple-cursors.el) currently.)
+- ~~Handle multi selection in a vaguely ST2 way (including the "select next instance of this token" functionality.)~~ ([multiple-cursors.el](https://github.com/magnars/multiple-cursors.el) is working quite beatifully so far. Need to figure out more home-row-centric keybinds though.)
 - ~~Add some form of the "Go to Anything" panel from ST2.~~ ([Helm](https://github.com/emacs-helm/helm) is proving to be quite capable so far.)
 - Actually get Clang working with Emacs for code completion etc. (And hopefully code navigation as well!)
 - Get something similar to Clang working for Python. (Looking at [ropemacs](http://rope.sourceforge.net/ropemacs.html).)
