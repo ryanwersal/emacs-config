@@ -188,7 +188,6 @@ If already there, go to actual beginning of line."
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 ;; Configure yasnippet with helm-c-yasnippet.
