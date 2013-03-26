@@ -198,8 +198,8 @@ If already there, go to actual beginning of line."
 ;; Configure yasnippet with helm-c-yasnippet.
 (require 'yasnippet)
 (require 'helm-c-yasnippet)
+(setq yas/snippet-dirs (libdir-file "snippets")) ;; Only load my snippets.
 (yas-global-mode t)
-(yas/load-directory (libdir-file "snippets"))
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 (require 'flycheck)
