@@ -104,8 +104,9 @@ If already there, go to actual beginning of line."
 ;; Allow y/n instead of yes/no at prompts.
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Always show line numbers.
-(global-linum-mode t)
+;; Always show line & column numbers.
+(setq line-number-mode t
+	  column-number-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -135,6 +136,10 @@ If already there, go to actual beginning of line."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(global-auto-revert-mode 1)
+
+(set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup Packages
@@ -220,6 +225,9 @@ If already there, go to actual beginning of line."
 
 (require 'expand-region)
 (global-set-key (kbd "C-'") 'er/expand-region)
+
+(require 'hl-line+)
+(global-hl-line-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
