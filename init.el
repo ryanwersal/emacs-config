@@ -234,6 +234,9 @@ If already there, go to actual beginning of line."
 (require 'hl-line+)
 (global-hl-line-mode 1)
 
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
