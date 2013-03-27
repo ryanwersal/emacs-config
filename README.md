@@ -21,11 +21,12 @@ There are a few long term goals that I wish to work towards. Some are old goals 
 
 Also see the [Ongoing Ideas](https://github.com/ryanwersal/emacs-config/issues/1) issue for additional smaller items.
 
-Installation Notes
-------------------
-First, clone this repo into ~/.emacs.d. You'll also need to init the git submodules that house a few of the packages: 
-```git submodule update --init```
-With those steps done, you have a majority of the config in a workable state. There are, however, a few more tweaks to be made.
+Install
+-------
+1. Clone this repo as ~/.emacs.d
+2. Run `git submodule update --init`
+3. Launch Emacs and `M-x list-packages`, hit `U` then `x` to update the ELPA managed packages.
+4. Restart Emacs and you're set to go!
 
 #### Helm
 Using [Helm](https://github.com/emacs-helm/helm) on Windows requires installing [Everything](http://www.voidtools.com/download.php) as per the [wiki](https://github.com/emacs-helm/helm/wiki#wiki-windowsspecificity). I ended up having to download both the installer and the standalone es.exe. I just placed all of it in Everything's install directory, added that directory to the PATH, and everything was set. 
@@ -34,4 +35,4 @@ Using [Helm](https://github.com/emacs-helm/helm) on Windows requires installing 
 Flycheck has numerous linters available. This config is currently setup to leverage only three though: python-flake8, emacs-lisp, and javascript-jshint. 
  - python-flake8 will require you to [install flake8](https://pypi.python.org/pypi/flake8) before it works.
  - Emacs-lisp works out of the box.
- - javascript-jshint requires [installing jshint](http://www.jshint.com/install/). You will need to install Node first.
+ - javascript-jshint requires [installing jshint](http://www.jshint.com/install/). You will need to have Node installed first.
