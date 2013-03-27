@@ -105,6 +105,7 @@ If already there, go to actual beginning of line."
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Always show line & column numbers.
+(global-linum-mode t)
 (setq line-number-mode t
 	  column-number-mode t)
 
