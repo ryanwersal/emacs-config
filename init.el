@@ -141,6 +141,10 @@ If already there, go to actual beginning of line."
 
 (set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
 
+;; Make help more helpful (and less intrusive).
+(global-set-key (kbd "<f1>") 'help-command)
+(global-set-key (kbd "<f1> a") 'apropos)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -224,7 +228,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-x C-m") 'smex)
 
 (require 'expand-region)
-(global-set-key (kbd "C-'") 'er/expand-region)
+(global-set-key (kbd "C-h") 'er/expand-region)
 
 (require 'hl-line+)
 (global-hl-line-mode 1)
