@@ -174,9 +174,9 @@ See `helm-locate-with-db' and `helm-locate'."
   (unless helm-locate-command
     (setq helm-locate-command
           (case system-type
-            ('gnu/linux "locate %s -r %s")
-            ('berkeley-unix "locate %s %s")
-            ('windows-nt "es %s %s")
+            (gnu/linux "locate %s -r %s")
+            (berkeley-unix "locate %s %s")
+            (windows-nt "es %s %s")
             (t "locate %s %s")))))
 
 (defvar helm-file-name-history nil)
@@ -257,6 +257,7 @@ See also `helm-locate'."
     (keymap . ,helm-generic-files-map)
     (help-message . helm-generic-file-help-message)
     (candidate-number-limit . 9999)
+    (no-matchplugin)
     (mode-line . helm-generic-file-mode-line-string)
     (delayed))
   "Find files matching the current input pattern with locate.")

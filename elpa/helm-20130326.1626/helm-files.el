@@ -1993,16 +1993,16 @@ Argument FOLLOW when non--nil specify to follow FILES to destination."
   (declare (special helm-async-be-async))
   (when (get-buffer dired-log-buffer) (kill-buffer dired-log-buffer))
   (let ((fn     (case action
-                  ('copy       'dired-copy-file)
-                  ('rename     'dired-rename-file)
-                  ('symlink    'make-symbolic-link)
-                  ('relsymlink 'dired-make-relative-symlink)
-                  ('hardlink   'dired-hardlink)))
+                  (copy       'dired-copy-file)
+                  (rename     'dired-rename-file)
+                  (symlink    'make-symbolic-link)
+                  (relsymlink 'dired-make-relative-symlink)
+                  (hardlink   'dired-hardlink)))
         (marker (case action
                   ((copy rename)   dired-keep-marker-copy)
-                  ('symlink        dired-keep-marker-symlink)
-                  ('relsymlink     dired-keep-marker-relsymlink)
-                  ('hardlink       dired-keep-marker-hardlink)))
+                  (symlink        dired-keep-marker-symlink)
+                  (relsymlink     dired-keep-marker-relsymlink)
+                  (hardlink       dired-keep-marker-hardlink)))
         (dirflag (and (= (length files) 1)
                       (file-directory-p (car files))
                       (not (file-directory-p candidate))))
@@ -2543,25 +2543,27 @@ utility mdfind.")
 
 (defun helm-find-shell-command-fn ()
   "Asynchronously fetch candidates for `helm-find'."
-  (with-helm-default-directory (helm-default-directory)
-      (let (process-connection-type)
-        (prog1
-            (apply #'start-file-process "hfind" helm-buffer "find"
-                   (list "."
-                         (if case-fold-search "-name" "-iname")
-                         (concat "*" helm-pattern "*") "-type" "f"))
-          (set-process-sentinel
-           (get-process "hfind")
-           #'(lambda (process event)
-               (helm-process-deferred-sentinel-hook
-                process event (helm-default-directory))))))))
+  (let ((case-fold-search (helm-set-case-fold-search helm-pattern)))
+    (with-helm-default-directory (helm-default-directory)
+        (let (process-connection-type)
+          (prog1
+              (apply #'start-file-process "hfind" helm-buffer "find"
+                     (list "."
+                           (if case-fold-search "-iname" "-name")
+                           (concat "*" helm-pattern "*") "-type" "f"))
+            (set-process-sentinel
+             (get-process "hfind")
+             #'(lambda (process event)
+                 (helm-process-deferred-sentinel-hook
+                  process event (helm-default-directory)))))))))
 
 (defun helm-find-1 (dir)
   (helm :sources 'helm-source-findutils
         :buffer "*helm find*"
         ;; Make these vars local for further resuming.
         :default-directory dir ; reset it when called from elsewhere.
-        :ff-transformer-show-only-basename nil))
+        :ff-transformer-show-only-basename nil
+        :case-fold-search helm-file-name-case-fold-search))
 
 ;; helm-find-files integration.
 (defun helm-ff-find-sh-command (candidate)

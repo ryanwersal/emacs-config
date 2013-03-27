@@ -142,7 +142,7 @@ replace with STR as yanked string."
 
 (defun helm-mark-ring-get-candidates ()
   (with-helm-current-buffer
-    (loop with marks = (if (mark) (cons (mark-marker) mark-ring) mark-ring)
+    (loop with marks = (if (mark t) (cons (mark-marker) mark-ring) mark-ring)
           with recip = nil
           for i in marks
           for m = (helm-mark-ring-get-marks i)
@@ -155,8 +155,7 @@ replace with STR as yanked string."
     (candidates . helm-mark-ring-get-candidates)
     (action . (("Goto line"
                 . (lambda (candidate)
-                    (helm-goto-line (string-to-number candidate))
-                    (push-mark nil 'nomsg))))) 
+                    (helm-goto-line (string-to-number candidate)))))) 
     (persistent-action . (lambda (candidate)
                            (helm-goto-line (string-to-number candidate))
                            (helm-match-line-color-current-line)))
@@ -192,16 +191,17 @@ replace with STR as yanked string."
               (line-number-at-pos) (marker-buffer marker) line))))
 
 (defun helm-global-mark-ring-get-candidates ()
-  (loop with marks = global-mark-ring
-        with recip = nil
-        for i in marks
-        for gm = (unless (or (string-match
-                              "^ " (format "%s" (marker-buffer i)))
-                             (null (marker-buffer i)))
-                   (helm-global-mark-ring-format-buffer i))
-        when (and gm (not (member gm recip)))
-        collect gm into recip
-        finally return recip))
+  (let ((marks global-mark-ring))
+    (when marks
+      (loop with recip = nil
+            for i in marks
+            for gm = (unless (or (string-match
+                                  "^ " (format "%s" (marker-buffer i)))
+                                 (null (marker-buffer i)))
+                       (helm-global-mark-ring-format-buffer i))
+            when (and gm (not (member gm recip)))
+            collect gm into recip
+            finally return recip))))
 
 
 ;;;; <Register>
