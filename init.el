@@ -219,7 +219,7 @@ If already there, go to actual beginning of line."
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c -C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Enable "smart M-x"
 (require 'smex)
@@ -241,24 +241,28 @@ If already there, go to actual beginning of line."
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'c-mode-common-hook
-	  (lambda ()
-		;; Highlight certain tokens in comments.
-		(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
-		;; Make it easier to jump between .h/.cpp files
-		(local-set-key (kbd "C-c o") 'ff-find-other-file)))
+		  (lambda ()
+			;; Highlight certain tokens in comments.
+			(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+			;; Make it easier to jump between .h/.cpp files
+			(local-set-key (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'python-mode-hook
-	  (lambda ()
-		;; Highlight certain tokens in comments.
-		(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
-		;; Fully configure tab settings
-		(setq tab-width 4
-			  py-indent-offset 4
-			  python-indent 4)))
+		  (lambda ()
+			;; Highlight certain tokens in comments.
+			(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+			;; Fully configure tab settings
+			(setq tab-width 4
+				  py-indent-offset 4
+				  python-indent 4)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
 			(paredit-mode 1)))
+
+(add-hook 'sql-mode-hook
+		  (lambda ()
+			(auto-complete-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
