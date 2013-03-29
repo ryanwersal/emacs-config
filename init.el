@@ -68,6 +68,13 @@ If already there, go to actual beginning of line."
 	  (if (= col (current-column)) (move-beginning-of-line nil))))
 (global-set-key (kbd "C-a") 'st2-like-beginning-of-line)
 
+(defun open-line-and-indent ()
+  "Essentially like 'newline-and-indent' but can be done in the middle of another line."
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+(global-set-key (kbd "<S-return>") 'open-line-and-indent)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
