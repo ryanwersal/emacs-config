@@ -1,0 +1,85 @@
+# -*- mode: snippet -*-
+# name: zscreen
+# key: zscreen
+# --
+#ifndef ${1:$(upcase text)}_H
+#define ${1:$(upcase text)}_H
+
+#include "${1:$(downcase text)}_ui.h"
+
+class ${1:ScreenName} : public $1_scr
+{
+	Q_OBJECT
+
+public:
+	$1(QWidget* parent = 0, const char* name = "$1", WFlags f = 0);
+	virtual ~$1();
+
+	virtual ZScreen* emptyScreen() { return new $1(); }
+	virtual QString screenKey(const QString& id = "") { return $1_scr::screenKey(id); }
+	virtual void fillMenuPane(ZTaskPane* menuPane);
+
+protected:
+	virtual void open(const QString& $2id);
+	virtual void save();
+	virtual void requery();
+	virtual void print();
+	virtual void handleLink(const QString& link);
+
+private:
+	ZSqlModel _model;
+};
+
+#endif
+$0#include "${1:$(downcase text)}.h"
+
+#include "core.h"
+#include "initializer.h"
+
+//==============================================================================
+$1::$1(QWidget* parent, const char* name, WFlags f)
+	: $1_scr(parent, name, f),
+	  _model("${2:table}")
+{
+
+}
+
+//==============================================================================
+$1::~$1()
+{}
+
+//==============================================================================
+void $1::fillMenuPane(ZTaskPane* menuPane)
+{
+	menuPane->addCategory("Menu");
+}
+
+//==============================================================================
+void $1::handleLink(const QString& link)
+{
+
+}
+
+//==============================================================================
+void $1::open(const QString& $2id)
+{
+	_model.setRecord(zsql::checkInt($2id));
+}
+
+//==============================================================================
+void $1::save()
+{
+	_model.save();
+}
+
+//==============================================================================
+void $1::requery()
+{
+
+}
+
+//==============================================================================
+void $1::print()
+{
+
+}
