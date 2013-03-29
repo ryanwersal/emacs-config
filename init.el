@@ -140,6 +140,9 @@ If already there, go to actual beginning of line."
 
 (global-auto-revert-mode 1)
 
+(electric-indent-mode t)
+(electric-pair-mode t)
+
 (set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
 
 ;; Make help more helpful (and less intrusive).
@@ -237,6 +240,13 @@ If already there, go to actual beginning of line."
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
+(require 'highlight-symbol)
+(global-set-key (kbd "<C-f3>") 'highlight-symbol-at-point)
+(global-set-key (kbd "<M-f3>") 'highlight-symbol-remove-all)
+(global-set-key (kbd "<f3>") 'highlight-symbol-next)
+(global-set-key (kbd "<S-f3>") 'highlight-symbol-prev)
+(global-set-key (kbd "<C-M-f3>") 'highlight-symbol-query-replace)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -277,13 +287,6 @@ If already there, go to actual beginning of line."
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Additional Keybinds
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "C-c C-w") 'whitespace-mode)
-(global-set-key (kbd "C-c C-c") 'whitespace-cleanup-region)
-(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
