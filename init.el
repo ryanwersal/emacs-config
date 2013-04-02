@@ -75,6 +75,9 @@ If already there, go to actual beginning of line."
   (newline-and-indent))
 (global-set-key (kbd "<S-return>") 'open-line-and-indent)
 
+(global-set-key (kbd "C-S-k") 'scroll-up-line)
+(global-set-key (kbd "C-S-j") 'scroll-down-line)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -188,23 +191,12 @@ If already there, go to actual beginning of line."
 ;; Enable fancy window switching.
 (require 'switch-window)
 
-;; IDO goodness. Yes please!
-(require 'ido)
-(ido-mode t)
-(setq ido-ignore-buffers '("\\` " "^\*Mess" "^\*Back" "^\*scratch" ".*Completion" "^\*Ido")
-	  ido-everywhere t
-	  ido-case-fold t
-	  ido-enable-flex-matching t
-	  ido-max-prospects 10
-	  ido-confirm-unique-completion t
-	  ido-auto-merge-werk-directories-length -1)
-
-;; Port over some Sublime Text goodness that I've come to really enjoy.
-;; Start with the minimap
+;; ST2 like Minimap
 (require 'minimap)
 
 ;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
+(helm-mode 1)
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
@@ -230,13 +222,6 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; Enable "smart M-x"
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-x C-m") 'smex)
 
 (require 'expand-region)
 (global-set-key (kbd "C-h") 'er/expand-region)
