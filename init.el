@@ -9,14 +9,14 @@
 (defvar is-windows-p (eq system-type 'windows-nt))
 (defvar is-linux-p (eq system-type 'gnu/linux))
 
-(defvar office-email-address-p "ryan.wersal@zuerchertech.com")
-(defvar home-email-address-p "ryan@ryanwersal.com")
+(defvar office-email-address "ryan.wersal@zuerchertech.com")
+(defvar home-email-address "ryan@ryanwersal.com")
 
-(defvar my-email-address-p
-  (cond (is-windows-p office-email-address-p)
-		(t home-email-address-p)))
+(defvar my-email-address
+  (cond (is-windows-p office-email-address)
+		(t home-email-address)))
 
-(defvar default-font-name-p
+(defvar default-font-name
   (cond (is-windows-p "PragmataPro-8")
 		(is-linux-p "PragmataPro-8")
 		(t "PragmataPro-10")))
@@ -78,7 +78,7 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-frame-font default-font-name-p)
+(add-to-list 'default-frame-alist `(font . ,default-font-name))
 
 ;; Configure tabs
 (setq-default tab-width 4)
@@ -96,7 +96,7 @@ If already there, go to actual beginning of line."
 (setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
-(setq user-mail-address my-email-address-p)
+(setq user-mail-address my-email-address)
 
 ;; Fully setup PATH
 (defun append-to-path (dir)
