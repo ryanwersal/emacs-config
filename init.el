@@ -254,6 +254,10 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "<S-f3>") 'highlight-symbol-prev)
 (global-set-key (kbd "<C-M-f3>") 'highlight-symbol-query-replace)
 
+(require 'ace-jump-mode)
+(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
