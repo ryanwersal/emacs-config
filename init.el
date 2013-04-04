@@ -75,8 +75,8 @@ If already there, go to actual beginning of line."
   (newline-and-indent))
 (global-set-key (kbd "<S-return>") 'open-line-and-indent)
 
-(global-set-key (kbd "C-S-k") 'scroll-up-line)
-(global-set-key (kbd "C-S-j") 'scroll-down-line)
+(global-set-key (kbd "C-S-k") 'scroll-down-line)
+(global-set-key (kbd "C-S-j") 'scroll-up-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
@@ -225,9 +225,6 @@ If already there, go to actual beginning of line."
 
 (require 'expand-region)
 (global-set-key (kbd "C-h") 'er/expand-region)
-
-(require 'hl-line+)
-(global-hl-line-mode 1)
 
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)

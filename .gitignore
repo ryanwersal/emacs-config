@@ -7,3 +7,4 @@ ac-comphist.dat
 elpa/archives
 url
 session*
+.mc-lists.el
