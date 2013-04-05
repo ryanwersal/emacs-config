@@ -264,6 +264,10 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			(auto-complete-mode)))
 
+(add-hook 'markdown-mode-hook
+		  (lambda ()
+			(auto-complete-mode)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
