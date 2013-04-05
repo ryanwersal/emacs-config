@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pullquote
+# key: pullquote
+# --
+{% pullquote %}
+${1:text but ensure some part is wrapped in '{" "}'}$0
+{% endpullquote %}

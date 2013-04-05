@@ -280,6 +280,7 @@ If already there, go to actual beginning of line."
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
