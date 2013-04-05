@@ -19,7 +19,7 @@
 ;;;;;;  helm-select-action helm-force-update helm-toggle-suspend-update
 ;;;;;;  helm-other-buffer helm-resume-previous-session-after-quit
 ;;;;;;  helm-resume helm-open-last-log helm-define-multi-key) "helm"
-;;;;;;  "helm.el" (20829 41315))
+;;;;;;  "helm.el" (20831 19488))
 ;;; Generated autoloads from helm.el
 
 (autoload 'helm-define-multi-key "helm" "\
@@ -321,7 +321,7 @@ This will enable `helm-follow-mode' automatically in `helm-source-buffers-list'.
 ;;;***
 
 ;;;### (autoloads (helm-reset-adaptative-history) "helm-adaptative"
-;;;;;;  "helm-adaptative.el" (20829 41315))
+;;;;;;  "helm-adaptative.el" (20831 19488))
 ;;; Generated autoloads from helm-adaptative.el
 
 (autoload 'helm-reset-adaptative-history "helm-adaptative" "\
@@ -334,7 +334,7 @@ Useful when you have a old or corrupted `helm-adaptive-history-file'.
 
 ;;;### (autoloads (helm-apt helm-apt-show-all helm-apt-show-only-deinstalled
 ;;;;;;  helm-apt-show-only-not-installed helm-apt-show-only-installed)
-;;;;;;  "helm-apt" "helm-apt.el" (20829 41315))
+;;;;;;  "helm-apt" "helm-apt.el" (20831 19488))
 ;;; Generated autoloads from helm-apt.el
 
 (autoload 'helm-apt-show-only-installed "helm-apt" "\
@@ -365,7 +365,7 @@ With a prefix arg reload cache.
 
 ;;;***
 
-;;;### (autoloads (helm-bbdb) "helm-bbdb" "helm-bbdb.el" (20829 41315))
+;;;### (autoloads (helm-bbdb) "helm-bbdb" "helm-bbdb.el" (20831 19488))
 ;;; Generated autoloads from helm-bbdb.el
 
 (autoload 'helm-bbdb "helm-bbdb" "\
@@ -380,7 +380,7 @@ http://bbdb.sourceforge.net/
 ;;;***
 
 ;;;### (autoloads (helm-bookmark-ext helm-bmkext-run-edit) "helm-bmkext"
-;;;;;;  "helm-bmkext.el" (20829 41315))
+;;;;;;  "helm-bmkext.el" (20831 19488))
 ;;; Generated autoloads from helm-bmkext.el
 
 (autoload 'helm-bmkext-run-edit "helm-bmkext" "\
@@ -400,11 +400,11 @@ Contain also `helm-source-google-suggest'.
 
 ;;;### (autoloads (helm-pp-bookmarks helm-bookmarks helm-bookmark-run-delete
 ;;;;;;  helm-bookmark-run-jump-other-window helm-bookmark-toggle-filename)
-;;;;;;  "helm-bookmark" "helm-bookmark.el" (20829 41315))
+;;;;;;  "helm-bookmark" "helm-bookmark.el" (20831 19488))
 ;;; Generated autoloads from helm-bookmark.el
 
 (autoload 'helm-bookmark-toggle-filename "helm-bookmark" "\
-
+Toggle bookmark location visibility.
 
 \(fn)" t nil)
 
@@ -436,7 +436,7 @@ Preconfigured `helm' for bookmarks (pretty-printed).
 ;;;;;;  helm-buffer-run-query-replace-regexp helm-buffer-run-zgrep
 ;;;;;;  helm-buffer-run-grep helm-buffer-run-kill-buffers helm-buffer-save-persistent
 ;;;;;;  helm-buffer-revert-persistent helm-buffer-diff-persistent)
-;;;;;;  "helm-buffers" "helm-buffers.el" (20829 41315))
+;;;;;;  "helm-buffers" "helm-buffers.el" (20831 19488))
 ;;; Generated autoloads from helm-buffers.el
 
 (autoload 'helm-buffer-diff-persistent "helm-buffers" "\
@@ -513,7 +513,7 @@ It is an enhanced version of `helm-for-buffers'.
 ;;;***
 
 ;;;### (autoloads (helm-simple-call-tree) "helm-call-tree" "helm-call-tree.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-call-tree.el
 
 (autoload 'helm-simple-call-tree "helm-call-tree" "\
@@ -526,8 +526,8 @@ http://www.emacswiki.org/cgi-bin/wiki/download/simple-call-tree.el
 
 ;;;***
 
-;;;### (autoloads (helm-colors) "helm-color" "helm-color.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-colors) "helm-color" "helm-color.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-color.el
 
 (autoload 'helm-colors "helm-color" "\
@@ -537,8 +537,8 @@ Preconfigured `helm' for color.
 
 ;;;***
 
-;;;### (autoloads (helm-M-x) "helm-command" "helm-command.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-M-x) "helm-command" "helm-command.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-command.el
 
 (autoload 'helm-M-x "helm-command" "\
@@ -550,7 +550,7 @@ It is `helm' replacement of regular `M-x' `execute-extended-command'.
 ;;;***
 
 ;;;### (autoloads (helm-configuration) "helm-config" "helm-config.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-config.el
 
 (autoload 'helm-configuration "helm-config" "\
@@ -563,7 +563,7 @@ Customize `helm'.
 ;;;### (autoloads (helm-complex-command-history helm-timers helm-manage-advice
 ;;;;;;  helm-apropos helm-lisp-completion-or-file-name-at-point helm-lisp-indent
 ;;;;;;  helm-complete-file-name-at-point helm-lisp-completion-at-point)
-;;;;;;  "helm-elisp" "helm-elisp.el" (20829 41315))
+;;;;;;  "helm-elisp" "helm-elisp.el" (20831 19488))
 ;;; Generated autoloads from helm-elisp.el
 
 (autoload 'helm-lisp-completion-at-point "helm-elisp" "\
@@ -610,7 +610,7 @@ Preconfigured `helm' for timers.
 ;;;***
 
 ;;;### (autoloads (helm-elscreen) "helm-elscreen" "helm-elscreen.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-elscreen.el
 
 (autoload 'helm-elscreen "helm-elscreen" "\
@@ -620,7 +620,7 @@ Preconfigured helm to list elscreen.
 
 ;;;***
 
-;;;### (autoloads (helm-emms) "helm-emms" "helm-emms.el" (20829 41315))
+;;;### (autoloads (helm-emms) "helm-emms" "helm-emms.el" (20831 19488))
 ;;; Generated autoloads from helm-emms.el
 
 (autoload 'helm-emms "helm-emms" "\
@@ -631,7 +631,7 @@ Preconfigured `helm' for emms sources.
 ;;;***
 
 ;;;### (autoloads (helm-eshell-history helm-esh-pcomplete) "helm-eshell"
-;;;;;;  "helm-eshell.el" (20829 41315))
+;;;;;;  "helm-eshell.el" (20831 19488))
 ;;; Generated autoloads from helm-eshell.el
 
 (autoload 'helm-esh-pcomplete "helm-eshell" "\
@@ -647,7 +647,7 @@ Preconfigured helm for eshell history.
 ;;;***
 
 ;;;### (autoloads (helm-calcul-expression helm-eval-expression-with-eldoc
-;;;;;;  helm-eval-expression) "helm-eval" "helm-eval.el" (20829 41315))
+;;;;;;  helm-eval-expression) "helm-eval" "helm-eval.el" (20831 19488))
 ;;; Generated autoloads from helm-eval.el
 
 (autoload 'helm-eval-expression "helm-eval" "\
@@ -668,7 +668,7 @@ Preconfigured helm for `helm-source-calculation-result'.
 ;;;***
 
 ;;;### (autoloads (helm-run-external-command) "helm-external" "helm-external.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-external.el
 
 (autoload 'helm-run-external-command "helm-external" "\
@@ -697,7 +697,7 @@ You can set your own list of commands with
 ;;;;;;  helm-ff-run-load-file helm-ff-run-byte-compile-file helm-ff-run-rename-file
 ;;;;;;  helm-ff-run-copy-file helm-ff-run-zgrep helm-ff-run-pdfgrep
 ;;;;;;  helm-ff-run-grep helm-ff-run-switch-to-history helm-ff-run-toggle-auto-update)
-;;;;;;  "helm-files" "helm-files.el" (20829 41315))
+;;;;;;  "helm-files" "helm-files.el" (20831 19488))
 ;;; Generated autoloads from helm-files.el
 
 (autoload 'helm-ff-run-toggle-auto-update "helm-files" "\
@@ -920,7 +920,7 @@ Preconfigured `helm' for `recentf'.
 ;;;***
 
 ;;;### (autoloads (helm-firefox-bookmarks) "helm-firefox" "helm-firefox.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-firefox.el
 
 (autoload 'helm-firefox-bookmarks "helm-firefox" "\
@@ -941,7 +941,7 @@ After closing firefox, you will be able to browse you bookmarks.
 ;;;***
 
 ;;;### (autoloads (helm-ucs helm-select-xfont) "helm-font" "helm-font.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-font.el
 
 (autoload 'helm-select-xfont "helm-font" "\
@@ -956,8 +956,8 @@ Preconfigured helm for `ucs-names' math symbols.
 
 ;;;***
 
-;;;### (autoloads (helm-gentoo) "helm-gentoo" "helm-gentoo.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-gentoo) "helm-gentoo" "helm-gentoo.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-gentoo.el
 
 (autoload 'helm-gentoo "helm-gentoo" "\
@@ -974,7 +974,7 @@ Preconfigured `helm' for gentoo linux.
 ;;;;;;  helm-grep-run-other-frame-action helm-grep-run-other-window-action
 ;;;;;;  helm-grep-run-default-action helm-grep-run-persistent-action
 ;;;;;;  helm-goto-next-file helm-goto-precedent-file) "helm-grep"
-;;;;;;  "helm-grep.el" (20829 41315))
+;;;;;;  "helm-grep.el" (20831 19488))
 ;;; Generated autoloads from helm-grep.el
 
 (autoload 'helm-goto-precedent-file "helm-grep" "\
@@ -1086,7 +1086,7 @@ Preconfigured helm for pdfgrep.
 ;;;;;;  helm-bookmark-help helm-ucs-help helm-etags-help helm-pdfgrep-help
 ;;;;;;  helm-grep-help helm-generic-file-help helm-read-file-name-help
 ;;;;;;  helm-ff-help helm-buffer-help helm-help) "helm-help" "helm-help.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-help.el
 
 (defvar helm-mode-line-string "\\<helm-map>\\[helm-help]:Help \\[helm-select-action]:Act \\[helm-exit-minibuffer]/\\[helm-select-2nd-action-or-end-of-line]/\\[helm-select-3rd-action]:NthAct" "\
@@ -1217,8 +1217,8 @@ HELM-ATTRIBUTE should be a symbol.
 
 ;;;***
 
-;;;### (autoloads (helm-imenu) "helm-imenu" "helm-imenu.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-imenu) "helm-imenu" "helm-imenu.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-imenu.el
 
 (autoload 'helm-imenu "helm-imenu" "\
@@ -1229,7 +1229,7 @@ Preconfigured `helm' for `imenu'.
 ;;;***
 
 ;;;### (autoloads (helm-info-at-point) "helm-info" "helm-info.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-info.el
 
 (autoload 'helm-info-at-point "helm-info" "\
@@ -1240,8 +1240,8 @@ With a prefix-arg insert symbol at point.
 
 ;;;***
 
-;;;### (autoloads (helm-locate) "helm-locate" "helm-locate.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-locate) "helm-locate" "helm-locate.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-locate.el
 
 (autoload 'helm-locate "helm-locate" "\
@@ -1264,8 +1264,8 @@ Where db_path is a filename matched by
 
 ;;;***
 
-;;;### (autoloads (helm-man-woman) "helm-man" "helm-man.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-man-woman) "helm-man" "helm-man.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-man.el
 
 (autoload 'helm-man-woman "helm-man" "\
@@ -1277,7 +1277,7 @@ With a prefix arg reinitialize the cache.
 ;;;***
 
 ;;;### (autoloads (helm-match-plugin-mode) "helm-match-plugin" "helm-match-plugin.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-match-plugin.el
 
 (defvar helm-match-plugin-mode nil "\
@@ -1299,7 +1299,7 @@ See `helm-mp-matching-method' for the behavior of each method.
 
 ;;;### (autoloads (helm-minibuffer-history helm-mini helm-stumpwm-commands
 ;;;;;;  helm-ratpoison-commands helm-eev-anchors helm-insert-latex-math
-;;;;;;  helm-world-time) "helm-misc" "helm-misc.el" (20829 41315))
+;;;;;;  helm-world-time) "helm-misc" "helm-misc.el" (20831 19488))
 ;;; Generated autoloads from helm-misc.el
 
 (autoload 'helm-world-time "helm-misc" "\
@@ -1340,7 +1340,7 @@ Preconfigured `helm' for `minibuffer-history'.
 ;;;***
 
 ;;;### (autoloads (helm-mode helm-comp-read helm-cr-empty-string)
-;;;;;;  "helm-mode" "helm-mode.el" (20829 41315))
+;;;;;;  "helm-mode" "helm-mode.el" (20831 19488))
 ;;; Generated autoloads from helm-mode.el
 
 (autoload 'helm-cr-empty-string "helm-mode" "\
@@ -1460,7 +1460,7 @@ Note: This mode is incompatible with Emacs23.
 ;;;***
 
 ;;;### (autoloads (helm-yahoo-suggest helm-google-suggest helm-surfraw)
-;;;;;;  "helm-net" "helm-net.el" (20829 41315))
+;;;;;;  "helm-net" "helm-net.el" (20831 19488))
 ;;; Generated autoloads from helm-net.el
 
 (autoload 'helm-surfraw "helm-net" "\
@@ -1481,7 +1481,7 @@ Preconfigured `helm' for Yahoo searching with Yahoo suggest.
 ;;;***
 
 ;;;### (autoloads (helm-org-headlines helm-org-keywords) "helm-org"
-;;;;;;  "helm-org.el" (20829 41315))
+;;;;;;  "helm-org.el" (20831 19488))
 ;;; Generated autoloads from helm-org.el
 
 (autoload 'helm-org-keywords "helm-org" "\
@@ -1498,7 +1498,7 @@ Preconfigured helm to show org headlines.
 
 ;;;### (autoloads (helm-browse-code helm-multi-occur-from-isearch
 ;;;;;;  helm-multi-occur helm-occur-from-isearch helm-occur helm-regexp)
-;;;;;;  "helm-regexp" "helm-regexp.el" (20829 41315))
+;;;;;;  "helm-regexp" "helm-regexp.el" (20831 19488))
 ;;; Generated autoloads from helm-regexp.el
 
 (autoload 'helm-regexp "helm-regexp" "\
@@ -1547,7 +1547,7 @@ Preconfigured helm to browse code.
 
 ;;;### (autoloads (helm-show-kill-ring helm-register helm-all-mark-rings
 ;;;;;;  helm-global-mark-ring helm-mark-ring) "helm-ring" "helm-ring.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-ring.el
 
 (autoload 'helm-mark-ring "helm-ring" "\
@@ -1581,7 +1581,7 @@ First call open the kill-ring browser, next calls move to next line.
 ;;;***
 
 ;;;### (autoloads (helm-semantic-or-imenu helm-semantic) "helm-semantic"
-;;;;;;  "helm-semantic.el" (20829 41315))
+;;;;;;  "helm-semantic.el" (20831 19488))
 ;;; Generated autoloads from helm-semantic.el
 
 (autoload 'helm-semantic "helm-semantic" "\
@@ -1602,8 +1602,8 @@ Fill in the symbol at point by default.
 
 ;;;### (autoloads (helm-xrandr-set helm-list-emacs-process helm-top
 ;;;;;;  helm-top-run-sort-by-user helm-top-run-sort-by-mem helm-top-run-sort-by-cpu
-;;;;;;  helm-top-run-sort-by-com) "helm-sys" "helm-sys.el" (20829
-;;;;;;  41315))
+;;;;;;  helm-top-run-sort-by-com) "helm-sys" "helm-sys.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-sys.el
 
 (autoload 'helm-top-run-sort-by-com "helm-sys" "\
@@ -1644,7 +1644,7 @@ Preconfigured `helm' for emacs process.
 ;;;***
 
 ;;;### (autoloads (helm-etags-select) "helm-tags" "helm-tags.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-tags.el
 
 (autoload 'helm-etags-select "helm-tags" "\
@@ -1659,7 +1659,7 @@ If tag file have been modified reinitialize cache.
 
 ;;;### (autoloads (helm-yank-text-at-point helm-w32-shell-execute-open-file
 ;;;;;;  helm-quit-and-find-file helm-display-all-sources helm-show-all-in-this-source-only)
-;;;;;;  "helm-utils" "helm-utils.el" (20829 41315))
+;;;;;;  "helm-utils" "helm-utils.el" (20831 19488))
 ;;; Generated autoloads from helm-utils.el
 
 (autoload 'helm-show-all-in-this-source-only "helm-utils" "\
@@ -1695,8 +1695,8 @@ the entire symbol.
 
 ;;;***
 
-;;;### (autoloads (helm-w3m-bookmarks) "helm-w3m" "helm-w3m.el" (20829
-;;;;;;  41315))
+;;;### (autoloads (helm-w3m-bookmarks) "helm-w3m" "helm-w3m.el" (20831
+;;;;;;  19488))
 ;;; Generated autoloads from helm-w3m.el
 
 (autoload 'helm-w3m-bookmarks "helm-w3m" "\
@@ -1713,7 +1713,7 @@ http://emacs-w3m.namazu.org/
 
 ;;;### (autoloads (helm-yaoddmuse-emacswiki-post-library helm-yaoddmuse-emacswiki-edit-or-view
 ;;;;;;  helm-yaoddmuse-cache-pages) "helm-yaoddmuse" "helm-yaoddmuse.el"
-;;;;;;  (20829 41315))
+;;;;;;  (20831 19488))
 ;;; Generated autoloads from helm-yaoddmuse.el
 
 (autoload 'helm-yaoddmuse-cache-pages "helm-yaoddmuse" "\
@@ -1743,7 +1743,7 @@ http://www.emacswiki.org/emacs/download/yaoddmuse.el
 ;;;***
 
 ;;;### (autoloads nil nil ("helm-aliases.el" "helm-pkg.el" "helm-plugin.el")
-;;;;;;  (20829 41315 619000))
+;;;;;;  (20831 19488 470000))
 
 ;;;***
 
