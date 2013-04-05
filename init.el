@@ -226,9 +226,6 @@ If already there, go to actual beginning of line."
 (require 'expand-region)
 (global-set-key (kbd "C-h") 'er/expand-region)
 
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
-
 (require 'highlight-symbol)
 (global-set-key (kbd "<C-f3>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<M-f3>") 'highlight-symbol-remove-all)
