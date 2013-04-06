@@ -260,7 +260,8 @@ If already there, go to actual beginning of line."
 
 (add-hook 'markdown-mode-hook
 		  (lambda ()
-			(auto-complete-mode)))
+			(auto-complete-mode)
+			(flyspell-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
