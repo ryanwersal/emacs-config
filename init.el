@@ -213,8 +213,6 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 (require 'flycheck)
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
 
 (autoload 'js2-mode "js2-mode" "Major mode for editing javascript files" t)
 
@@ -248,10 +246,15 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			;; Highlight certain tokens in comments.
 			(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+			(flycheck-mode)
 			;; Fully configure tab settings
 			(setq tab-width 4
 				  py-indent-offset 4
 				  python-indent 4)))
+
+(add-hook 'js2-mode-hook
+		  (lambda ()
+			(flycheck-mode)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
