@@ -69,7 +69,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-a") 'st2-like-beginning-of-line)
 
 (defun open-line-and-indent ()
-  "Essentially like 'newline-and-indent' but can be done in the middle of another line."
+  "'newline-and-indent' from middle of line without breaking that line."
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
