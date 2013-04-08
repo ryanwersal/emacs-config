@@ -119,6 +119,8 @@ If already there, go to actual beginning of line."
 (setq line-number-mode t
 	  column-number-mode t)
 
+(global-hl-line-mode +1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -207,6 +209,7 @@ If already there, go to actual beginning of line."
 (require 'helm-c-yasnippet)
 (setq yas/snippet-dirs (libdir-file "snippets")) ;; Only load my snippets.
 (yas-global-mode t)
+(set-face-background 'yas-field-highlight-face "#333399")
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 (require 'flycheck)
