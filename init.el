@@ -238,6 +238,8 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'prog-mode-hook 'flyspell-prog-mode) ;; Spell check comments.
+
 (add-hook 'c-mode-common-hook
 		  (lambda ()
 			;; Highlight certain tokens in comments.
