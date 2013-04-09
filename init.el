@@ -231,6 +231,8 @@ If already there, go to actual beginning of line."
 (setq recentf-max-saved-items 200)
 (recentf-mode +1)
 
+(require 'multi-term)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
