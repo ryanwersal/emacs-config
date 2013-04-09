@@ -78,6 +78,8 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-S-k") 'scroll-down-line)
 (global-set-key (kbd "C-S-j") 'scroll-up-line)
 
+(global-set-key (kbd "C-x C-r") 'query-replace-regexp)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
