@@ -231,6 +231,10 @@ If already there, go to actual beginning of line."
 (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
+(require 'recentf)
+(setq recentf-max-saved-items 200)
+(recentf-mode +1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
