@@ -88,14 +88,10 @@ If already there, go to actual beginning of line."
 (setq-default indent-tabs-mode t)
 
 ;; Configure title bar
-(setq-default
- frame-title-format
- (list '((buffer-file-name
-	  "Emacs - %f"
-	  (dired-directory
-	   dired-directory
-	   (revert-buffer-function " %b" ("%b - Dir: " default-directory)))))))
-
+(setq-default frame-title-format
+			  '((:eval (if (buffer-file-name)
+						   (abbreviate-file-name (buffer-file-name))
+						 "%b"))))
 (setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
@@ -232,9 +228,17 @@ If already there, go to actual beginning of line."
 (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
+(require 'recentf)
+(setq recentf-max-saved-items 200)
+(recentf-mode +1)
+
+(require 'multi-term)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'prog-mode-hook 'flyspell-prog-mode) ;; Spell check comments.
+
 (add-hook 'c-mode-common-hook
 		  (lambda ()
 			;; Highlight certain tokens in comments.
