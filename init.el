@@ -88,14 +88,10 @@ If already there, go to actual beginning of line."
 (setq-default indent-tabs-mode t)
 
 ;; Configure title bar
-(setq-default
- frame-title-format
- (list '((buffer-file-name
-	  "Emacs - %f"
-	  (dired-directory
-	   dired-directory
-	   (revert-buffer-function " %b" ("%b - Dir: " default-directory)))))))
-
+(setq-default frame-title-format
+			  '((:eval (if (buffer-file-name)
+						   (abbreviate-file-name (buffer-file-name))
+						 "%b"))))
 (setq-default icon-title-format 'frame-title-format)
 
 ;; Set appropriate email
