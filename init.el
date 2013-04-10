@@ -74,6 +74,7 @@ If already there, go to actual beginning of line."
   (move-end-of-line nil)
   (newline-and-indent))
 (global-set-key (kbd "<S-return>") 'open-line-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-S-k") 'scroll-down-line)
 (global-set-key (kbd "C-S-j") 'scroll-up-line)
@@ -150,7 +151,6 @@ If already there, go to actual beginning of line."
 
 (global-auto-revert-mode 1)
 
-(electric-indent-mode t)
 (electric-pair-mode t)
 
 (set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
