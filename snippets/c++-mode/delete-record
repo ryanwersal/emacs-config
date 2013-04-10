@@ -1,9 +1,6 @@
 # -*- mode: snippet -*-
 # name: delete-record
-# key: delete
-# binding: direct-keybinding
-# expand-env: ((some-var some-value))
-# type: command
+# key: delete-record
 # --
 if (!Core::hasPermission(deletePermission(), CoreAdmin::getOwnerAgenciesid("${1:table}", ${2:id_var})))
 {
@@ -14,9 +11,9 @@ if (!Core::hasPermission(deletePermission(), CoreAdmin::getOwnerAgenciesid("${1:
 ZSqlTransaction trans;
 try
 {
-	if (zt::confirmDelete("${3:item_type_name}"))
+	if (zt::confirmDelete("$3"))
 	{
-		zsql::removeRecord("${1:table}", ${2:id_var});
+		zsql::removeRecord("$1", $2);
 		trans.commit();
 		ZCore::singleShotAtMainLoop(this, SLOT(_requery()));
 	}
