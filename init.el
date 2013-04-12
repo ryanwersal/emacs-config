@@ -236,6 +236,9 @@ If already there, go to actual beginning of line."
 
 (require 'multi-term)
 
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
