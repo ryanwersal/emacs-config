@@ -79,8 +79,6 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-S-k") 'scroll-down-line)
 (global-set-key (kbd "C-S-j") 'scroll-up-line)
 
-(global-set-key (kbd "C-x C-r") 'query-replace-regexp)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,6 +231,9 @@ If already there, go to actual beginning of line."
 (require 'recentf)
 (setq recentf-max-saved-items 200)
 (recentf-mode +1)
+
+(require 'visual-regexp)
+(global-set-key (kbd "C-x C-r") 'vr/query-replace)
 
 (require 'multi-term)
 
