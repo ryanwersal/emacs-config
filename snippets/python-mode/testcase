@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: testcase
+# key: testcase
+# --
+import unittest
+import sys
+
+sys.path.insert(0, "${1:../path/to/unit/under/test/}")
+import ${2:Module Under Test}
+
+# ==============================================================================
+class ${3:Test Class}(unittest.TestCase):
+    # ------------------------------------------------------------------------------
+    def test_${4:Test Method Name}(self):
+		self.assertTrue(False)
