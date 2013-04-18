@@ -25,6 +25,10 @@
   "Create a valid path to FILE that is located in the Emacs lib folder (~/.emacs.d)."
   (concat (expand-file-name "~/.emacs.d") "/" file))
 
+(defun highlight-fixme-tokens ()
+  "Highlights fixme tokens in comments."
+  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t))))
+
 (defun confirm-exit ()
   "Prompt before exitting."
   (interactive)
@@ -247,23 +251,22 @@ If already there, go to actual beginning of line."
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
-			;; Highlight certain tokens in comments.
-			(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+			(highlight-fixme-tokens)
 			;; Make it easier to jump between .h/.cpp files
 			(local-set-key (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'python-mode-hook
 		  (lambda ()
-			;; Highlight certain tokens in comments.
-			(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t)))
+			(highlight-fixme-tokens)
 			(flycheck-mode)
 			;; Fully configure tab settings
 			(setq tab-width 4
-				  py-indent-offset 4
-				  python-indent 4)))
+				  python-indent-offset 4
+				  indent-tabs-mode t)))
 
 (add-hook 'js2-mode-hook
 		  (lambda ()
+			(highlight-fixme-tokens)
 			(flycheck-mode)))
 
 (add-hook 'clojure-mode-hook
@@ -272,6 +275,7 @@ If already there, go to actual beginning of line."
 
 (add-hook 'sql-mode-hook
 		  (lambda ()
+			(highlight-fixme-tokens)
 			(auto-complete-mode)))
 
 (add-hook 'markdown-mode-hook
@@ -303,3 +307,4 @@ If already there, go to actual beginning of line."
 
 (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)
