@@ -8,19 +8,6 @@ There are a couple motivations for the new configuration. The largest was that f
 
 Between that and my growing affection for Clojure (and probably Lisps in general), I've decided to "come back home" to Emacs. 
 
-Goals
------
-There are a few long term goals that I wish to work towards. Some are old goals made new again and others are directly inspired by my favorite features from Sublime Text:
-
-- ~~Add in a Minimap feature~~ (Added thanks to [MiniMap](http://www.emacswiki.org/emacs/MiniMap).)
-- ~~Handle multi selection in a vaguely ST2 way (including the "select next instance of this token" functionality.)~~ ([multiple-cursors.el](https://github.com/magnars/multiple-cursors.el) is working quite beatifully so far. Need to figure out more home-row-centric keybinds though.)
-- ~~Add some form of the "Go to Anything" panel from ST2.~~ ([Helm](https://github.com/emacs-helm/helm) is proving to be quite capable so far.)
-- Actually get Clang working with Emacs for C++ code completion etc. (And hopefully code navigation as well!)
-- ~~Get something similar to Clang working for Python.~~ (After taking a look, [Flycheck's linter](https://github.com/lunaryorn/flycheck) may be sufficient for my needs.)
-- ~~Implement a Base16 Dark theme (or find someone who has done so already).~~ (A start can be found in my [base16-emacs repo](https://github.com/ryanwersal/base16-emacs/blob/master/base16-dark-theme.el).)
-
-Also see the [Ongoing Ideas](https://github.com/ryanwersal/emacs-config/issues/1) issue for additional smaller items.
-
 Install
 -------
 1. Clone this repo as ~/.emacs.d
