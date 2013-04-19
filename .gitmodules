@@ -1,6 +1,3 @@
 [submodule "themes/base16"]
 	path = themes/base16
 	url = git@github.com:ryanwersal/base16-emacs.git
-[submodule "packages/minimap"]
-	path = packages/minimap
-	url = git@github.com:ryanwersal/emacs-minimap.git

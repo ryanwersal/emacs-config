@@ -165,7 +165,7 @@ If already there, go to actual beginning of line."
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(dolist (path '("themes" "themes/base16" "packages" "packages/minimap")) (add-to-list 'load-path (libdir-file path)))
+(dolist (path '("themes" "themes/base16")) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
@@ -192,9 +192,6 @@ If already there, go to actual beginning of line."
 
 ;; Enable fancy window switching.
 (require 'switch-window)
-
-;; ST2 like Minimap
-(require 'minimap)
 
 ;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
