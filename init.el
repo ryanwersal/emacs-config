@@ -256,7 +256,7 @@ If already there, go to actual beginning of line."
 (add-hook 'python-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
-			(flycheck-mode)
+			;; (flycheck-mode)
 			;; Fully configure tab settings
 			(setq tab-width 4
 				  python-indent-offset 4
@@ -305,4 +305,3 @@ If already there, go to actual beginning of line."
 
 (provide 'init)
 ;;; init.el ends here
-(put 'narrow-to-region 'disabled nil)
