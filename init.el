@@ -244,7 +244,8 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'prog-mode-hook 'flyspell-prog-mode) ;; Spell check comments.
+(if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
+(add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
@@ -255,7 +256,7 @@ If already there, go to actual beginning of line."
 (add-hook 'python-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
-			(flycheck-mode)
+			;; (flycheck-mode)
 			;; Fully configure tab settings
 			(setq tab-width 4
 				  python-indent-offset 4
@@ -304,4 +305,3 @@ If already there, go to actual beginning of line."
 
 (provide 'init)
 ;;; init.el ends here
-(put 'narrow-to-region 'disabled nil)
