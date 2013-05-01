@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: blocksignals
+# key: blocksignals
+# --
+bool ${1:blocked} = ${2:widget}->signalsBlocked();
+$2->blockSignals(true);
+
+$0
+
+$2->blockSignals(blocked);
