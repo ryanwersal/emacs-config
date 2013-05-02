@@ -26,7 +26,7 @@
   (concat (expand-file-name "~/.emacs.d") "/" file))
 
 (defun highlight-fixme-tokens ()
-  "Highlights fixme tokens in comments."
+  "Highlight fixme tokens in comments."
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\):" 1 font-lock-warning-face t))))
 
 (defun confirm-exit ()
@@ -152,8 +152,6 @@ If already there, go to actual beginning of line."
  )
 
 (global-auto-revert-mode 1)
-
-(electric-pair-mode t)
 
 (set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
 
