@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectzde
+# key: connectzde
+# --
+connect(${1:zde}, SIGNAL(valueChanged(const QDate&)), this, SLOT(${2:_requery()}));

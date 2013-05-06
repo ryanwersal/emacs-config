@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: filter-zdr
-# key: filter-zdr
-# --
-QDate ${2:start_date} = ${1:zdrDateRange}->getStartDate();
-QDate ${3:end_date} = $1->getEndDate();
-${4:where_parts} << "${5:date} BETWEEN " + zsql::quote($2) + " AND " + zsql::quote($3);

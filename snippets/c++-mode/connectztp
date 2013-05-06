@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectztp
+# key: connectztp
+# --
+connect(${1:ztp}, SIGNAL(linkClicked(const QString&)), this, SLOT(${2:_handleLink}(const QString&)));

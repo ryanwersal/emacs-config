@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectzle
+# key: connectzle
+# --
+connect(${1:zle}, SIGNAL(returnPressed()), this, SLOT(${2:_requery()}));

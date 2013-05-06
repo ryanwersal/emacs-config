@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: filterzle
+# key: filterzle
+# --
+QString ${2:text} = ${1:zle}->text().lower();
+if (!$2.isEmpty())
+{
+	where_parts << "LOWER(${3:column}) LIKE " + zsql::quote("%" + $2 + "%");
+}

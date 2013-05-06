@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectcbo
+# key: connectcbo
+# --
+connect(${1:cbo}, SIGNAL(keyChanged(const QString&)), this, SLOT(${2:_requery()}));

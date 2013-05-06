@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: menulink
+# key: menulink
+# --
+${1:menuPane}->addItem(zt::link(\"${2:Title}\", \"${3:href}\"));

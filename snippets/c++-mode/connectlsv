@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectlsv
+# key: connectlsv
+# --
+connect(${1:lsv}, SIGNAL(itemChosen(const QString&)), this, SLOT(${2:open}(const QString&)));

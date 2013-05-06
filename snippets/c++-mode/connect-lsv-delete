@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: connect-lsv-delete
-# key: connect-lsv-delete
-# --
-connect(${1:lsv}, SIGNAL(keyPressed_Delete(${2:const QString&})), this, SLOT(${3:deleteItem()}));

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: currentactivity
+# key: currentactivity
+# --
+SELECT datname,
+	   pid,
+	   application_name,
+	   current_timestamp-xact_start AS xact_age,
+	   current_timestamp-query_start AS qry_age,
+	   query
+FROM pg_stat_activity
+WHERE query!='<IDLE>'
+ORDER BY xact_start;

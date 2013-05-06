@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: kill-connections
-# key: kill-connections
-# --
-SELECT pg_terminate_backend(pid)
-FROM pg_stat_activity
-WHERE datname ILIKE '$1';

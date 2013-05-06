@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: reportmulti
+# key: reportmulti
+# --
+python::List reports;
+QListViewItemIterator itr(${1:lsvInvoices});
+for (; itr.current(); ++itr)
+{
+	ZSqlListViewItem* item = static_cast<ZSqlListViewItem*>(itr.current());
+	if (!item) continue;
+
+	QString title = item->text(${2:COL_DATE}) + " - ${3:Invoice} #" + item->text(${4:COL_INVOICE_NUMBER});
+
+	python::Map args;
+	args["report_module"] = "financial";
+	args["report_name"] = "${5:invoice}";
+	args["title"] = title;
+	args["financial_reportsid"] = item->id();
+	args["checked"] = false;
+
+	reports.append(args);
+}
+
+FinancialPrinter* printer = new FinancialPrinter(this);
+printer->load(reports);
+Core::intercom()->callOpenMultiReport(printer->open("FinancialPrinter"));

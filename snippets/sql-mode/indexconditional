@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: indexconditional
+# key: indexconditional
+# --
+CREATE INDEX idx_$1_$2
+	   ON $1($2) WHERE $3;

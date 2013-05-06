@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectzdr
+# key: connectzdr
+# --
+connect(${1:zdrDateRange}, SIGNAL(dateRangeChanged()), this, SLOT(${2:_requery()}));

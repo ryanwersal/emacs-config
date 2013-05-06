@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: deleterecord
+# key: deleterecord
+# --
+if (!Core::hasPermission(deletePermission(), CoreAdmin::getOwnerAgenciesid("${1:table}", ${2:id_var})))
+{
+	Core::info(tr("You don't have permission to delete this ${3:item_type_name}."));
+	return;
+}
+
+ZSqlTransaction trans;
+try
+{
+	if (zt::confirmDelete("$3"))
+	{
+		zsql::removeRecord("$1", $2);
+		trans.commit();
+		ZCore::singleShotAtMainLoop(this, SLOT(_requery()));
+	}
+	else trans.rollback();
+}
+catch (zt::exception& e)
+{
+	zwarn << __FUNCTION__ << "() -- " << e.what() << endl;
+	trans.rollback();
+}

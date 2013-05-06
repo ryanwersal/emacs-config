@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: connectlbl
+# key: connectlbl
+# --
+connect(${1:lbl}, SIGNAL(clicked(const QString&)), this, SLOT(${2:_handleLink}(const QString&)));

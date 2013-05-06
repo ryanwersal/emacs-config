@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: filter-cbo
-# key: filter-cbo
-# --
-QString ${2:id} = ${1:cbo}->currentKey();
-if (zsql::isInt($2))
-{
-        ${3:where_parts} << "${4:col} = " + zsql::quote($2);
-}

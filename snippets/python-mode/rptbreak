@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rptbreak
+# key: rptbreak
+# --
+rpt.add_item(std_break())

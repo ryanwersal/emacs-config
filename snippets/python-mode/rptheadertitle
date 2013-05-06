@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rptheadertitle
+# key: rptheadertitle
+# --
+rpt.add_item(${1:title}, "${2:h2}")

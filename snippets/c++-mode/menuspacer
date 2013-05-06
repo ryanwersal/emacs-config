@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: menuspacer
+# key: menuspacer
+# --
+${1:menuPane}->addSpacer();

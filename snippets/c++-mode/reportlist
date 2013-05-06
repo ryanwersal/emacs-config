@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: reportlist
+# key: reportlist
+# --
+QStringList filter_order;
+filter_order << "$0";
+
+ZReportParams p;
+p["sql"] = ${1:_sql};
+p["filter_order"] = filter_order;
+p["filters"] = CoreAdmin::generateFilterReportParams(${2:_filters});
+p["limit"] = ${3:lsv}->getLimitString();
+p["order_by"] = $3->getOrderByString();
+Core::intercom()->callOpenReport("${4:module}", "${5:reportname}", p);

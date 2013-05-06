@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: foritrlsv
+# key: foritrlsv
+# --
+for (QListViewItemIterator itr(${1:lsv}); itr.current(); ++itr)
+{
+	$0
+}

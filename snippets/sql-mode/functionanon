@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: functionanon
+# key: functionanon
+# --
+DO \$\$
+DECLARE
+	$0
+BEGIN
+	
+END \$\$;

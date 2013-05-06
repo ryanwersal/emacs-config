@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rptcomments
+# key: rptcomments
+# --
+rpt.add_item(Label("<b>${1:Comments}</b>"))
+rpt.add_item(Text("%${2:comments}%"))
