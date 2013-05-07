@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: menucategory
+# key: menucategory
+# --
+${1:menuPane}->addCategory(${2:Title});
