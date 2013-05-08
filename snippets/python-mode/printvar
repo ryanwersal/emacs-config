@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: printvar
+# key: printvar
+# --
+print "${1:variable}: %s" % $1
