@@ -110,11 +110,14 @@ buffer-local wherever it is set."
     perl
     php
     php-phpcs
+    puppet-parser
+    puppet-lint
     python-flake8
     python-pylint
     rst
     ruby-rubocop
     ruby
+    ruby-jruby
     rust
     sass
     scala
@@ -2611,6 +2614,27 @@ See URL `http://pear.php.net/package/PHP_CodeSniffer/'."
     ("\\(?1:.*\\):\\(?2:[0-9]+\\):\\(?3:[0-9]+\\): warning - \\(?4:.*\\)" warning))
   :modes '(php-mode php+-mode))
 
+(flycheck-declare-checker puppet-parser
+  "A Puppet DSL syntax checker using puppet's own parser.
+
+See URL `http://www.puppetlabs.com/'."
+  :command '("puppet" "parser" "validate" "--color=false" source)
+  :error-patterns
+  '(("^.*?: Could not parse for environment \\w+: \\(?4:\\(.*\n\\)*?.*?\\) at \\(?1:\/.*\\):\\(?2:[0-9]+\\)$" error))
+  :modes 'puppet-mode
+  :next-checkers '((no-errors . puppet-lint)))
+
+(flycheck-declare-checker puppet-lint
+  "A Puppet DSL style checker using puppet-lint.
+
+See URL `http://www.puppet-lint.com/'."
+  :command '("puppet-lint" "--with-filename" source-original)
+  :predicate (and (buffer-file-name) (not (buffer-modified-p)))
+  :error-patterns
+  '(("^\\(?1:.*\\) - WARNING: \\(?4:.*\\) on line \\(?2:[0-9]+\\)" warning)
+    ("^\\(?1:.*\\) - ERROR: \\(?4:.*\\) on line \\(?2:[0-9]+\\)" error))
+  :modes 'puppet-mode)
+
 (flycheck-def-config-file-var flycheck-flake8rc python-flake8 ".flake8rc")
 
 (flycheck-def-option-var flycheck-flake8-maximum-complexity nil python-flake8
@@ -2710,10 +2734,25 @@ See URL `https://github.com/bbatsov/rubocop'."
   :modes 'ruby-mode)
 
 (flycheck-declare-checker ruby
-  "A Ruby syntax checker using the Ruby interpreter."
+  "A Ruby syntax checker using the standard (MRI) Ruby interpreter.
+
+See URL `http://www.ruby-lang.org/'."
   :command '("ruby" "-w" "-c" source)
   :error-patterns
-  '(("^\\(?1:.*\\):\\(?2:[0-9]+\\): warning: \\(?4:.*\\)$" warning)
+  ;; These patterns support output from JRuby, too, to deal with RVM or Rbenv
+  '(("^SyntaxError in \\(?1:.*\\):\\(?2:[0-9]+\\): \\(?4:.*\\)$" error)
+    ("^\\(?1:.*\\):\\(?2:[0-9]+\\):? warning: \\(?4:.*\\)$" warning)
+    ("^\\(?1:.*\\):\\(?2:[0-9]+\\): \\(?4:.*\\)$" error))
+  :modes 'ruby-mode)
+
+(flycheck-declare-checker ruby-jruby
+  "A Ruby syntax checker using the JRuby interpreter.
+
+See URL `http://jruby.org/'."
+  :command '("jruby" "-w" "-c" source)
+  :error-patterns
+  '(("^SyntaxError in \\(?1:.*\\):\\(?2:[0-9]+\\): \\(?4:.*\\)$" error)
+    ("^\\(?1:.*\\):\\(?2:[0-9]+\\) warning: \\(?4:.*\\)$" warning)
     ("^\\(?1:.*\\):\\(?2:[0-9]+\\): \\(?4:.*\\)$" error))
   :modes 'ruby-mode)
 
