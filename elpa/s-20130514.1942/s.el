@@ -3,7 +3,7 @@
 ;; Copyright (C) 2012 Magnar Sveen
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 20130511.1427
+;; Version: 20130514.1942
 ;; X-Original-Version: 1.5.0
 ;; Keywords: strings
 
@@ -166,6 +166,18 @@ This is a simple wrapper around the built-in `split-string'."
      (make-string (ceiling extra 2) ? )
      s
      (make-string (floor extra 2) ? ))))
+
+(defun s-pad-left (len padding s)
+  "If S is shorter than LEN, pad it with PADDING on the left."
+  (let ((extra (max 0 (- len (length s)))))
+    (concat (make-string extra (string-to-char padding))
+            s)))
+
+(defun s-pad-right (len padding s)
+  "If S is shorter than LEN, pad it with PADDING on the left."
+  (let ((extra (max 0 (- len (length s)))))
+    (concat s
+            (make-string extra (string-to-char padding)))))
 
 (defun s-left (len s)
   "Returns up to the LEN first chars of S."

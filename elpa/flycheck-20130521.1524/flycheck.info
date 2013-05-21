@@ -63,6 +63,7 @@ checking extension for GNU Emacs 24 withL
    * a dead simple, declarative API to create new syntax checkers,
    * major-mode based selection of syntax checkers,
    * multiple syntax checkers per buffer,
+   * optional error list popup,
    * a "doesn't get in your way" guarantee,
    * and a clean, concise and understandable implementation with decent
      test coverage.
@@ -80,7 +81,10 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
 1.1 Features
 ============
 
-     Automatic syntax checking after saving or insertion of new lines
+     Automatic on-the-fly syntax checking while editing
+   * Fully automatic selection of the syntax checker
+   * Optional manual selection of a syntax checker with
+     'flycheck-select-checker' at 'C-c ! s'
    * Built-in syntax checkers for:
         * CoffeeScript (using 'coffeelint')
         * CSS (using 'csslint'))
@@ -112,6 +116,7 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
    * Syntax checker configuration with project-specific configuration
      files and options
    * Error navigation with 'next-error' and 'previous-error'
+   * Error list with 'flycheck-list-errors' at 'C-c ! l'
    * Easy declarative API to define new syntax checkers
    * Error parsers for structured markup formats (e.g.  Checkdoc XML)
 
@@ -204,15 +209,20 @@ However, you can customize automatic syntax checking with
      This variable is list of events that may trigger syntax checks.
      The following events are known:
 
-     'mode-enabled' checks syntax if 'flycheck-mode' is enabled.
-
-     'save' checks syntax after the buffer was saved.
-
-     'new-line' checks syntax after a new line was inserted.
+     'mode-enabled'
+          Check syntax immediately if 'flycheck-mode' is enabled.
+     'save'
+          Check syntax immediately after the buffer was saved.
+     'new-line'
+          Check syntax immediately after a new line was inserted into
+          the buffer.
+     'idle-change'
+          Check syntax a short time after the last change to the buffer.
 
      An syntax check is only conducted for events that are contained in
      this list.  For instance, the following setting will cause Flycheck
-     to never check syntax if a new line was inserted:
+     to _only_ check if the mode is enabled or the buffer was saved, but
+     _never_ after changes to the buffer contents:
 
           (setq flycheck-check-syntax-automatically '(mode-enabled save))
 
@@ -478,19 +488,20 @@ Errors and warnings from a syntax checker are
  -- User Option: flycheck-highlighting-mode
      This variable determines how to highlight errors:
 
-     If set to 'columns' try to highlight errors as exactly as possible.
-     If an error provides information about a specific column, only this
-     column is highlighted.  This retains as much information as
-     possible from the syntax checker, but a single column highlight may
-     be easily overlooked.  This mode is the default.
+     If set to 'columns', only highlight the error column.  If the error
+     is not specific to a column, highlight the whole line.
 
-     If set to 'lines' the whole line on which the error occurred is
-     highlighted, regardless of whether the error is actually specific
-     to a column.  Column information is hence ignored.
+     If set to 'sexps', highlight the expression at the error column.
+     If there is no expression at the error column, highlight the column
+     only.  If the error is not specific to a column, highlight the
+     whole line.  This mode is the default.
 
-     If set to 'nil' highlighting is completely disabled.  Errors will
-     still be reported in the mode line and in error message popups, and
-     indicated according to 'flycheck-indication-mode'.
+     If set to 'lines', highlight the whole line the error refers to,
+     regardless of whether the error is specific to a column.
+
+     If set to 'nil', do not highlight errors at all.  However, errors
+     will still be reported in the mode line and in error message
+     popups, and indicated according to 'flycheck-indication-mode'.
 
      Note that this variable does _not_ affect error _navigation_.
      'next-error' and 'previous-error' always jump to the error column,
@@ -505,6 +516,12 @@ Errors and warnings from a syntax checker are
      If set to 'nil', do not indicate errors.  Errors will still be
      reported in the mode line and in error message popups, and
      highlighted according to 'flycheck-highlighting-mode'.
+
+   You can also list all errors in the current buffer:
+
+'C-c ! l'
+'M-x flycheck-list-errors'
+     List all errors in the current buffer in a separate buffer.
 
    To view an error message, either hover the mouse of the highlighted
 error, or move the point to the highlighted error and wait for a short
@@ -1215,6 +1232,9 @@ nil:
      errors in an error parser.  Flycheck automatically keeps track of
      the buffer itself.
 
+'checker'
+     The syntax checker that reported this error.
+
 'filename'
      A string containing the filename the error refers to.
 
@@ -1246,19 +1266,30 @@ nil:
      Evaluate FORMS with the current buffer set to the buffer of ERR.
      If this buffer is not live, FORMS are not evaluated.
 
- -- Function: flycheck-error-region err &optional ignore-column
-     Get the buffer region referred to by ERR.
+ -- Function: flycheck-error-line-region err
+     Get the error line region as '(BEG . END)'.
 
-     If IGNORE-COLUMN is non-nil, ignore the column attribute of ERR
-     when determining the region.
+ -- Function: flycheck-error-column-region err
+     Get the error column region.
 
-     Return the region as cons cell '(BEG . END)'.
+     If ERR has no column, return 'nil'.  Otherwise return the region
+     around the error column as cons cell '(BEG . END)'.
+
+ -- Function: flycheck-error-sexp-region err
+     Get the error expression region.
+
+     If ERR has an error column, return the region of the expression at
+     this column as cons cell '(BEG . END)'.  If ERR has no error
+     column, or if there is no expression at this column, return 'nil'
 
  -- Function: flycheck-error-pos err
-     Get the buffer position referred to by ERR.
+     Get the exact buffer position referred to by ERR.
 
      This is the position that error navigation would jump to when
      navigating to this error.
+
+ -- Function: flycheck-error-format error
+     Format the ERROR as a human-readable string.
 
    The following functions and variables may be used to analyze the
 errors of a syntax check.
@@ -1326,7 +1357,8 @@ Please report any issues to the Flycheck issue tracker
    * Be clear and precise.  If possible, name functions and command
      exactly.
    * Open an issue with a clear title and description in grammatically
-     correct, complete sentences.
+     correct, complete sentences.  Include the version of Flycheck as
+     shown by 'M-x flycheck-version'.
 
    We will try to handle each issue appropriately, and adhering to these
 guidelines helps us in doing so.
@@ -1427,6 +1459,7 @@ This appendix provides a comprehensive changelog of all releases:
 * Menu:
 
 * master        :: unreleased
+* 0.12          :: May 18, 2013
 * 0.11          :: May 01, 2013
 * 0.10          :: Apr 21, 2013
 * 0.9           :: Apr 13, 2013
@@ -1787,7 +1820,7 @@ File: flycheck.info,  Node: 0.10,  Next: 0.11,  Prev: 0.9,  Up: Changes
           CodeSniffer (https://github.com/lunaryorn/flycheck/issues/118)
 
 
-File: flycheck.info,  Node: 0.11,  Next: master,  Prev: 0.10,  Up: Changes
+File: flycheck.info,  Node: 0.11,  Next: 0.12,  Prev: 0.10,  Up: Changes
 
 0.11 (May 01, 2013)
 ===================
@@ -1822,9 +1855,9 @@ File: flycheck.info,  Node: 0.11,  Next: master,  Prev: 0.10,  Up: Changes
         * Add missing customization group for syntax checker options
 
 
-File: flycheck.info,  Node: master,  Prev: 0.11,  Up: Changes
+File: flycheck.info,  Node: 0.12,  Next: master,  Prev: 0.11,  Up: Changes
 
-master (unreleased)
+0.12 (May 18, 2013)
 ===================
 
    * New syntax checkers:
@@ -1832,6 +1865,17 @@ master (unreleased)
         * Ruby using 'jruby'
           (https://github.com/lunaryorn/flycheck/issues/136)
         * Puppet (https://github.com/lunaryorn/flycheck/issues/138)
+
+   * New features:
+
+        * Highlight error expressions by default, with the new 'sexps'
+          highlighting mode
+        * Automatically check syntax some time after the last change in
+          the buffer (https://github.com/lunaryorn/flycheck/issues/140)
+        * Add 'flycheck-version' to determine the installed Flycheck
+          version
+        * Add 'flycheck-list-errors', mapped to 'C-c ! l', to list all
+          errors in a separate buffer
 
    * Improvements:
 
@@ -1842,6 +1886,33 @@ master (unreleased)
 
         * Correctly parse syntax errors from JRuby
           (https://github.com/lunaryorn/flycheck/issues/136)
+
+
+File: flycheck.info,  Node: master,  Prev: 0.12,  Up: Changes
+
+master (unreleased)
+===================
+
+   * Breaking changes:
+
+        * Obsolete 'flycheck-warning-face' and 'flycheck-error-face' in
+          favor 'flycheck-warning' and 'flycheck-error' respectively
+
+   * New features:
+
+        * Make fringe indicator faces customizable independently with
+          'flycheck-fringe-error' and 'flycheck-fringe-warning'
+        * Improve the default faces by using underlines instead of
+          foreground colors, if possible
+
+   * Improvements
+
+        * Always highlight errors on top of warnings now
+
+   * Bug fixes:
+
+        * Fix error when searching for a configuration file outside a
+          Projectile project
 
 
 File: flycheck.info,  Node: Credits,  Next: GNU Free Documentation License,  Prev: Changes,  Up: Top
@@ -2456,35 +2527,39 @@ Function and Variable Index
  [index ]
 * Menu:
 
-* flycheck-after-syntax-check-hook:      Syntax checking.     (line  58)
-* flycheck-before-syntax-check-hook:     Syntax checking.     (line  76)
-* flycheck-buffer:                       Syntax checking.     (line  41)
+* flycheck-after-syntax-check-hook:      Syntax checking.     (line  63)
+* flycheck-before-syntax-check-hook:     Syntax checking.     (line  81)
+* flycheck-buffer:                       Syntax checking.     (line  46)
 * flycheck-check-syntax-automatically:   Syntax checking.     (line  15)
 * flycheck-checker:                      Selection.           (line  41)
 * flycheck-checkers:                     Selection.           (line   9)
 * flycheck-chktexrc:                     Configuration.       (line  25)
-* flycheck-clear:                        Reporting.           (line  83)
+* flycheck-clear:                        Reporting.           (line  90)
 * flycheck-coffeelintrc:                 Configuration.       (line  28)
-* flycheck-copy-messages-as-kill:        Reporting.           (line  66)
-* flycheck-count-errors:                 Error API.           (line  71)
-* flycheck-current-errors:               Error API.           (line  67)
+* flycheck-copy-messages-as-kill:        Reporting.           (line  73)
+* flycheck-count-errors:                 Error API.           (line  85)
+* flycheck-current-errors:               Error API.           (line  81)
 * flycheck-declare-checker:              Declaration.         (line   8)
 * flycheck-def-config-file-var:          Declaration.         (line 250)
 * flycheck-def-option-var:               Declaration.         (line 266)
 * flycheck-describe-checker:             Selection.           (line  70)
+* flycheck-error-column-region:          Error API.           (line  56)
 * flycheck-error-face:                   Reporting.           (line  14)
-* flycheck-error-new:                    Error API.           (line  39)
-* flycheck-error-pos:                    Error API.           (line  58)
-* flycheck-error-region:                 Error API.           (line  50)
-* flycheck-error-with-buffer:            Error API.           (line  46)
+* flycheck-error-format:                 Error API.           (line  75)
+* flycheck-error-line-region:            Error API.           (line  53)
+* flycheck-error-new:                    Error API.           (line  42)
+* flycheck-error-pos:                    Error API.           (line  69)
+* flycheck-error-sexp-region:            Error API.           (line  62)
+* flycheck-error-with-buffer:            Error API.           (line  49)
 * flycheck-flake8-maximum-complexity:    Configuration.       (line  10)
 * flycheck-flake8-maximum-line-length:   Configuration.       (line  14)
 * flycheck-flake8rc:                     Configuration.       (line  31)
-* flycheck-google-messages:              Reporting.           (line  71)
-* flycheck-has-errors-p:                 Error API.           (line  76)
+* flycheck-google-messages:              Reporting.           (line  78)
+* flycheck-has-errors-p:                 Error API.           (line  90)
 * flycheck-highlighting-mode:            Reporting.           (line  28)
-* flycheck-indication-mode:              Reporting.           (line  49)
+* flycheck-indication-mode:              Reporting.           (line  50)
 * flycheck-jshintrc:                     Configuration.       (line  34)
+* flycheck-list-errors:                  Reporting.           (line  64)
 * flycheck-locate-config-file-functions: Configuration.       (line  58)
 * flycheck-next-error:                   Navigation.          (line  23)
 * flycheck-parse-xml-string:             Error parser API.    (line   6)
@@ -2492,7 +2567,7 @@ Function and Variable Index
 * flycheck-previous-error:               Navigation.          (line  31)
 * flycheck-rubocoprc:                    Configuration.       (line  37)
 * flycheck-select-checker:               Selection.           (line  32)
-* flycheck-syntax-check-failed-hook:     Syntax checking.     (line  92)
+* flycheck-syntax-check-failed-hook:     Syntax checking.     (line  97)
 * flycheck-tidyrc:                       Configuration.       (line  40)
 * flycheck-warning-face:                 Reporting.           (line  15)
 
@@ -2501,51 +2576,52 @@ Function and Variable Index
 Tag Table:
 Node: Top734
 Node: Introduction2083
-Node: Features2984
-Node: Installation4796
-Node: Activation5970
-Node: Usage6321
-Node: Syntax checking6944
-Node: Selection10705
-Node: Configuration13286
-Node: Reporting16826
-Node: Navigation20321
-Node: Mode line22117
-Node: Extending23018
-Node: Declaration23617
-Node: Error parsers35974
-Node: Option filters36958
-Node: Examples37297
-Node: Simple example37729
-Node: Predicate example40793
-Node: Configuration example42774
-Node: Chaining example45433
-Node: API46819
-Node: Error API47607
-Node: Error parser API50208
-Node: Contribution50434
-Node: Reporting issues51110
-Node: Contributing syntax checkers51846
-Node: Contributing code52641
-Node: Unit tests53981
-Node: Changes55268
-Node: 0.155916
-Node: 0.256200
-Node: 0.356478
-Node: 0.456714
-Node: 0.557489
-Node: 0.658709
-Node: 0.6.161559
-Node: 0.761708
-Node: 0.7.162722
-Node: 0.863437
-Node: 0.964949
-Node: 0.1065445
-Node: 0.1167497
-Node: master68685
-Node: Credits69221
-Node: GNU Free Documentation License72148
-Node: Syntax checkers97300
-Node: Function and Variable Index98347
+Node: Features3016
+Node: Installation5024
+Node: Activation6198
+Node: Usage6549
+Node: Syntax checking7172
+Node: Selection11181
+Node: Configuration13762
+Node: Reporting17302
+Node: Navigation20948
+Node: Mode line22744
+Node: Extending23645
+Node: Declaration24244
+Node: Error parsers36601
+Node: Option filters37585
+Node: Examples37924
+Node: Simple example38356
+Node: Predicate example41420
+Node: Configuration example43401
+Node: Chaining example46060
+Node: API47446
+Node: Error API48234
+Node: Error parser API51326
+Node: Contribution51552
+Node: Reporting issues52228
+Node: Contributing syntax checkers53038
+Node: Contributing code53833
+Node: Unit tests55173
+Node: Changes56460
+Node: 0.157140
+Node: 0.257424
+Node: 0.357702
+Node: 0.457938
+Node: 0.558713
+Node: 0.659933
+Node: 0.6.162783
+Node: 0.762932
+Node: 0.7.163946
+Node: 0.864661
+Node: 0.966173
+Node: 0.1066669
+Node: 0.1168721
+Node: 0.1269907
+Node: master70916
+Node: Credits71645
+Node: GNU Free Documentation License74572
+Node: Syntax checkers99724
+Node: Function and Variable Index100771
 
 End Tag Table

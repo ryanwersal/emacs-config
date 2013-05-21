@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (clojure-mode) "clojure-mode" "clojure-mode.el"
-;;;;;;  (20866 46462 0 0))
+;;;;;;  (20890 22662 0 0))
 ;;; Generated autoloads from clojure-mode.el
 
 (autoload 'clojure-mode "clojure-mode" "\
@@ -39,7 +39,7 @@ if that value is non-nil.
 
 ;;;***
 
-;;;### (autoloads nil nil ("clojure-mode-pkg.el") (20866 46462 725000
+;;;### (autoloads nil nil ("clojure-mode-pkg.el") (20890 22662 921000
 ;;;;;;  0))
 
 ;;;***

@@ -6,7 +6,7 @@
 ;;          Lennart Staflin <lenst@lysator.liu.se>
 ;;          Phil Hagelberg <technomancy@gmail.com>
 ;; URL: http://github.com/technomancy/clojure-mode
-;; Version: 20130424.1149
+;; Version: 20130517.618
 ;; X-Original-Version: 2.1.0
 ;; Keywords: languages, lisp
 
@@ -142,7 +142,7 @@
         ">=" "accessor" "aclone"
         "agent" "agent-errors" "aget" "alength" "alias"
         "all-ns" "alter" "alter-meta!" "alter-var-root" "amap"
-        "ancestors" "and" "apply" "areduce" "array-map"
+        "ancestors" "and" "apply" "areduce" "array-map" "as->"
         "aset" "aset-boolean" "aset-byte" "aset-char" "aset-double"
         "aset-float" "aset-int" "aset-long" "aset-short" "assert"
         "assoc" "assoc!" "assoc-in" "associative?" "atom"
@@ -157,7 +157,7 @@
         "chunk-next" "chunk-rest" "chunked-seq?" "class" "class?"
         "clear-agent-errors" "clojure-version" "coll?" "comment" "commute"
         "comp" "comparator" "compare" "compare-and-set!" "compile"
-        "complement" "concat" "cond" "condp" "conj"
+        "complement" "concat" "cond" "condp" "cond->" "cond->>" "conj"
         "conj!" "cons" "constantly" "construct-proxy" "contains?"
         "count" "counted?" "create-ns" "create-struct" "cycle"
         "dec" "decimal?" "declare" "definline" "defmacro"
@@ -169,8 +169,8 @@
         "doto" "double" "double-array" "doubles" "drop"
         "drop-last" "drop-while" "empty" "empty?" "ensure"
         "enumeration-seq" "eval" "even?" "every?"
-        "extend" "extend-protocol" "extend-type" "extends?" "extenders"
-        "false?" "ffirst" "file-seq" "filter" "find" "find-doc"
+        "extend" "extend-protocol" "extend-type" "extends?" "extenders" "ex-info" "ex-data"
+        "false?" "ffirst" "file-seq" "filter" "filterv" "find" "find-doc"
         "find-ns" "find-var" "first" "flatten" "float" "float-array"
         "float?" "floats" "flush" "fn" "fn?"
         "fnext" "for" "force" "format" "future"
@@ -187,7 +187,7 @@
         "line-seq" "list" "list*" "list?" "load"
         "load-file" "load-reader" "load-string" "loaded-libs" "locking"
         "long" "long-array" "longs" "loop" "macroexpand"
-        "macroexpand-1" "make-array" "make-hierarchy" "map" "map?"
+        "macroexpand-1" "make-array" "make-hierarchy" "map" "mapv" "map?"
         "map-indexed" "mapcat" "max" "max-key" "memfn" "memoize"
         "merge" "merge-with" "meta" "method-sig" "methods"
         "min" "min-key" "mod" "name" "namespace"
@@ -207,16 +207,17 @@
         "pvalues" "quot" "rand" "rand-int" "range"
         "ratio?" "rational?" "rationalize" "re-find" "re-groups"
         "re-matcher" "re-matches" "re-pattern" "re-seq" "read"
-        "read-line" "read-string" "reify" "reduce" "ref" "ref-history-count"
+        "read-line" "read-string" "reify" "reduce" "reduce-kv" "ref" "ref-history-count"
         "ref-max-history" "ref-min-history" "ref-set" "refer" "refer-clojure"
         "release-pending-sends" "rem" "remove" "remove-method" "remove-ns"
         "repeat" "repeatedly" "replace" "replicate"
         "require" "reset!" "reset-meta!" "resolve" "rest"
         "resultset-seq" "reverse" "reversible?" "rseq" "rsubseq"
-        "satisfies?" "second" "select-keys" "send" "send-off" "seq"
+        "satisfies?" "second" "select-keys" "send" "send-off" "send-via" "seq"
         "seq?" "seque" "sequence" "sequential?" "set"
+        "set-agent-send-executor!" "set-agent-send-off-executor!"
         "set-validator!" "set?" "short" "short-array" "shorts"
-        "shutdown-agents" "slurp" "some" "sort" "sort-by"
+        "shutdown-agents" "slurp" "some" "some->" "some->>" "sort" "sort-by"
         "sorted-map" "sorted-map-by" "sorted-set" "sorted-set-by" "sorted?"
         "special-form-anchor" "special-symbol?" "spit" "split-at" "split-with" "str"
         "stream?" "string?" "struct" "struct-map" "subs"
@@ -276,7 +277,7 @@
          "\\>")
        1 font-lock-type-face)
       ;; Constant values (keywords), including as metadata e.g. ^:static
-      ("\\<^?:\\(\\sw\\|#\\)+\\>" 0 font-lock-constant-face)
+      ("\\<^?:\\(\\sw\\)+\\>" 0 font-lock-constant-face)
       ;; Meta type annotation #^Type or ^Type
       ("#?^\\sw+" 0 font-lock-preprocessor-face)
       ("\\<io\\!\\>" 0 font-lock-warning-face)
@@ -366,6 +367,8 @@ Clojure to load that file."
     (modify-syntax-entry ?\[ "(]" table)
     (modify-syntax-entry ?\] ")[" table)
     (modify-syntax-entry ?^ "'" table)
+    ;; Make hash a usual word character
+    (modify-syntax-entry ?# "w" table)
     table))
 
 (defvar clojure-mode-abbrev-table nil
