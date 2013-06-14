@@ -279,6 +279,10 @@ If already there, go to actual beginning of line."
 			(auto-complete-mode)
 			(flyspell-mode)))
 
+(add-hook 'js2-mode-hook
+		  (lambda ()
+			(setq indent-tabs-mode nil)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
