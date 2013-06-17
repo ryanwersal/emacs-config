@@ -281,7 +281,8 @@ If already there, go to actual beginning of line."
 
 (add-hook 'js2-mode-hook
 		  (lambda ()
-			(setq indent-tabs-mode nil)))
+			(setq indent-tabs-mode nil
+				  js2-basic-offset 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
