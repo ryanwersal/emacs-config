@@ -239,11 +239,15 @@ If already there, go to actual beginning of line."
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
+(require 'zencoding-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
 (add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
+
+(add-hook 'sgml-mode-hook 'zencoding-mode)
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
@@ -284,6 +288,10 @@ If already there, go to actual beginning of line."
 			(setq indent-tabs-mode nil
 				  js2-basic-offset 2)))
 
+(add-hook 'zencoding-mode-hook
+		  (lambda ()
+			(setq zencoding-indentation 2)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -305,9 +313,7 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+(server-start)
 
 (provide 'init)
 ;;; init.el ends here
