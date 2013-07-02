@@ -292,6 +292,10 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			(setq zencoding-indentation 2)))
 
+(add-hook 'less-css-mode-hook
+		  (lambda ()
+			(setq less-css-indent-level 2)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
