@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: formcontrol
+# key: formcontrol
+# --
+<div class="control-group">
+  <label class="control-label"${1: for="${2:id}"}>${3:Label}</label>
+  <div class="controls">
+    ${4:input} id="$2" $0
+  </div>
+</div>
