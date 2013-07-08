@@ -264,6 +264,12 @@ If already there, go to actual beginning of line."
 				  python-indent-offset 4
 				  indent-tabs-mode t)))
 
+(add-hook 'html-mode-hook
+		  (lambda ()
+			(setq tab-width 2
+				  sqml-basic-offset 2
+				  indent-tabs-mode nil)))
+
 (add-hook 'js2-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
