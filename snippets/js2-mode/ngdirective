@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ngdirective
+# key: ngdirective
+# --
+.directive('${1:directive_name}', function($2) {
+  return {
+    
+  };
+})

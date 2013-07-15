@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ngfunction
+# key: ngfunction
+# --
+${1:$$scope}.${2:function_name} = function($3) {
+  $0
+};

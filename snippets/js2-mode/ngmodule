@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ngmodule
+# key: ngmodule
+# --
+angular.module('${1:module_name}', [$2])

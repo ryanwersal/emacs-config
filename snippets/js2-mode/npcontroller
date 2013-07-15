@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: npcontroller
+# key: npcontroller
+# --
+.controller('${1:controller_name}', function($$scope${2:, addl_args}) {
+  
+})
