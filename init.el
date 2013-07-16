@@ -43,6 +43,10 @@
 	  (suspend-emacs)))
 (global-set-key (kbd "C-z") 'confirm-suspend)
 
+(defun unix-line-endings-plox ()
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-unix))
+
 (defun start-msys-shell ()
   "Attempt to create a good shell on Windows."
   (interactive)
@@ -250,10 +254,6 @@ If already there, go to actual beginning of line."
 (add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
-
-(add-hook 'find-file-hooks
-		  (lambda ()
-			(set-buffer-file-coding-system "unix")))
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
