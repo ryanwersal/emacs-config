@@ -86,6 +86,8 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq default-buffer-file-coding-system 'iso-latin-1-unix)
+
 (add-to-list 'default-frame-alist `(font . ,default-font-name))
 
 ;; Configure tabs
@@ -248,6 +250,10 @@ If already there, go to actual beginning of line."
 (add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+(add-hook 'find-file-hooks
+		  (lambda ()
+			(set-buffer-file-coding-system "unix")))
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
