@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (flycheck-info flycheck-def-option-var flycheck-def-config-file-var
 ;;;;;;  flycheck-declare-checker global-flycheck-mode flycheck-mode)
-;;;;;;  "flycheck" "flycheck.el" (21002 33731 0 0))
+;;;;;;  "flycheck" "flycheck.el" (21009 30100 0 0))
 ;;; Generated autoloads from flycheck.el
 
 (defconst flycheck-mode-line-lighter " FlyC" "\
@@ -166,7 +166,7 @@ Open the Flycheck manual.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-pkg.el") (21002 33731 325000
+;;;### (autoloads nil nil ("flycheck-pkg.el") (21009 30100 624000
 ;;;;;;  0))
 
 ;;;***
