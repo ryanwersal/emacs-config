@@ -62,6 +62,7 @@
        ("Grep File(s) `C-u recurse'" . helm-find-files-grep)
        ("Zgrep File(s) `C-u Recurse'" . helm-ff-zgrep)
        ("Pdfgrep File(s)" . helm-ff-pdfgrep)
+       ("Insert as org link" . helm-files-insert-as-org-link)
        ("Checksum File" . helm-ff-checksum)
        ("Ediff File" . helm-find-files-ediff-files)
        ("Ediff Merge File" . helm-find-files-ediff-merge-files)
@@ -75,7 +76,8 @@
       (persistent-help . "Show this file")
       (action-transformer helm-transform-file-load-el
                           helm-transform-file-browse-url)
-      (candidate-transformer helm-highlight-files
+      (candidate-transformer helm-skip-boring-files
+                             helm-highlight-files
                              helm-w32-pathname-transformer))
   "File name.")
 
@@ -296,7 +298,7 @@ This happen only in `helm-find-files'."
     (define-key map (kbd "M-K")           'helm-ff-run-kill-buffer-persistent)
     (define-key map (kbd "C-c d")         'helm-ff-persistent-delete)
     (define-key map (kbd "M-e")           'helm-ff-run-switch-to-eshell)
-    (define-key map (kbd "<M-tab>")       'helm-ff-run-complete-fn-at-point)
+    (define-key map (kbd "C-c i")         'helm-ff-run-complete-fn-at-point)
     (define-key map (kbd "C-c o")         'helm-ff-run-switch-other-window)
     (define-key map (kbd "C-c C-o")       'helm-ff-run-switch-other-frame)
     (define-key map (kbd "C-c C-x")       'helm-ff-run-open-file-externally)
@@ -321,6 +323,7 @@ This happen only in `helm-find-files'."
     (define-key map (kbd "C-l")           'helm-find-files-down-one-level)
     (define-key map (kbd "C-h C-b")       'helm-send-bug-report-from-helm)
     (define-key map (kbd "C-x @")         'helm-ff-run-find-file-as-root)
+    (define-key map (kbd "C-c @")         'helm-ff-run-insert-org-link)
     (when helm-ff-lynx-style-map
       (define-key map (kbd "<left>")      'helm-find-files-down-one-level)
       (define-key map (kbd "<right>")     'helm-execute-persistent-action))
@@ -405,6 +408,7 @@ Don't set it directly, use instead `helm-ff-auto-update-initial-value'.")
            ("Checksum File" . helm-ff-checksum)
            ("Complete at point `M-tab'"
             . helm-insert-file-name-completion-at-point)
+           ("Insert as org link" . helm-files-insert-as-org-link)
            ("Find shell command" . helm-ff-find-sh-command)
            ("Open file externally `C-c C-x, C-u to choose'"
             . helm-open-file-externally)
@@ -433,7 +437,9 @@ Don't set it directly, use instead `helm-ff-auto-update-initial-value'.")
            ("Find file other frame `C-c C-o'" . find-file-other-frame)
            ("View file" . view-file)
            ("Print File `C-c p, C-u to refresh'" . helm-ff-print)
-           ("Locate `C-x C-f, C-u to specify locate db'" . helm-ff-locate))))))
+           ("Locate `C-x C-f, C-u to specify locate db'" . helm-ff-locate)))))
+  "The main source to browse files.
+Should not be used among other sources.")
 
 (defun helm-find-files-set-prompt-for-action (action files)
   "Set prompt for action ACTION for FILES."
@@ -508,11 +514,25 @@ ACTION must be an action supported by `helm-dired-action'."
 
 (defun helm-find-files-ediff-files-1 (candidate &optional merge)
   "Generic function to ediff/merge files in `helm-find-files'."
-  (let ((bname  (helm-basename candidate))
-        (prompt (if merge "Ediff Merge `%s' With File: "
-                    "Ediff `%s' With File: "))
-        (fun    (if merge 'ediff-merge-files 'ediff-files)))
-    (funcall fun candidate (helm-read-file-name (format prompt bname)))))
+  (let* ((bname  (helm-basename candidate))
+         (prompt (if merge "Ediff Merge `%s' With File: "
+                     "Ediff `%s' With File: "))
+         (fun    (if merge 'ediff-merge-files 'ediff-files))
+         (wins   (window-list))
+         (input  (if (> (length wins) 1)
+                     (with-selected-window
+                         (cadr wins)
+                       default-directory)
+                     default-directory))
+         (presel (if helm-ff-transformer-show-only-basename
+                     (helm-basename candidate)
+                     (expand-file-name
+                      (helm-basename candidate)
+                      input))))
+    (funcall fun candidate (helm-read-file-name
+                            (format prompt bname)
+                            :initial-input input
+                            :preselect presel))))
 
 (defun helm-find-files-ediff-files (candidate)
   (helm-find-files-ediff-files-1 candidate))
@@ -954,6 +974,15 @@ See `helm-ff-serial-rename-1'."
   (when helm-alive-p
     (helm-quit-and-execute-action 'helm-ff-locate)))
 
+(defun helm-files-insert-as-org-link (candidate)
+  (insert (format "[[%s][]]" candidate))
+  (goto-char (- (point) 2)))
+
+(defun helm-ff-run-insert-org-link ()
+  (interactive)
+  (when helm-alive-p
+    (helm-quit-and-execute-action 'helm-files-insert-as-org-link)))
+  
 ;;;###autoload
 (defun helm-ff-run-find-file-as-root ()
   (interactive)
@@ -1890,10 +1919,12 @@ If a prefix arg is given or `helm-follow-mode' is on open file."
     (if buffer-read-only
         (error "Error: Buffer `%s' is read-only" (buffer-name))
         (let* ((end         (point))
-               (guess       (substring-no-properties (thing-at-point 'filename)))
+               (tap         (thing-at-point 'filename))
+               (guess       (and (stringp tap) (substring-no-properties tap)))
                (beg         (- (point) (length guess)))
-               (full-path-p (or (string-match-p (concat "^" (getenv "HOME")) guess)
-                                (string-match-p "^[^\~]" guess))))
+               (full-path-p (and (stringp guess)
+                                 (or (string-match-p (concat "^" (getenv "HOME")) guess)
+                                     (string-match-p "^[^\~]" guess)))))
           (set-text-properties 0 (length candidate) nil candidate)
           (if (and guess (not (string= guess ""))
                    (string-match-p "^\\(~/\\|/\\|[a-zA-Z]:/\\)" guess))
@@ -1902,7 +1933,7 @@ If a prefix arg is given or `helm-follow-mode' is on open file."
                 (insert (if full-path-p
                             (expand-file-name candidate)
                             (abbreviate-file-name candidate))))
-              (error "Aborting completion: No valid file name at point"))))))
+              (insert candidate))))))
 
 (defun* helm-find-files-history (&key (comp-read t))
   "The `helm-find-files' history.
@@ -2431,10 +2462,11 @@ and
 (defun helm-highlight-files (files)
   "A basic transformer for helm files sources.
 Colorize only symlinks, directories and files."
-  (loop for i in (helm-skip-boring-files files)
+  (loop for i in files
         for disp = (if (and helm-ff-transformer-show-only-basename
                             (not (helm-dir-is-dot i))
-                            (not (and ffap-url-regexp (string-match ffap-url-regexp i)))
+                            (not (and ffap-url-regexp
+                                      (string-match ffap-url-regexp i)))
                             (not (string-match helm-ff-url-regexp i)))
                        (helm-basename i) i)
         for type = (car (file-attributes i))

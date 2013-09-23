@@ -101,6 +101,7 @@ the opposite of \"locate\" command."
     (define-key map (kbd "C-c X")   'helm-ff-run-open-file-with-default-tool)
     (define-key map (kbd "M-.")     'helm-ff-run-etags)
     (define-key map (kbd "C-w")     'helm-yank-text-at-point)
+    (define-key map (kbd "C-c @")   'helm-ff-run-insert-org-link)
     (define-key map (kbd "C-c ?")   'helm-generic-file-help)
     map)
   "Generic Keymap for files.")
@@ -267,6 +268,25 @@ See also `helm-locate'."
     (mode-line . helm-generic-file-mode-line-string)
     (delayed))
   "Find files matching the current input pattern with locate.")
+
+;;;###autoload
+(defun helm-locate-read-file-name (prompt)
+  (let* (helm-ff-transformer-show-only-basename
+         (src `((name . "Locate read fname")
+                (init . helm-locate-set-command)
+                (candidates-process . helm-locate-init)
+                (action . identity)
+                (requires-pattern . 3)
+                (history . ,'helm-file-name-history)
+                (candidate-transformer . (helm-skip-boring-files
+                                          helm-highlight-files))
+                (candidate-number-limit . 9999)
+                (no-matchplugin)
+                (delayed))))
+    (or (helm :sources src
+              :buffer "*helm locate read fname*"
+              :resume 'noresume)
+        (keyboard-quit))))
 
 ;;;###autoload
 (defun helm-locate (arg)

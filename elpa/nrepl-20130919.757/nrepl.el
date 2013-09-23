@@ -9,7 +9,7 @@
 ;;         Hugo Duncan <hugo@hugoduncan.org>
 ;;         Steve Purcell <steve@sanityinc.com>
 ;; URL: http://www.github.com/clojure-emacs/nrepl.el
-;; Version: 20130916.0
+;; Version: 20130919.757
 ;; X-Original-Version: 0.2.0-cvs
 ;; Keywords: languages, clojure, nrepl
 ;; Package-Requires: ((clojure-mode "2.0.0") (cl-lib "0.3") (dash "2.1.0") (pkg-info "0.1"))
@@ -152,23 +152,43 @@ just return nil."
 (defconst nrepl-src-buffer "*nrepl-src*")
 (defconst nrepl-macroexpansion-buffer "*nrepl-macroexpansion*")
 (defconst nrepl-result-buffer "*nrepl-result*")
+(defconst nrepl-repl-buffer-name-template "*nrepl%s*")
+(defconst nrepl-connection-buffer-name-template "*nrepl-connection%s*")
+(defconst nrepl-server-buffer-name-template "*nrepl-server%s*")
 
 (defcustom nrepl-hide-special-buffers nil
   "Control the display of some special buffers in buffer switching commands.
 When true some special buffers like the connection and the server
 buffer will be hidden.")
 
+(defun nrepl-apply-hide-special-buffers (buffer-name)
+  "Apply a prefix to BUFFER-NAME that will hide the buffer."
+  (concat (if nrepl-hide-special-buffers " " "") buffer-name))
+
+(defun nrepl-buffer-name (buffer-name-template)
+  "Generate a buffer name using BUFFER-NAME-TEMPLATE.
+
+The name will include the project name if available. The name will
+also include the connection port if `nrepl-buffer-name-show-port' is true."
+  (generate-new-buffer-name
+   (let ((project-name (nrepl--project-name nrepl-project-dir))
+         (nrepl-proj-port (cadr nrepl-endpoint)))
+     (format
+      buffer-name-template
+      (concat (if project-name
+                  (format "%s%s" nrepl-buffer-name-separator project-name) "")
+              (if (and nrepl-proj-port nrepl-buffer-name-show-port)
+                  (format ":%s" nrepl-proj-port) ""))))))
+
 (defun nrepl-connection-buffer-name ()
   "Return the name of the connection buffer."
-  (if nrepl-hide-special-buffers
-      " *nrepl-connection*"
-    "*nrepl-connection*"))
+  (nrepl-apply-hide-special-buffers
+   (nrepl-buffer-name nrepl-connection-buffer-name-template)))
 
 (defun nrepl-server-buffer-name ()
   "Return the name of the server buffer."
-  (if nrepl-hide-special-buffers
-      " *nrepl-server*"
-    "*nrepl-server*"))
+  (nrepl-apply-hide-special-buffers
+   (nrepl-buffer-name nrepl-server-buffer-name-template)))
 
 (defface nrepl-prompt-face
   '((t (:inherit font-lock-keyword-face)))
@@ -702,21 +722,6 @@ POS is the index of current argument."
           (mapconcat (lambda (args) (nrepl-highlight-arglist args pos))
                      (read arglist) " ") ")"))
 
-(defun nrepl-eldoc-handler (buffer the-thing the-pos)
-  "Create a response handler for nrepl eldoc in BUFFER.
-This will produce an eldoc message for THE-THING
-highlighing all arguments matching THE-POS."
-  (lexical-let ((thing the-thing)
-                (pos the-pos))
-    (nrepl-make-response-handler
-     buffer
-     (lambda (buffer value)
-       (when (not (string-equal value "nil"))
-         (message "%s: %s"
-                  (nrepl-eldoc-format-thing thing)
-                  (nrepl-eldoc-format-arglist value pos))))
-     nil nil nil)))
-
 (defun nrepl-eldoc-info-in-current-sexp ()
   "Return a list of the current sexp and the current argument index."
   (save-excursion
@@ -740,12 +745,16 @@ highlighing all arguments matching THE-POS."
                             (clojure.core/meta
                              (clojure.core/resolve
                               (clojure.core/read-string \"%s\"))))
-                           (catch Throwable t nil))" thing)))
-      (when thing
-        (nrepl-send-string form
-                           (nrepl-eldoc-handler (current-buffer) thing pos)
-                           nrepl-buffer-ns
-                           (nrepl-current-tooling-session))))))
+                           (catch Throwable t nil))" thing))
+           (result (when thing
+                     (nrepl-send-string-sync form
+                                             nrepl-buffer-ns
+                                             (nrepl-current-tooling-session))))
+           (value (plist-get result :value)))
+      (unless (string= value "nil")
+        (format "%s: %s"
+                (nrepl-eldoc-format-thing thing)
+                (nrepl-eldoc-format-arglist value pos))))))
 
 (defun nrepl-turn-on-eldoc-mode ()
   "Turn on eldoc mode in the current buffer."
@@ -2269,11 +2278,16 @@ Refreshes EWOC."
     (when buffer
       (select-window (display-buffer buffer)))))
 
-(defun nrepl--current-connection-info ()
-  "Return info about the current nrepl connection.
+(defun nrepl--clojure-version ()
+  "Retrieve the underlying connection's Clojure version."
+  (let ((version-string (plist-get (nrepl-send-string-sync "(clojure-version)") :value)))
+   (substring version-string 1 (1- (length version-string)))))
+
+(defun nrepl--connection-info (nrepl-connection-buffer)
+  "Return info about NREPL-CONNECTION-BUFFER.
 
 Info contains project name, current repl namespace, host:port endpoint and Clojure version."
-  (with-current-buffer (get-buffer (nrepl-current-connection-buffer))
+  (with-current-buffer (get-buffer nrepl-connection-buffer)
     (format "Active nrepl connection: %s:%s, %s:%s (Clojure %s)"
             (or (nrepl--project-name nrepl-project-dir) "<no project>")
             nrepl-buffer-ns
@@ -2281,15 +2295,10 @@ Info contains project name, current repl namespace, host:port endpoint and Cloju
             (cadr nrepl-endpoint)
             (nrepl--clojure-version))))
 
-(defun nrepl--clojure-version ()
-  "Retrieve the underlying connection's Clojure version."
-  (let ((version-string (plist-get (nrepl-send-string-sync "(clojure-version)") :value)))
-   (substring version-string 1 (1- (length version-string)))))
-
 (defun nrepl-display-current-connection-info ()
   "Display information about the current connection."
   (interactive)
-  (message (nrepl--current-connection-info)))
+  (message (nrepl--connection-info (nrepl-current-connection-buffer))))
 
 (defun nrepl-rotate-connection ()
   "Rotate and display the current nrepl connection."
@@ -2297,7 +2306,7 @@ Info contains project name, current repl namespace, host:port endpoint and Cloju
   (setq nrepl-connection-list
         (append (cdr nrepl-connection-list)
                 (list (car nrepl-connection-list))))
-  (nrepl-display-current-connection-info))
+  (message (nrepl--connection-info (car nrepl-connection-list))))
 
 ;;; server messages
 
@@ -3101,16 +3110,16 @@ Only considers buffers that are not already visible."
   (when (string-match "nREPL server started on port \\([0-9]+\\)" output)
     (let ((port (string-to-number (match-string 1 output))))
       (message (format "nREPL server started on %s" port))
-      (let ((nrepl-process (nrepl-connect "localhost" port)))
-        (with-current-buffer (process-buffer process)
+      (with-current-buffer (process-buffer process)
+        (let ((nrepl-process (nrepl-connect "localhost" port)))
           (setq nrepl-connection-buffer
-                (buffer-name (process-buffer nrepl-process))))
-        (with-current-buffer (process-buffer nrepl-process)
-          (setq nrepl-server-buffer
-                (buffer-name (process-buffer process))
-                nrepl-project-dir
-                (buffer-local-value
-                 'nrepl-project-dir (process-buffer process))))))))
+                (buffer-name (process-buffer nrepl-process)))
+          (with-current-buffer (process-buffer nrepl-process)
+            (setq nrepl-server-buffer
+                  (buffer-name (process-buffer process))
+                  nrepl-project-dir
+                  (buffer-local-value
+                   'nrepl-project-dir (process-buffer process)))))))))
 
 (defun nrepl-server-sentinel (process event)
   "Handle nREPL server PROCESS EVENT."
@@ -3176,7 +3185,8 @@ start the server."
                  (project-dir (nrepl-project-directory-for
                                (or project (nrepl-current-dir)))))
     (when (nrepl-check-for-repl-buffer nil project-dir)
-      (let* ((cmd (if project
+      (let* ((nrepl-project-dir project-dir)
+             (cmd (if project
                       (format "cd %s && %s" project nrepl-server-command)
                     nrepl-server-command))
              (process (start-process-shell-command
@@ -3298,23 +3308,9 @@ restart the server."
        nrepl-tooling-session))))
 
 (defun nrepl-repl-buffer-name ()
-  "Generate a REPL buffer name based on current connection buffer.
-
-The name will include the project name if available. The name will
-also include the connection port if `nrepl-buffer-name-show-port' is true."
-  (generate-new-buffer-name
-   (lexical-let* ((buf (get-buffer (nrepl-current-connection-buffer)))
-                  (project-name (with-current-buffer buf
-                                  (nrepl--project-name nrepl-project-dir)))
-                  (nrepl-proj-name (if project-name
-                                       (format "%s%s"
-                                               nrepl-buffer-name-separator
-                                               project-name)
-                                     ""))
-                  (nrepl-proj-port (cadr (buffer-local-value 'nrepl-endpoint buf))))
-     (if nrepl-buffer-name-show-port
-         (format "*nrepl%s:%s*" nrepl-proj-name nrepl-proj-port)
-       (format "*nrepl%s*" nrepl-proj-name)))))
+  "Generate a REPL buffer name based on current connection buffer."
+  (with-current-buffer (get-buffer (nrepl-current-connection-buffer))
+    (nrepl-buffer-name nrepl-repl-buffer-name-template)))
 
 (defun nrepl-create-repl-buffer (process)
   "Create a REPL buffer for PROCESS."
@@ -3372,9 +3368,10 @@ When NO-REPL-P is truthy, suppress creation of a repl buffer."
   "Connect to a running nREPL server running on HOST and PORT.
 When NO-REPL-P is truthy, suppress creation of a repl buffer."
   (message "Connecting to nREPL on %s:%s..." host port)
-  (let ((process (open-network-stream "nrepl"
-                                      (nrepl-make-connection-buffer) host
-                                      port)))
+  (let* ((nrepl-endpoint `(,host ,port))
+         (process (open-network-stream "nrepl"
+                                       (nrepl-make-connection-buffer) host
+                                       port)))
     (set-process-filter process 'nrepl-net-filter)
     (set-process-sentinel process 'nrepl-sentinel)
     (set-process-coding-system process 'utf-8-unix 'utf-8-unix)

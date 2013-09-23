@@ -1,4 +1,4 @@
-This is /home/melpa/melpa/working/flycheck-20130915.2031/flycheck.info,
+This is /home/melpa/melpa/working/flycheck-20130920.1543/flycheck.info,
 produced by makeinfo version 4.13 from
 /home/melpa/melpa/working/flycheck/doc/flycheck.texi.
 
@@ -885,10 +885,10 @@ syntax checkers::, for more information.
 
 * Menu:
 
-* Definition::          How to define syntax checkers
-* Error parsers::       Built-in error parsers
-* Option filters::      Built-in option filters
-* Examples::            Examples on how to define syntax checkers
+* Definition::                  How to define syntax checkers
+* Error parsers::               Built-in error parsers
+* Option filters::              Built-in option filters
+* Examples::                    Examples on how to define syntax checkers
 
 
 File: flycheck.info,  Node: Definition,  Next: Error parsers,  Prev: Extending,  Up: Extending
@@ -1669,7 +1669,7 @@ contribution.
 * Unit tests::                  How to write unit tests for your code
 
 
-File: flycheck.info,  Node: Reporting issues,  Next: Contributing syntax checkers,  Up: Contribution
+File: flycheck.info,  Node: Reporting issues,  Next: Contributing syntax checkers,  Prev: Contribution,  Up: Contribution
 
 5.1 Reporting issues
 ====================
@@ -1825,7 +1825,7 @@ This appendix provides a comprehensive changelog of all releases:
 * 0.1           :: Oct 11, 2012
 
 
-File: flycheck.info,  Node: 0.1,  Next: 0.2,  Up: Changes
+File: flycheck.info,  Node: 0.1,  Next: 0.2,  Prev: Changes,  Up: Changes
 
 0.1 (Oct 11, 2012)
 ==================
@@ -3347,44 +3347,44 @@ Node: Reporting21080
 Node: Navigation26378
 Node: Mode line28594
 Node: Extending29500
-Node: Definition30116
-Node: Error parsers44451
-Node: Option filters45584
-Node: Examples46006
-Node: Simple example46438
-Node: Predicate example49619
-Node: Configuration example51743
-Node: Chaining example54385
-Node: API55812
-Node: Error API56600
-Node: Error parser API60797
-Node: Contribution61023
-Node: Reporting issues61701
-Node: Contributing syntax checkers62513
-Node: Contributing code63310
-Node: Unit tests64657
-Node: Changes65995
-Node: 0.166771
-Node: 0.267061
-Node: 0.367339
-Node: 0.467574
-Node: 0.568351
-Node: 0.669568
-Node: 0.6.172418
-Node: 0.772567
-Node: 0.7.173583
-Node: 0.874301
-Node: 0.975816
-Node: 0.1076313
-Node: 0.1178372
-Node: 0.1279560
-Node: 0.1380568
-Node: 0.1483463
-Node: 0.14.187285
-Node: master87524
-Node: Credits89176
-Node: GNU Free Documentation License92606
-Node: Syntax checkers117779
-Node: Definition Index119023
+Node: Definition30148
+Node: Error parsers44483
+Node: Option filters45616
+Node: Examples46038
+Node: Simple example46470
+Node: Predicate example49651
+Node: Configuration example51775
+Node: Chaining example54417
+Node: API55844
+Node: Error API56632
+Node: Error parser API60829
+Node: Contribution61055
+Node: Reporting issues61733
+Node: Contributing syntax checkers62566
+Node: Contributing code63363
+Node: Unit tests64710
+Node: Changes66048
+Node: 0.166824
+Node: 0.267130
+Node: 0.367408
+Node: 0.467643
+Node: 0.568420
+Node: 0.669637
+Node: 0.6.172487
+Node: 0.772636
+Node: 0.7.173652
+Node: 0.874370
+Node: 0.975885
+Node: 0.1076382
+Node: 0.1178441
+Node: 0.1279629
+Node: 0.1380637
+Node: 0.1483532
+Node: 0.14.187354
+Node: master87593
+Node: Credits89245
+Node: GNU Free Documentation License92675
+Node: Syntax checkers117848
+Node: Definition Index119092
 
 End Tag Table
