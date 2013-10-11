@@ -2,10 +2,10 @@
 # name: zscreen
 # key: zscreen
 # --
-#ifndef ${1:$(upcase text)}_H
-#define ${1:$(upcase text)}_H
+#ifndef ${1:$(upcase yas/text)}_H
+#define ${1:$(upcase yas/text)}_H
 
-#include "${1:$(downcase text)}_ui.h"
+#include "${1:$(downcase yas/text)}_ui.h"
 
 class ${1:ScreenName} : public $1_scr
 {
@@ -31,7 +31,7 @@ private:
 };
 
 #endif
-$0#include "${1:$(downcase text)}.h"
+$0#include "${1:$(downcase yas/text)}.h"
 
 #include "core.h"
 #include "initializer.h"
