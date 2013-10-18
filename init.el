@@ -196,6 +196,7 @@ If already there, go to actual beginning of line."
 
 ;; Enable fancy window switching.
 (require 'switch-window)
+(global-set-key (kbd "C-x o") 'switch-window)
 
 ;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
