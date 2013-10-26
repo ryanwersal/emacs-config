@@ -169,7 +169,7 @@ If already there, go to actual beginning of line."
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(dolist (path '("themes" "themes/base16")) (add-to-list 'load-path (libdir-file path)))
+(dolist (path '("themes" "themes/base16" "themes/base16-new")) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
@@ -184,7 +184,7 @@ If already there, go to actual beginning of line."
 (add-hook 'window-setup-hook 'split-window-horizontally)
 
 ;; Enable syntax highlighting/theme.
-(require 'base16-dark-theme)
+(require 'base16-default-dark-theme)
 
 ;; Enable autocompletion.
 (require 'auto-complete-config)
