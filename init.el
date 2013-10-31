@@ -251,7 +251,7 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
+;; (if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
 (add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
