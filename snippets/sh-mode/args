@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: args
+# key: args
+# --
+for arg in \$@; do
+	if [ \$arg == "--help" -o \$arg == "-h" ]; then
+		$0
+		exit
+	fi
+done
