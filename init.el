@@ -178,11 +178,6 @@ If already there, go to actual beginning of line."
 						 ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-;; Maximize window and start with 50/50 vertical split.
-(require 'maxframe)
-(add-hook 'window-setup-hook 'maximize-frame t)
-(add-hook 'window-setup-hook 'split-window-horizontally)
-
 ;; Enable syntax highlighting/theme.
 (require 'base16-default-dark-theme)
 
