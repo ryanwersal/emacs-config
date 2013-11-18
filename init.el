@@ -220,6 +220,8 @@ If already there, go to actual beginning of line."
 
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 
+(autoload 'cmake-mode "cmake-mode" "Major mode for editing CMake files" t)
+
 (require 'expand-region)
 (global-set-key (kbd "C-h") 'er/expand-region)
 
@@ -293,8 +295,7 @@ If already there, go to actual beginning of line."
 
 (add-hook 'markdown-mode-hook
 		  (lambda ()
-			(auto-complete-mode)
-			(flyspell-mode)))
+			(auto-complete-mode)))
 
 (add-hook 'js2-mode-hook
 		  (lambda ()
