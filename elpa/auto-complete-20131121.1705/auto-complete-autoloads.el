@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (auto-complete) "auto-complete" "auto-complete.el"
-;;;;;;  (21134 7534 0 0))
+;;;;;;  (21134 10905 0 0))
 ;;; Generated autoloads from auto-complete.el
 
 (autoload 'auto-complete "auto-complete" "\
@@ -15,7 +15,7 @@ Start auto-completion at current point.
 ;;;***
 
 ;;;### (autoloads nil nil ("auto-complete-config.el" "auto-complete-pkg.el")
-;;;;;;  (21134 7534 552000 0))
+;;;;;;  (21134 10905 268000 0))
 
 ;;;***
 
