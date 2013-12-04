@@ -2,6 +2,9 @@
 # name: filterzdr
 # key: filterzdr
 # --
-QDate ${2:start_date} = ${1:zdrDateRange}->getStartDate();
-QDate ${3:end_date} = $1->getEndDate();
-${4:where_parts} << "${5:date} BETWEEN " + zsql::quote($2) + " AND " + zsql::quote($3);
+if (${1:zdrDateRange}->getRangeStr() != "AllDates")
+{
+	QDate ${2:start_date} = $1->getStartDate();
+	QDate ${3:end_date} = $1->getEndDate();
+	${4:where_parts} << "${5:date} BETWEEN " + zsql::quote($2) + " AND " + zsql::quote($3);
+}
