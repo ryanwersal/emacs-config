@@ -7,6 +7,7 @@
 ;; Utilities
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar is-windows-p (eq system-type 'windows-nt))
+(defvar is-osx-p (eq system-type 'darwin))
 (defvar is-linux-p (eq system-type 'gnu/linux))
 
 (defvar office-email-address "ryan.wersal@zuerchertech.com")
@@ -18,6 +19,7 @@
 
 (defvar default-font-name
   (cond (is-windows-p "PragmataPro-8")
+		(is-osx-p "PragmataPro-12")
 		(is-linux-p "PragmataPro-8")
 		(t "PragmataPro-10")))
 
