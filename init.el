@@ -29,7 +29,7 @@
 
 (defun highlight-fixme-tokens ()
   "Highlight fixme tokens in comments."
-  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|NOTE\\|HACK\\):" 1 font-lock-warning-face t))))
+  (font-lock-add-keywords nil '(("\\<\\(IMPROVEME\\|FIXME\\|TODO\\|BUG\\|NOTE\\|HACK\\):" 1 font-lock-warning-face t))))
 
 (defun confirm-exit ()
   "Prompt before exitting."
@@ -272,6 +272,7 @@ If already there, go to actual beginning of line."
 
 (add-hook 'html-mode-hook
 		  (lambda ()
+			(highlight-fixme-tokens)
 			(setq tab-width 2
 				  sqml-basic-offset 2
 				  indent-tabs-mode nil)))
