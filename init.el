@@ -247,6 +247,8 @@ If already there, go to actual beginning of line."
 
 (require 'zencoding-mode)
 
+(require 'json-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -323,7 +325,8 @@ If already there, go to actual beginning of line."
 (add-to-list 'auto-mode-alist '("\\.conf\\'" . shell-script-mode))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
+
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
