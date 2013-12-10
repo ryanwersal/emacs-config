@@ -1,4 +1,4 @@
-This is /tmp/flycheck274769yL/flycheck-20131204.1342/flycheck.info,
+This is /tmp/flycheck21666c25/flycheck-20131207.959/flycheck.info,
 produced by makeinfo version 4.13 from
 /home/melpa/melpa/working/flycheck/doc/flycheck.texi.
 
@@ -100,13 +100,15 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
 
    * Built-in syntax checkers for:
 
-        * AsciiDoc
+        * AsciiDoc (using `asciidoc')
 
         * C/C++ (using `clang' and `cppcheck')
 
-        * CoffeeScript (using `coffee' and `coffeelint')
+        * CFEngine (using `cf-promises')
 
         * Chef cookbooks (using `foodcritic'))
+
+        * CoffeeScript (using `coffee' and `coffeelint')
 
         * CSS (using `csslint'))
 
@@ -120,9 +122,9 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
 
         * Go (using `gofmt', `go build' and `go test')
 
-        * Haml
+        * Haml (using `haml')
 
-        * Handlebars
+        * Handlebars (using `handlebars')
 
         * Haskell (using `ghc' and `hlint')
 
@@ -134,9 +136,9 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
 
         * LESS (using `lessc')
 
-        * Lua
+        * Lua (using `luac')
 
-        * Perl
+        * Perl (using `perl')
 
         * PHP (using `php', `phpmd' and `phpcs')
 
@@ -148,18 +150,18 @@ File: flycheck.info,  Node: Features,  Next: Installation,  Prev: Introduction, 
 
         * Rust (using `rustc')
 
-        * RST (ReStructuredText, using Docutils)
+        * ReStructuredText (using `rst2pseudoxml.py' from Docutils)
 
-        * Sass
+        * Sass (using `sass')
 
-        * Scala
+        * Scala (using `scalac')
 
-        * SCSS
+        * SCSS (using `scss')
 
-        * Shell scripts (using Bash, Dash, or Zsh depending on the type
-          of shell script)
+        * Shell scripts (using `bash', `dash', or `zsh' depending on
+          the type of shell script)
 
-        * Slim
+        * Slim (using `slimrb')
 
         * TeX/LaTeX (using `chktex' or `lacheck')
 
@@ -2874,6 +2876,8 @@ master (unreleased)
           flycheck-hdevtools
           (https://github.com/flycheck/flycheck-hdevtools)
 
+        * Drop support for coffeelint 0.x
+
    * New syntax checkers:
 
         * Ruby with `ruby-lint'
@@ -2889,6 +2893,8 @@ master (unreleased)
 
         * AsciiDoc (https://github.com/flycheck/flycheck/issues/276)
 
+        * CFEngine (https://github.com/flycheck/flycheck/issues/271)
+
    * New features:
 
         * Define variables to override the executables of syntax
@@ -2901,6 +2907,11 @@ master (unreleased)
    * Improvements:
 
         * Demote Rubocop convention messages to `info' level
+
+   * Bug fixes:
+
+        * Make relative imports work with `python-pylint'
+          (https://github.com/flycheck/flycheck/issues/280)
 
 
 
@@ -2979,6 +2990,9 @@ appreciated.
    * Sylvain Rousseau (https://github.com/thisirs) added a syntax
      checker for POSIX shell script using `bash', and improved error
      parsing in the Bash script syntax checker.
+
+   * Ted Zlatanov (https://github.com/tzz) added a syntax checker for
+     CFEngine.
 
    * tom tan (https://github.com/tom-tan) added a syntax checker for
      the D programming language using `dmd', and wrote the cool
@@ -3502,6 +3516,8 @@ order of their appearance in the default value of `flycheck-checkers':
 
    * `c/c++-cppcheck'
 
+   * `cfengine'
+
    * `chef-foodcritic'
 
    * `coffee'
@@ -3683,60 +3699,60 @@ Type, Function and Variable Definition Index
 
 
 Tag Table:
-Node: Top832
-Node: Introduction2199
-Node: Features3139
-Node: Installation5988
-Node: Activation7636
-Node: Usage8167
-Node: Syntax checking8790
-Node: Selection13256
-Node: Configuration16382
-Node: Reporting23467
-Node: Navigation29165
-Node: Mode line31381
-Node: Extending32287
-Node: Definition33011
-Node: Error levels48826
-Node: Error parsers50489
-Node: Option filters51624
-Node: Examples52046
-Node: Simple example52478
-Node: Predicate example55629
-Node: Configuration example57753
-Node: Chaining example60396
-Node: API61823
-Node: Error API62611
-Node: Error parser API66851
-Node: Contribution67077
-Node: Reporting issues67755
-Node: Contributing syntax checkers68588
-Node: Contributing code69385
-Node: Unit tests70732
-Node: Changes72062
-Node: 0.172870
-Node: 0.273176
-Node: 0.373454
-Node: 0.473689
-Node: 0.574466
-Node: 0.675683
-Node: 0.6.178533
-Node: 0.778682
-Node: 0.7.179698
-Node: 0.880416
-Node: 0.981931
-Node: 0.1082428
-Node: 0.1184487
-Node: 0.1285675
-Node: 0.1386683
-Node: 0.1489578
-Node: 0.14.193400
-Node: 0.1593637
-Node: master99064
-Node: Credits100590
-Node: GNU Free Documentation License104519
-Node: Syntax checkers129692
-Node: Definition Index131056
+Node: Top831
+Node: Introduction2198
+Node: Features3138
+Node: Installation6203
+Node: Activation7851
+Node: Usage8382
+Node: Syntax checking9005
+Node: Selection13471
+Node: Configuration16597
+Node: Reporting23682
+Node: Navigation29380
+Node: Mode line31596
+Node: Extending32502
+Node: Definition33226
+Node: Error levels49041
+Node: Error parsers50704
+Node: Option filters51839
+Node: Examples52261
+Node: Simple example52693
+Node: Predicate example55844
+Node: Configuration example57968
+Node: Chaining example60611
+Node: API62038
+Node: Error API62826
+Node: Error parser API67066
+Node: Contribution67292
+Node: Reporting issues67970
+Node: Contributing syntax checkers68803
+Node: Contributing code69600
+Node: Unit tests70947
+Node: Changes72277
+Node: 0.173085
+Node: 0.273391
+Node: 0.373669
+Node: 0.473904
+Node: 0.574681
+Node: 0.675898
+Node: 0.6.178748
+Node: 0.778897
+Node: 0.7.179913
+Node: 0.880631
+Node: 0.982146
+Node: 0.1082643
+Node: 0.1184702
+Node: 0.1285890
+Node: 0.1386898
+Node: 0.1489793
+Node: 0.14.193615
+Node: 0.1593852
+Node: master99279
+Node: Credits101054
+Node: GNU Free Documentation License105069
+Node: Syntax checkers130242
+Node: Definition Index131623
 
 End Tag Table
 

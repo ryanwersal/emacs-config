@@ -2432,15 +2432,22 @@ and `helm-pattern'."
             (let (newmatches)
               (cl-dolist (candidate cands)
                 (when (funcall match (helm-candidate-get-display candidate))
-                  (helm--accumulate-candidates
-                   candidate newmatches helm-match-hash item-count limit source)))
+                  (helm-aif (assoc-default 'filter-one-by-one source)
+                      (if (listp it)
+                          (cl-loop for f in it
+                                   do (setq candidate (funcall f candidate)))
+                          (setq candidate (funcall it candidate))))
+                  (and candidate ; candidate returned by filter-one-by-one maybe nil.
+                       (helm--accumulate-candidates
+                        candidate newmatches helm-match-hash item-count limit source))))
               (setq matches (append matches (reverse newmatches)))
               ;; Don't recompute matches already found by this match function
               ;; with the next match function.
               (setq cands (cl-loop for i in cands
                                    unless (member i matches) collect i)))))
-      (error (helm-log-error "helm-match-from-candidates in source `%s': %s %s"
-                             (assoc-default 'name source) (car err) (cdr err))
+      (error (unless (eq (car err) 'invalid-regexp) ; Always ignore regexps errors.
+               (helm-log-error "helm-match-from-candidates in source `%s': %s %s"
+                               (assoc-default 'name source) (car err) (cdr err)))
              (setq matches nil)))
     matches))
 

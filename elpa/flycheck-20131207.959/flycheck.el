@@ -122,6 +122,7 @@ buffer-local wherever it is set."
     bash
     c/c++-clang
     c/c++-cppcheck
+    cfengine
     chef-foodcritic
     coffee
     coffee-coffeelint
@@ -979,7 +980,7 @@ If FILENAME is nil, fall back to `flycheck-temp-file-system'.
 
 Return the path of the file."
   (if filename
-      (let* ((tempname (format "%s-%s" prefix (f-filename filename)))
+      (let* ((tempname (format "%s_%s" prefix (f-filename filename)))
              (tempfile (f-expand (f-join (f-dirname filename) tempname))))
         (push tempfile flycheck-temporaries)
         tempfile)
@@ -3459,6 +3460,20 @@ See URL `http://cppcheck.sourceforge.net/'."
   :error-parser flycheck-parse-cppcheck
   :modes (c-mode c++-mode))
 
+(flycheck-define-checker cfengine
+  "A CFEngine syntax checker using cf-promises.
+
+See URL `http://cfengine.com/'."
+  :command ("cf-promises" "-Wall" "-f"
+            ;; We must stay in the same directory to resolve @include
+            source-inplace)
+  :error-patterns
+  ((warning line-start (file-name) ":" line ":" column
+            ": warning: " (message) line-end)
+   (error line-start (file-name) ":" line ":" column
+          ": error: " (message) line-end))
+  :modes (cfengine-mode cfengine3-mode))
+
 (flycheck-define-checker chef-foodcritic
   "A Chef cookbooks syntax checker using Foodcritic.
 
@@ -3498,17 +3513,14 @@ See URL `http://coffeescript.org/'."
 (flycheck-define-checker coffee-coffeelint
   "A CoffeeScript style checker using coffeelint.
 
+This syntax checker requires coffeelint 1.0 or newer.
+
 See URL `http://www.coffeelint.org/'."
   :command
-  ("coffeelint" (config-file "--file" flycheck-coffeelintrc) "--csv" source)
-  :error-patterns
-  ((error "SyntaxError: " (message) " on line " line)
-   (error line-start (file-name) "," line ","
-          (optional (optional (one-or-more digit)) ",") ; optional end line
-          "error," (message) line-end)
-   (warning line-start (file-name) "," line ","
-            (optional (optional (one-or-more digit)) ",")
-            "warn," (message) line-end))
+  ("coffeelint"
+   (config-file "--file" flycheck-coffeelintrc)
+   "--checkstyle" source)
+  :error-parser flycheck-parse-checkstyle
   :modes coffee-mode)
 
 (flycheck-define-checker css-csslint
@@ -4170,7 +4182,7 @@ See URL `http://pypi.python.org/pypi/pylint'."
   :command ("pylint" "-r" "n"
             "--msg-template" "{path}:{line}:{column}:{C}:{msg} ({msg_id})"
             (config-file "--rcfile=" flycheck-pylintrc)
-            source)
+            source-inplace)
   :error-patterns
   ((error line-start (file-name) ":" line ":" column ":"
           (or "E" "F") ":" (message) line-end)
