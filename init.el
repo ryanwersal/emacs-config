@@ -171,7 +171,7 @@ If already there, go to actual beginning of line."
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(dolist (path '("themes" "themes/base16" "themes/base16-new")) (add-to-list 'load-path (libdir-file path)))
+(dolist (path '("themes" "themes/base16-emacs")) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
