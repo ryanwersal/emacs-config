@@ -1,4 +1,4 @@
-This is /tmp/flycheck21666c25/flycheck-20131207.959/flycheck.info,
+This is /tmp/flycheck26181udx/flycheck-20131213.445/flycheck.info,
 produced by makeinfo version 4.13 from
 /home/melpa/melpa/working/flycheck/doc/flycheck.texi.
 
@@ -422,7 +422,8 @@ File: flycheck.info,  Node: Selection,  Next: Configuration,  Prev: Syntax check
 ============================
 
 By default Flycheck automatically selects a suitable syntax checker from
-`flycheck-checkers':
+all "enabled" syntax checkers, that is, all syntax checkers contained
+in `flycheck-checkers' and not in `flycheck-disabled-checkers':
 
  -- User Option: flycheck-checkers
      A list of all syntax checkers to use as candidates for automatic
@@ -441,6 +442,23 @@ By default Flycheck automatically selects a suitable syntax checker from
 
      *Note Syntax checkers::, for a list of available checkers.
 
+     You should not need to change this option normally.  Please use
+     `flycheck-disabled-checkers' to disable specific syntax checkers.
+
+ -- User Option: flycheck-disabled-checkers
+     A list of all syntax checkers which must _not_ be used for
+     automatic checker selection.
+
+     This variable overrides a `flycheck-checkers': A syntax checker in
+     this list will never be used, even if it is contained in
+     `flycheck-checkers'.
+
+     A syntax checker contained in this list is said to be "disabled".
+     If a syntax checker is registered and not disabled, it is
+     "enabled".
+
+     Use this option to disable specific syntax checkers.
+
    If no suitable syntax checker is found the syntax check is
 _silently_ omitted.  _No_ error is signaled, and only a specific
 indicator informs about the omitted syntax check.  *Note Mode line::.
@@ -456,7 +474,8 @@ buffer, too:
      re-enable automatic selection.
 
      Any defined syntax checker can be selected with this command,
-     regardless of the contents of `flycheck-checkers'.
+     regardless of whether it is contained in `flycheck-checkers' or
+     `flycheck-disabled-checkers'.
 
    By default, the prompt uses IDO for completion and matching, but you
 can change the completion system in use:
@@ -465,12 +484,10 @@ can change the completion system in use:
      The completion system to use.
 
     `ido'
-          Use IDO. This is default, but `grizzl' is the recommended
-          system.
+          Use IDO.
 
     `grizzl'
-          Use Grizzl (https://github.com/d11wtq/grizzl).  This is the
-          recommended system, but you need to install Grizzl separately.
+          Use Grizzl (https://github.com/d11wtq/grizzl).
 
     `nil'
           Use the standard unfancy `completing-read'.  This is not
@@ -2904,9 +2921,16 @@ master (unreleased)
           `flycheck-set-checker-executable'
           (https://github.com/flycheck/flycheck/issues/272)
 
+        * Disable syntax checkers easily with
+          `flycheck-disabled-checkers'
+          (https://github.com/flycheck/flycheck/issues/269)
+
    * Improvements:
 
         * Demote Rubocop convention messages to `info' level
+
+        *        * Stop Flycheck before the buffer is reverted
+          (https://github.com/flycheck/flycheck/issues/282)
 
    * Bug fixes:
 
@@ -3628,8 +3652,8 @@ Type, Function and Variable Definition Index
 * flycheck-before-syntax-check-hook:     Syntax checking.     (line 104)
 * flycheck-buffer:                       Syntax checking.     (line  61)
 * flycheck-check-syntax-automatically:   Syntax checking.     (line  18)
-* flycheck-checker:                      Selection.           (line  64)
-* flycheck-checkers:                     Selection.           (line  10)
+* flycheck-checker:                      Selection.           (line  81)
+* flycheck-checkers:                     Selection.           (line  11)
 * flycheck-chktexrc:                     Configuration.       (line 110)
 * flycheck-clang-definitions:            Configuration.       (line  43)
 * flycheck-clang-include-path:           Configuration.       (line  46)
@@ -3640,7 +3664,7 @@ Type, Function and Variable Definition Index
 * flycheck-clang-warnings:               Configuration.       (line  61)
 * flycheck-clear:                        Reporting.           (line 156)
 * flycheck-coffeelintrc:                 Configuration.       (line 113)
-* flycheck-completion-system:            Selection.           (line  47)
+* flycheck-completion-system:            Selection.           (line  66)
 * flycheck-copy-messages-as-kill:        Reporting.           (line 139)
 * flycheck-count-errors:                 Error API.           (line 110)
 * flycheck-cppcheck-checks:              Configuration.       (line  64)
@@ -3648,7 +3672,8 @@ Type, Function and Variable Definition Index
 * flycheck-def-config-file-var:          Definition.          (line 332)
 * flycheck-def-option-var:               Definition.          (line 348)
 * flycheck-define-checker:               Definition.          (line   9)
-* flycheck-describe-checker:             Selection.           (line  92)
+* flycheck-describe-checker:             Selection.           (line 109)
+* flycheck-disabled-checkers:            Selection.           (line  31)
 * flycheck-display-error-messages:       Reporting.           (line 119)
 * flycheck-display-errors-delay:         Reporting.           (line 103)
 * flycheck-display-errors-function:      Reporting.           (line 110)
@@ -3688,7 +3713,7 @@ Type, Function and Variable Definition Index
 * flycheck-process-error-functions:      Reporting.           (line  74)
 * flycheck-pylintrc:                     Configuration.       (line 125)
 * flycheck-rubocoprc:                    Configuration.       (line 128)
-* flycheck-select-checker:               Selection.           (line  35)
+* flycheck-select-checker:               Selection.           (line  53)
 * flycheck-set-checker-executable:       Configuration.       (line  27)
 * flycheck-standard-error-navigation:    Navigation.          (line  17)
 * flycheck-syntax-check-failed-hook:     Syntax checking.     (line 120)
@@ -3707,52 +3732,52 @@ Node: Activation7851
 Node: Usage8382
 Node: Syntax checking9005
 Node: Selection13471
-Node: Configuration16597
-Node: Reporting23682
-Node: Navigation29380
-Node: Mode line31596
-Node: Extending32502
-Node: Definition33226
-Node: Error levels49041
-Node: Error parsers50704
-Node: Option filters51839
-Node: Examples52261
-Node: Simple example52693
-Node: Predicate example55844
-Node: Configuration example57968
-Node: Chaining example60611
-Node: API62038
-Node: Error API62826
-Node: Error parser API67066
-Node: Contribution67292
-Node: Reporting issues67970
-Node: Contributing syntax checkers68803
-Node: Contributing code69600
-Node: Unit tests70947
-Node: Changes72277
-Node: 0.173085
-Node: 0.273391
-Node: 0.373669
-Node: 0.473904
-Node: 0.574681
-Node: 0.675898
-Node: 0.6.178748
-Node: 0.778897
-Node: 0.7.179913
-Node: 0.880631
-Node: 0.982146
-Node: 0.1082643
-Node: 0.1184702
-Node: 0.1285890
-Node: 0.1386898
-Node: 0.1489793
-Node: 0.14.193615
-Node: 0.1593852
-Node: master99279
-Node: Credits101054
-Node: GNU Free Documentation License105069
-Node: Syntax checkers130242
-Node: Definition Index131623
+Node: Configuration17260
+Node: Reporting24345
+Node: Navigation30043
+Node: Mode line32259
+Node: Extending33165
+Node: Definition33889
+Node: Error levels49704
+Node: Error parsers51367
+Node: Option filters52502
+Node: Examples52924
+Node: Simple example53356
+Node: Predicate example56507
+Node: Configuration example58631
+Node: Chaining example61274
+Node: API62701
+Node: Error API63489
+Node: Error parser API67729
+Node: Contribution67955
+Node: Reporting issues68633
+Node: Contributing syntax checkers69466
+Node: Contributing code70263
+Node: Unit tests71610
+Node: Changes72940
+Node: 0.173748
+Node: 0.274054
+Node: 0.374332
+Node: 0.474567
+Node: 0.575344
+Node: 0.676561
+Node: 0.6.179411
+Node: 0.779560
+Node: 0.7.180576
+Node: 0.881294
+Node: 0.982809
+Node: 0.1083306
+Node: 0.1185365
+Node: 0.1286553
+Node: 0.1387561
+Node: 0.1490456
+Node: 0.14.194278
+Node: 0.1594515
+Node: master99942
+Node: Credits101987
+Node: GNU Free Documentation License106002
+Node: Syntax checkers131175
+Node: Definition Index132556
 
 End Tag Table
 

@@ -249,6 +249,7 @@ Italic     => A non--file buffer.
 - When you want to delete backward characters to e.g creating a new file or directory,
   autoupdate may keep updating to an existent directory
   preventing you to do so, in this case just hit C-<backspace> and then <backspace>.
+  NOTE: On a terminal C-<backspace> may not work, use in this case C-c <backspace>.
 
 - You can create a new directory an a new file at the same time, just write the path in prompt
   and press <RET>.
@@ -320,7 +321,14 @@ Italic     => A non--file buffer.
 ;;
 ;;
 (defvar helm-read-file-name-help-message
-  "== Helm read file name Map ==\
+  "== Helm read file name ==\
+
+\nTips:
+\n- When you want to delete backward characters to e.g creating a new file or directory,
+  autoupdate may keep updating to an existent directory
+  preventing you to do so, in this case just hit C-<backspace> and then <backspace>.
+  NOTE: On a terminal C-<backspace> may not work, use in this case C-c <backspace>.
+
 \nSpecific commands for helm-read-file-name:
 \\<helm-read-file-map>
 \\[helm-find-files-down-one-level]\t\t->Go down precedent directory.
@@ -1220,12 +1228,14 @@ HELM-ATTRIBUTE should be a symbol."
 (helm-document-attribute 'filter-one-by-one "optional"
   "  A transformer function that treat candidates one by one.
   It is called with one arg the candidate.
-  Faster than `filtered-candidate-transformer' or `candidates-transformer'.
-  Unlike other transformers this happen early and FILE is treated
-  once fetching candidates instead of re-looping on all candidates.
+  It is faster than `filtered-candidate-transformer' or `candidates-transformer',
+  but should be used only in sources that recompute constantly their candidates,
+  e.g `helm-source-find-files'.
+  Filtering happen early and candidates are treated
+  one by one instead of re-looping on the whole list.
   If used with `filtered-candidate-transformer' or `candidates-transformer'
   these functions should treat the candidates transformed by the `filter-one-by-one'
-  function.")
+  function in consequence.")
 
 (provide 'helm-help)
 

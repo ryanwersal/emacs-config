@@ -2311,6 +2311,14 @@ ARGS is (cand1 cand2 ...) or ((disp1 . real1) (disp2 . real2) ...)
       (helm-composed-funcall-with-source source it candidates source)
     candidates))
 
+(defmacro helm--maybe-process-filter-one-by-one-candidate (candidate source)
+  "Execute `filter-one-by-one' function(s) on CANDIDATE in SOURCE."
+  `(helm-aif (assoc-default 'filter-one-by-one ,source)
+       (if (listp it)
+           (cl-loop for f in it
+                    do (setq ,candidate (funcall f ,candidate)))
+           (setq ,candidate (funcall it ,candidate)))))
+
 (defun helm-process-filtered-candidate-transformer-maybe
     (candidates source process-p)
   "Execute `filtered-candidate-transformer' function(s) on CANDIDATES in SOURCE.
@@ -2380,15 +2388,16 @@ Default function to match candidates according to `helm-pattern'."
                       #'helm-default-match-function)))
     (if (listp matchfns) matchfns (list matchfns))))
 
-(defmacro helm--accumulate-candidates (cand newmatches
+(defmacro helm--accumulate-candidates (candidate newmatches
                                        hash item-count limit source)
   "Add CAND into NEWMATCHES and use HASH to uniq NEWMATCHES.
 Argument ITEM-COUNT count the matches.
 if ITEM-COUNT reaches LIMIT, exit from inner loop."
-  `(unless (gethash ,cand ,hash)
+  `(unless (gethash ,candidate ,hash)
      (unless (assq 'allow-dups ,source)
-       (puthash ,cand t ,hash))
-     (push ,cand ,newmatches)
+       (puthash ,candidate t ,hash))
+     (helm--maybe-process-filter-one-by-one-candidate ,candidate source)
+     (push ,candidate ,newmatches)
      (cl-incf ,item-count)
      (when (= ,item-count ,limit) (cl-return))))
 
@@ -2431,20 +2440,13 @@ and `helm-pattern'."
           (cl-dolist (match matchfns)
             (let (newmatches)
               (cl-dolist (candidate cands)
-                (when (funcall match (helm-candidate-get-display candidate))
-                  (helm-aif (assoc-default 'filter-one-by-one source)
-                      (if (listp it)
-                          (cl-loop for f in it
-                                   do (setq candidate (funcall f candidate)))
-                          (setq candidate (funcall it candidate))))
-                  (and candidate ; candidate returned by filter-one-by-one maybe nil.
-                       (helm--accumulate-candidates
-                        candidate newmatches helm-match-hash item-count limit source))))
-              (setq matches (append matches (reverse newmatches)))
-              ;; Don't recompute matches already found by this match function
-              ;; with the next match function.
-              (setq cands (cl-loop for i in cands
-                                   unless (member i matches) collect i)))))
+                (unless (gethash candidate helm-match-hash)
+                  (when (funcall match
+                                 (helm-candidate-get-display candidate))
+                    (helm--accumulate-candidates
+                     candidate newmatches
+                     helm-match-hash item-count limit source))))
+              (setq matches (append matches (nreverse newmatches))))))
       (error (unless (eq (car err) 'invalid-regexp) ; Always ignore regexps errors.
                (helm-log-error "helm-match-from-candidates in source `%s': %s %s"
                                (assoc-default 'name source) (car err) (cdr err)))
@@ -2738,7 +2740,8 @@ after the source name by overlay."
   (cl-dolist (candidate (helm-transform-candidates
                          (helm-output-filter--collect-candidates
                           (split-string output-string "\n")
-                          (assoc 'incomplete-line source))
+                          (assoc 'incomplete-line source)
+                          source)
                          source t))
     (if (assq 'multiline source)
         (let ((start (point)))
@@ -2751,8 +2754,8 @@ after the source name by overlay."
       (helm-kill-async-process process)
       (cl-return))))
 
-(defun helm-output-filter--collect-candidates (lines incomplete-line-info)
-  "Collect lines in LINES maybe completing the truncated first and last lines."
+(defun helm-output-filter--collect-candidates (lines incomplete-line-info source)
+  "Collect LINES maybe completing the truncated first and last lines."
   ;; The output of process may come in chunks of any size,
   ;; so the last line of LINES come truncated, this truncated line is
   ;; stored in INCOMPLETE-LINE-INFO and will be concated with the first
@@ -2761,12 +2764,15 @@ after the source name by overlay."
   ;; with an empty string when the source is computed => (incomplete-line . "")
   (helm-log-eval (cdr incomplete-line-info))
   (butlast ; The last line is the incomplete line, remove it.
-   (cl-loop for line in lines collect
-            (if (cdr incomplete-line-info) ; On start it is an empty string.
-                (prog1
-                    (concat (cdr incomplete-line-info) line)
-                  (setcdr incomplete-line-info nil))
-                line)
+   (cl-loop for line in lines
+            ;; On start `incomplete-line-info' value is empty.
+            for newline = (helm-aif (cdr incomplete-line-info)
+                              (prog1
+                                  (concat it line)
+                                (setcdr incomplete-line-info nil))
+                              line)
+            do (helm--maybe-process-filter-one-by-one-candidate newline source)
+            and collect newline
             ;; Store last incomplete line (last chunk truncated)
             ;; until new output arrives.
             finally do (setcdr incomplete-line-info line))))
@@ -3554,13 +3560,14 @@ See also `helm-sources' docstring."
          (cl-loop with item-count = 0
                   while (funcall searcher pattern)
                   for cand = (funcall get-line-fn (point-at-bol) (point-at-eol))
-                  when (or
-                        ;; Always collect when cand is matched by searcher funcs
-                        ;; and match-part attr is not present.
-                        (not match-part-fn)
-                        ;; If match-part attr is present, collect only if PATTERN
-                        ;; match the part of CAND specified by the match-part func.
-                        (helm-search-match-part cand pattern match-part-fn))
+                  when (and (not (gethash cand helm-cib-hash))
+                            (or
+                             ;; Always collect when cand is matched by searcher funcs
+                             ;; and match-part attr is not present.
+                             (not match-part-fn)
+                             ;; If match-part attr is present, collect only if PATTERN
+                             ;; match the part of CAND specified by the match-part func.
+                             (helm-search-match-part cand pattern match-part-fn)))
                   do (helm--accumulate-candidates
                       cand newmatches helm-cib-hash item-count limit source)
                   unless (helm-point-is-moved
