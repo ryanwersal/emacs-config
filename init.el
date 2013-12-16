@@ -154,7 +154,6 @@ If already there, go to actual beginning of line."
  '(sound-load-list nil)
  '(tool-bar-mode nil)
  '(visible-bell t)
- '(flycheck-flake8rc (libdir-file "configs/.flake8rc")) ; flycheck: Set flake8 config file.
  )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -224,8 +223,6 @@ If already there, go to actual beginning of line."
 (set-face-background 'yas-field-highlight-face "#333399")
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
-(require 'flycheck)
-
 (autoload 'js2-mode "js2-mode" "Major mode for editing javascript files" t)
 
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
@@ -253,8 +250,6 @@ If already there, go to actual beginning of line."
 (require 'visual-regexp)
 (global-set-key (kbd "C-x C-r") 'vr/query-replace)
 
-(require 'multi-term)
-
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
@@ -279,8 +274,6 @@ If already there, go to actual beginning of line."
 (add-hook 'python-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
-			;; (flycheck-mode)
-			;; Fully configure tab settings
 			(setq tab-width 4
 				  python-indent-offset 4
 				  indent-tabs-mode t)))
@@ -295,7 +288,6 @@ If already there, go to actual beginning of line."
 (add-hook 'js2-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
-			(flycheck-mode)
 			(setq indent-tabs-mode nil
 				  js2-basic-offset 2)))
 

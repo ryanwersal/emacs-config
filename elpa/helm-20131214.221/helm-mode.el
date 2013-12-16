@@ -76,7 +76,8 @@ See `helm-case-fold-search' for more info."
 
 (defcustom helm-mode-handle-completion-in-region t
   "Whether to replace or not `completion-in-region-function'.
-This enable support for `completing-read-multiple' when non--nil."
+This enable support for `completing-read-multiple' and `completion-at-point'
+when non--nil."
   :group 'helm-mode
   :type 'boolean)
 
@@ -860,10 +861,23 @@ Keys description:
 Can be used as value for `completion-in-region-function'."
   (cl-declare (special require-match prompt))
   (let* ((enable-recursive-minibuffers t)
-         (input (buffer-substring start end))
-         (result (helm-comp-read prompt
+         (input (buffer-substring-no-properties start end))
+         (current-command (or (helm-this-command) this-command))
+         (str-command (symbol-name current-command))
+         (buf-name (format "*helm-mode-%s*" str-command))
+         (require-match (or (and (boundp 'require-match) require-match)
+                            minibuffer-completion-confirm
+                            ;; If prompt have not been propagated here, that's
+                            ;; probably mean we have no prompt and we are in
+                            ;; completion-at-point or friend, so use a non--nil
+                            ;; value for require-match.
+                            (not (boundp 'prompt))))
+         ;; Completion-at-point and friends have no prompt.
+         (result (helm-comp-read (or (and (boundp 'prompt) prompt) "Pattern: ")
                                  (all-completions input collection predicate)
-                                 :initial-input input
+                                 :name str-command
+                                 :initial-input (concat input " ")
+                                 :buffer buf-name
                                  :must-match require-match)))
     (when result
       (delete-region start end)
