@@ -5,6 +5,8 @@ auto-save-list
 server
 ac-comphist.dat
 elpa/archives
+elpa/*readme.txt
 url
 session*
 .mc-lists.el
+projectile*

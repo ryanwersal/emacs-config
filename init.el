@@ -120,6 +120,7 @@ If already there, go to actual beginning of line."
   (setenv "PATH" (concat (getenv "PATH") ":" dir))
   (setq exec-path (append exec-path 'dir)))
 (if is-linux-p (dolist (dir '("~/bin")) (append-to-path dir)))
+(if is-windows-p (dolist (dir '("/c/bin")) (append-to-path dir)))
 
 ;; Typing replaces selected region.
 (delete-selection-mode t)
@@ -245,7 +246,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (require 'recentf)
-(setq recentf-max-saved-items 200)
+(setq recentf-max-saved-items 50)
 (recentf-mode +1)
 
 (require 'visual-regexp)
@@ -257,6 +258,12 @@ If already there, go to actual beginning of line."
 (require 'zencoding-mode)
 
 (require 'json-mode)
+
+(require 'flx-ido)
+(require 'projectile)
+(require 'helm-projectile)
+(projectile-global-mode)
+(global-set-key (kbd "C-c h") 'helm-projectile)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
