@@ -200,7 +200,8 @@ If already there, go to actual beginning of line."
 (setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
-(setq ac-auto-show-menu 0.2
+(setq ac-delay 0.1
+	  ac-auto-show-menu 0.6
 	  ac-auto-start 3)
 
 ;; Enable fancy window switching.
