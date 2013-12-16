@@ -265,11 +265,19 @@ If already there, go to actual beginning of line."
 (projectile-global-mode)
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
+(require 'highlight-indentation)
+(set-face-background 'highlight-indentation-face "#202020")
+(set-face-background 'highlight-indentation-current-column-face "#404040")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
 (add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
+(add-hook 'prog-mode-hook
+		  (lambda()
+			(highlight-indentation-mode)
+			(highlight-indentation-current-column-mode)))
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
