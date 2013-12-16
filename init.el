@@ -194,6 +194,10 @@ If already there, go to actual beginning of line."
 ;; Enable autocompletion.
 (require 'auto-complete-config)
 (ac-config-default)
+
+(defun ac-common-setup ()
+  (setq ac-sources (append '(ac-source-imenu) ac-sources)))
+
 (setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
