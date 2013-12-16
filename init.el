@@ -290,7 +290,9 @@ If already there, go to actual beginning of line."
 (add-hook 'js2-mode-hook
 		  (lambda ()
 			(highlight-fixme-tokens)
-			(flycheck-mode)))
+			(flycheck-mode)
+			(setq indent-tabs-mode nil
+				  js2-basic-offset 2)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
@@ -304,11 +306,6 @@ If already there, go to actual beginning of line."
 (add-hook 'markdown-mode-hook
 		  (lambda ()
 			(auto-complete-mode)))
-
-(add-hook 'js2-mode-hook
-		  (lambda ()
-			(setq indent-tabs-mode nil
-				  js2-basic-offset 2)))
 
 (add-hook 'zencoding-mode-hook
 		  (lambda ()
