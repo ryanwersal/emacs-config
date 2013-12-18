@@ -168,8 +168,8 @@ If already there, go to actual beginning of line."
 (set-default 'sentence-end-double-space nil) ;; Don't require double spaces after periods anywhere.
 
 ;; Make help more helpful (and less intrusive).
-(global-set-key (kbd "C-c h") 'help-command)
-(global-set-key (kbd "C-c h a") 'apropos)
+(global-set-key (kbd "C-c C-h") 'help-command)
+(global-set-key (kbd "C-c C-h a") 'apropos)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup Packages
