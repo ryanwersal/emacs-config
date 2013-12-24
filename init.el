@@ -91,7 +91,10 @@ If already there, go to actual beginning of line."
 
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region)
 
-(global-set-key (kbd "C-c i") 'imenu)
+(global-set-key (kbd "C-x i") 'imenu)
+
+(global-set-key (kbd "C-c i") 'indent-region)
+(global-set-key (kbd "C-c w") 'whitespace-cleanup-region)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
