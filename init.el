@@ -205,7 +205,6 @@ If already there, go to actual beginning of line."
 	  ac-auto-show-menu 0.6
 	  ac-auto-start 3)
 
-;; Enable fancy window switching.
 (require 'switch-window)
 (global-set-key (kbd "C-x o") 'switch-window)
 
@@ -264,6 +263,14 @@ If already there, go to actual beginning of line."
 (require 'helm-projectile)
 (projectile-global-mode)
 (global-set-key (kbd "C-c h") 'helm-projectile)
+
+(require 'framemove)
+(windmove-default-keybindings)
+(global-set-key (kbd "C-S-j") 'windmove-left)
+(global-set-key (kbd "C-S-k") 'windmove-up)
+(global-set-key (kbd "C-S-l") 'windmove-down)
+(global-set-key (kbd "C-:") 'windmove-right)
+(setq framemove-hook-into-windmove t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
