@@ -86,9 +86,6 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "<S-return>") 'open-line-and-indent)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
-(global-set-key (kbd "C-S-k") 'scroll-down-line)
-(global-set-key (kbd "C-S-j") 'scroll-up-line)
-
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-x i") 'imenu)
