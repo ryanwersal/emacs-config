@@ -206,9 +206,6 @@ If already there, go to actual beginning of line."
 	  ac-auto-show-menu 0.6
 	  ac-auto-start 3)
 
-(require 'switch-window)
-(global-set-key (kbd "C-x o") 'switch-window)
-
 ;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
 (helm-mode 1)
