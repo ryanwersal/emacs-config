@@ -9,4 +9,4 @@ elpa/*readme.txt
 url
 session*
 .mc-lists.el
-projectile*
+/projectile*
