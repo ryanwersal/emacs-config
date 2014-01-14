@@ -335,6 +335,8 @@ If already there, go to actual beginning of line."
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
 
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.pri\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.conf\\'" . shell-script-mode))
