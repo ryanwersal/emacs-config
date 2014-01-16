@@ -274,35 +274,40 @@ If already there, go to actual beginning of line."
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
-(add-hook 'prog-mode-hook 'subword-mode) ;; Make each part of CamelCase a word.
+(add-hook 'prog-mode-hook
+		  (lambda ()
+			(subword-mode) ;; Make each part of CamelCase a word.
+			(highlight-fixme-tokens)))
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			;; Make it easier to jump between .h/.cpp files
 			(local-set-key (kbd "C-c o") 'ff-find-other-file)))
 
 (add-hook 'python-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(setq tab-width 4
 				  python-indent-offset 4
 				  indent-tabs-mode t)))
 
 (add-hook 'html-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(setq tab-width 2
 				  sqml-basic-offset 2
 				  indent-tabs-mode nil)))
 
 (add-hook 'js2-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(setq indent-tabs-mode nil
 				  js2-basic-offset 2)))
+
+(add-hook 'js-mode-hook
+		  (lambda ()
+			(setq indent-tab-mode nil
+				  js-indent-level 2
+				  tab-width 2)))
 
 (add-hook 'clojure-mode-hook
 		  (lambda ()
@@ -310,7 +315,6 @@ If already there, go to actual beginning of line."
 
 (add-hook 'sql-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(auto-complete-mode)))
 
 (add-hook 'markdown-mode-hook
@@ -323,7 +327,6 @@ If already there, go to actual beginning of line."
 
 (add-hook 'less-css-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(setq less-css-indent-level 2
 				  css-indent-offset 2
 				  indent-tabs-mode nil
