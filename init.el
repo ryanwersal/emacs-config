@@ -49,25 +49,6 @@
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-unix))
 
-(defun start-msys-shell ()
-  "Attempt to create a good shell on Windows."
-  (interactive)
-  (setq shell-file-name "bash.exe")
-  (defvar explicit-shell-file-name shell-file-name)
-  (defvar explicit-bash.exe-args '("--login" "-i"))
-  (defvar w32-quote-process-args t)
-  (setenv "SHELL" explicit-shell-file-name)
-  (setq shell-command-switch "-c")
-  (shell))
-
-(defun start-shell ()
-  "Start the proper shell based on platform."
-  (interactive)
-  (if is-windows-p
-	  (start-msys-shell)
-	(ansi-term "/bin/bash")))
-(global-set-key (kbd "<f5>") 'start-shell)
-
 (defun st2-like-beginning-of-line ()
   "Reproduce ST2 beginning of line functionality.
 Go to the position of the first non-whitespace character.
