@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (cmake-help-command cmake-get-topic cmake-help-list-commands
 ;;;;;;  cmake-command-run cmake-mode) "cmake-mode" "cmake-mode.el"
-;;;;;;  (21200 30864 0 0))
+;;;;;;  (21215 62599 0 0))
 ;;; Generated autoloads from cmake-mode.el
 
 (autoload 'cmake-mode "cmake-mode" "\
@@ -40,7 +40,7 @@ Prints out the help message corresponding to the command the cursor is on.
 
 ;;;***
 
-;;;### (autoloads nil nil ("cmake-mode-pkg.el") (21200 30864 930000
+;;;### (autoloads nil nil ("cmake-mode-pkg.el") (21215 62599 147000
 ;;;;;;  0))
 
 ;;;***
