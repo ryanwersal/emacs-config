@@ -5,7 +5,7 @@
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/projectile
 ;; Keywords: project, convenience
-;; Version: 20140209.1217
+;; Version: 20140212.110
 ;; X-Original-Version: 0.10.0
 ;; Package-Requires: ((s "1.6.0") (dash "1.5.0") (pkg-info "0.4"))
 
@@ -439,7 +439,8 @@ The current directory is assumed to be the project's root otherwise."
     project-root))
 
 (defun projectile-file-truename (file-name)
-  "A thin wrapper around `file-truename' that handles nil."
+  "Return the truename of FILE-NAME.
+A thin wrapper around `file-truename' that handles nil."
   (when file-name
     (file-truename file-name)))
 
