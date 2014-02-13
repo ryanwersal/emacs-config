@@ -4,7 +4,8 @@
 # --
 for arg in \$@; do
 	if [ \$arg == "--help" -o \$arg == "-h" ]; then
-		$0
+		echo "Usage: \$0 ${1:<host> <database>}"
+		echo "${2:script purpose}"$0
 		exit
 	fi
 done
