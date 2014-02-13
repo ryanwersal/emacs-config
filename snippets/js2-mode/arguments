@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: arguments
+# key: arguments
+# type: command
+# --
+var ${1:args} = Array.prototype.slice.call(arguments);
