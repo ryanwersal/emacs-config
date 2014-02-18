@@ -251,6 +251,10 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-:") 'windmove-right)
 (setq framemove-hook-into-windmove t)
 
+(require 'slime-autoloads)
+(setq inferior-lisp-program "/usr/bin/scheme")
+(setq slime-contribs '(slime-fancy slime-scheme))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
