@@ -322,6 +322,7 @@ If already there, go to actual beginning of line."
 
 (add-hook 'less-css-mode-hook
 		  (lambda ()
+			(highlight-fixme-tokens)
 			(setq less-css-indent-level 2
 				  css-indent-offset 2
 				  indent-tabs-mode nil
