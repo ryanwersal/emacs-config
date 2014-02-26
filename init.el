@@ -49,6 +49,14 @@
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-unix))
 
+(defun whitespace-plox ()
+  (interactive)
+  (let ((beg (region-beginning))
+		(end (region-end)))
+	(whitespace-cleanup-region beg end)
+	(cond (indent-tabs-mode (tabify beg end))
+		  (else (untabify beg end)))))
+
 (defun st2-like-beginning-of-line ()
   "Reproduce ST2 beginning of line functionality.
 Go to the position of the first non-whitespace character.
@@ -72,7 +80,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-x i") 'imenu)
 
 (global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c w") 'whitespace-cleanup-region)
+(global-set-key (kbd "C-c w") 'whitespace-plox)
 (global-set-key (kbd "C-c l") 'goto-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -265,7 +273,9 @@ If already there, go to actual beginning of line."
 (add-hook 'c-mode-common-hook
 		  (lambda ()
 			;; Make it easier to jump between .h/.cpp files
-			(local-set-key (kbd "C-c o") 'ff-find-other-file)))
+			(local-set-key (kbd "C-c o") 'ff-find-other-file)
+			(setq tab-width 4
+				  indent-tabs-mode t)))
 
 (add-hook 'python-mode-hook
 		  (lambda ()
@@ -291,6 +301,10 @@ If already there, go to actual beginning of line."
 				  tab-width 2)))
 
 (add-hook 'clojure-mode-hook
+		  (lambda ()
+			(paredit-mode 1)))
+
+(add-hook 'emacs-lisp-mode-hook
 		  (lambda ()
 			(paredit-mode 1)))
 
