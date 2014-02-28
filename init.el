@@ -144,8 +144,7 @@ If already there, go to actual beginning of line."
  '(show-paren-mode t)
  '(sound-load-list nil)
  '(tool-bar-mode nil)
- '(visible-bell t)
- )
+ '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -160,6 +159,15 @@ If already there, go to actual beginning of line."
 ;; Make help more helpful (and less intrusive).
 (global-set-key (kbd "C-c C-h") 'help-command)
 (global-set-key (kbd "C-c C-h a") 'apropos)
+
+;; Configure whitespace-mode
+(setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark trailing)))
+(setq whitespace-display-mappings
+	  '(
+		(space-mark 32 [183] [46])
+		(newline-mark 10 [182 10])
+		(tab-mark 9 [8594 9] [92 9])
+	   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup Packages
@@ -266,6 +274,7 @@ If already there, go to actual beginning of line."
 (add-hook 'prog-mode-hook
 		  (lambda ()
 			(subword-mode) ;; Make each part of CamelCase a word.
+			(whitespace-mode)
 			(highlight-fixme-tokens)))
 
 (add-hook 'sgml-mode-hook 'zencoding-mode)
