@@ -283,7 +283,10 @@ If already there, go to actual beginning of line."
 			(whitespace-mode)
 			(highlight-fixme-tokens)))
 
-(add-hook 'sgml-mode-hook 'zencoding-mode)
+(add-hook 'sgml-mode-hook
+		  (lambda ()
+			(zencoding-mode)
+			(whitespace-mode)))
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
