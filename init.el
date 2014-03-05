@@ -32,7 +32,7 @@
   (font-lock-add-keywords nil '(("\\<\\(IMPROVEME\\|FIXME\\|TODO\\|BUG\\|NOTE\\|HACK\\)[:\(]" 1 font-lock-warning-face t))))
 
 (defun confirm-exit ()
-  "Prompt before exitting."
+  "Prompt prior to exit."
   (interactive)
   (if (yes-or-no-p "Do you want to exit? ")
 	  (save-buffers-kill-emacs)))
@@ -82,6 +82,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c w") 'whitespace-plox)
 (global-set-key (kbd "C-c l") 'goto-line)
+(global-set-key (kbd "C-c x") 'execute-extended-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
