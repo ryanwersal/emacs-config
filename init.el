@@ -55,7 +55,7 @@
 		(end (region-end)))
 	(whitespace-cleanup-region beg end)
 	(cond (indent-tabs-mode (tabify beg end))
-		  (else (untabify beg end)))))
+		  (t (untabify beg end)))))
 
 (defun st2-like-beginning-of-line ()
   "Reproduce ST2 beginning of line functionality.
