@@ -84,6 +84,9 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-c l") 'goto-line)
 (global-set-key (kbd "C-c x") 'execute-extended-command)
 
+(setq-default fill-column 100)
+(global-set-key (kbd "C-c f") 'fill-region)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -274,6 +277,10 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
+(require 'tagedit)
+(tagedit-add-paredit-like-keybindings)
+(tagedit-add-experimental-features)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -287,7 +294,8 @@ If already there, go to actual beginning of line."
 (add-hook 'sgml-mode-hook
 		  (lambda ()
 			(zencoding-mode)
-			(whitespace-mode)))
+			(whitespace-mode)
+			(tagedit-mode 1)))
 
 (add-hook 'c-mode-common-hook
 		  (lambda ()
