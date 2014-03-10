@@ -291,6 +291,12 @@ If already there, go to actual beginning of line."
 			(whitespace-mode)
 			(highlight-fixme-tokens)))
 
+(add-hook 'css-mode-hook
+		  (lambda ()
+			(subword-mode)
+			(whitespace-mode)
+			(highlight-fixme-tokens)))
+
 (add-hook 'sgml-mode-hook
 		  (lambda ()
 			(zencoding-mode)
@@ -349,7 +355,6 @@ If already there, go to actual beginning of line."
 
 (add-hook 'less-css-mode-hook
 		  (lambda ()
-			(highlight-fixme-tokens)
 			(setq less-css-indent-level 2
 				  css-indent-offset 2
 				  indent-tabs-mode nil
