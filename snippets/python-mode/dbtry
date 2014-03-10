@@ -4,11 +4,10 @@
 # --
 db.begin()
 try:
-	db.query(${1:" ".join(sql_list)})
+	$0
 	db.commit()
 except Exception, e:
 	db.rollback()
-	print ${2:sql_list}
 	print zutil.get_stack_string()
 	print e
 	raise
