@@ -360,6 +360,10 @@ If already there, go to actual beginning of line."
 				  indent-tabs-mode nil
 				  tab-width 2)))
 
+(add-hook 'diff-mode-hook
+		  (lambda ()
+			(whitespace-mode)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
