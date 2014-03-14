@@ -281,6 +281,9 @@ If already there, go to actual beginning of line."
 (tagedit-add-paredit-like-keybindings)
 (tagedit-add-experimental-features)
 
+(require 'powerline)
+(powerline-default-theme)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
