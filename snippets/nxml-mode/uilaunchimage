@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: uilaunchimage
+# key: uilaunchimage
+# --
+<dict>
+	<key>UILaunchImageName</key>
+	<string>$1</string>
+	<key>UILaunchImageMinimumOSVersion</key>
+	<string>${2:7.0}</string>
+	<key>UILaunchImageSize</key>
+	<string>${3:\{320, 480\}}</string>
+	<key>UILaunchImageOrientation</key>
+	<string>${4:Portrait}</string>
+</dict>
