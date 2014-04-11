@@ -294,6 +294,10 @@ If already there, go to actual beginning of line."
 			(whitespace-mode)
 			(highlight-fixme-tokens)))
 
+(add-hook 'text-mode-hook
+		  (lambda ()
+			(whitespace-mode)))
+
 (add-hook 'css-mode-hook
 		  (lambda ()
 			(subword-mode)
