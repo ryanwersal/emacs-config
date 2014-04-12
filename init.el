@@ -193,20 +193,6 @@ If already there, go to actual beginning of line."
 ;; Enable syntax highlighting/theme.
 (require 'base16-default-dark-theme)
 
-;; Enable autocompletion.
-(require 'auto-complete-config)
-(ac-config-default)
-
-(defun ac-common-setup ()
-  (setq ac-sources (append '(ac-source-imenu) ac-sources)))
-
-(setq ac-use-menu-map t)
-(define-key ac-menu-map (kbd "C-n") 'ac-next)
-(define-key ac-menu-map (kbd "C-p") 'ac-previous)
-(setq ac-delay 0.1
-	  ac-auto-show-menu 0.6
-	  ac-auto-start 3)
-
 ;; Configure Helm/Anything.el just for find-files and buffer selection for now.
 (require 'helm-config)
 (helm-mode 1)
@@ -347,14 +333,6 @@ If already there, go to actual beginning of line."
 (add-hook 'emacs-lisp-mode-hook
 		  (lambda ()
 			(paredit-mode 1)))
-
-(add-hook 'sql-mode-hook
-		  (lambda ()
-			(auto-complete-mode)))
-
-(add-hook 'markdown-mode-hook
-		  (lambda ()
-			(auto-complete-mode)))
 
 (add-hook 'zencoding-mode-hook
 		  (lambda ()
