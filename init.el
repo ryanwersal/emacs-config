@@ -206,6 +206,7 @@ If already there, go to actual beginning of line."
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-active-map (kbd "C-h") 'company-show-doc-buffer)
+(define-key company-active-map (kbd "<tab>") 'company-complete-selection)
 
 ;; Configure yasnippet with helm-c-yasnippet.
 (require 'yasnippet)

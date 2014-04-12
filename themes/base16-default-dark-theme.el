@@ -107,6 +107,7 @@
    `(company-tooltip-selection ((t (:foreground ,base00 :background ,base0C))))
    `(company-tooltip-common ((t (:foreground ,base08 :background ,base01))))
    `(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground ,base08))))
+   `(company-preview ((t (:foreground ,base0B :background ,base0A))))
 
    ;; org-mode
    `(org-date ((t (:foreground ,base0E))))
