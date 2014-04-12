@@ -100,7 +100,13 @@
    `(mmm-comment-submode-face ((t (:inherit font-lock-comment-face))))
    `(mmm-output-submode-face ((t (:background ,base03))))
 
-
+   ;; company-mode
+   `(company-tooltip ((t (:background ,base01))))
+   `(company-scrollbar-bg ((t (:background ,base01))))
+   `(company-scrollbar-fg ((t (:background ,base03))))
+   `(company-tooltip-selection ((t (:foreground ,base00 :background ,base0C))))
+   `(company-tooltip-common ((t (:foreground ,base08 :background ,base01))))
+   `(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground ,base08))))
 
    ;; org-mode
    `(org-date ((t (:foreground ,base0E))))
