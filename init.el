@@ -201,6 +201,12 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
+;; Configure company-mode
+(require 'company)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-active-map (kbd "C-h") 'company-show-doc-buffer)
+
 ;; Configure yasnippet with helm-c-yasnippet.
 (require 'yasnippet)
 (require 'helm-c-yasnippet)
@@ -274,6 +280,7 @@ If already there, go to actual beginning of line."
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (if is-linux-p (add-hook 'prog-mode-hook 'flyspell-prog-mode)) ;; Spell check comments.
+(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'prog-mode-hook
 		  (lambda ()
 			(subword-mode) ;; Make each part of CamelCase a word.
