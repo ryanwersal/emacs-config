@@ -277,6 +277,10 @@ If already there, go to actual beginning of line."
 (require 'powerline)
 (powerline-default-theme)
 
+(require 'clojure-mode)
+(define-key clojure-mode-map (kbd "C-:") nil)
+(define-key clojure-mode-map (kbd "C-;") 'clojure-toggle-keyword-string)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
