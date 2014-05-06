@@ -338,6 +338,12 @@ If already there, go to actual beginning of line."
 				  js-indent-level 2
 				  tab-width 2)))
 
+(add-hook 'coffee-mode-hook
+		  (lambda ()
+			(setq indent-tab-mode nil
+				  coffee-tab-width 2
+				  tab-width 2)))
+
 (add-hook 'clojure-mode-hook
 		  (lambda ()
 			(paredit-mode 1)))
