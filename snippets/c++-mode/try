@@ -8,5 +8,5 @@ try
 }
 catch (${1:zt::exception& e})
 {
-	zwarn << __FUNCTION__ << "() -- " << e.what() << endl;
+	zwarn << __FUNCTION__ << "(" << __LINE__ << ") -- " << e.what() << endl;
 }
