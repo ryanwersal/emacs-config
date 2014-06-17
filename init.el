@@ -86,6 +86,11 @@ If already there, go to actual beginning of line."
 		   (insert (current-kill 0)))))
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
+(defun byte-recompile ()
+  "Recompile .emacs.d directory."
+  (interactive)
+  (byte-recompile-directory (libdir-file ".") 0))
+
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-x i") 'imenu)
