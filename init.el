@@ -75,6 +75,17 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "<S-return>") 'open-line-and-indent)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
+(defun eval-and-replace ()
+  "Replace preceding sexp with its result."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+	  (prin1 (eval (read (current-kill 0)))
+			 (current-buffer))
+	(error (message "Invalid expression")
+		   (insert (current-kill 0)))))
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-x i") 'imenu)
