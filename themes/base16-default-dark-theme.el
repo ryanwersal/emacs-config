@@ -52,8 +52,8 @@
 
    ;; Font-lock stuff
    `(font-lock-builtin-face ((t (:foreground ,base0C))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,base02))))
-   `(font-lock-comment-face ((t (:foreground ,base0203))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,base04))))
+   `(font-lock-comment-face ((t (:foreground ,base04))))
    `(font-lock-constant-face ((t (:foreground ,base09))))
    `(font-lock-doc-face ((t (:foreground ,base04))))
    `(font-lock-doc-string-face ((t (:foreground ,base03))))
@@ -341,8 +341,8 @@
    `(erb-exec-delim-face ((t (:background ,base03))))
    `(erb-out-face ((t (:background ,base03 :weight bold))))
    `(erb-out-delim-face ((t (:background ,base03))))
-   `(erb-comment-face ((t (:background ,base03 :weight bold :slant italic))))
-   `(erb-comment-delim-face ((t (:background ,base03))))
+   `(erb-comment-face ((t (:background ,base04 :weight bold :slant italic))))
+   `(erb-comment-delim-face ((t (:background ,base04))))
 
    ;; Message-mode
    `(message-header-other ((t (:foreground nil :background nil :weight normal))))
