@@ -320,6 +320,7 @@ If already there, go to actual beginning of line."
 
 (add-hook 'sgml-mode-hook
 		  (lambda ()
+			(subword-mode)
 			(zencoding-mode)
 			(whitespace-mode)
 			(tagedit-mode 1)))
