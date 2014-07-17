@@ -20,7 +20,7 @@
 (defvar default-font-name
   (cond (is-windows-p "PragmataPro-8")
 		(is-osx-p "PragmataPro-12")
-		(is-linux-p "PragmataPro-8")
+		(is-linux-p "PragmataPro-9")
 		(t "PragmataPro-10")))
 
 (defun libdir-file (file)
