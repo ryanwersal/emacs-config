@@ -86,6 +86,16 @@ If already there, go to actual beginning of line."
 		   (insert (current-kill 0)))))
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
+(defun open-fogbugz ()
+  (interactive)
+  (browse-url
+   (concat
+	"https://fogbugz.zuerchertech.com/default.asp?"
+	(url-hexify-string (if mark-active
+						   (buffer-substring (region-beginning) (region-end))
+						 (read-string "FogBugz #: "))))))
+(global-set-key (kbd "C-c C-f") 'open-fogbugz)
+
 (defun byte-recompile ()
   "Recompile .emacs.d directory."
   (interactive)
