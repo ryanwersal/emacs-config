@@ -282,14 +282,6 @@ If already there, go to actual beginning of line."
 (projectile-global-mode)
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
-(require 'framemove)
-(windmove-default-keybindings)
-(global-set-key (kbd "C-S-j") 'windmove-left)
-(global-set-key (kbd "C-S-l") 'windmove-up)
-(global-set-key (kbd "C-S-k") 'windmove-down)
-(global-set-key (kbd "C-:") 'windmove-right)
-(setq framemove-hook-into-windmove t)
-
 (require 'multiple-cursors)
 (global-set-key (kbd "C-c m") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
