@@ -299,6 +299,10 @@ If already there, go to actual beginning of line."
 (define-key clojure-mode-map (kbd "C-:") nil)
 (define-key clojure-mode-map (kbd "C-;") 'clojure-toggle-keyword-string)
 
+(require 'win-switch)
+(setq win-switch-idle-time (* 10 60))
+(global-set-key (kbd "C-x o") 'win-switch-dispatch)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
