@@ -250,6 +250,10 @@
    `(widget-button ((t (:underline t))))
    `(widget-field ((t (:background ,base03 :box (:line-width 1 :color ,base06)))))
 
+   `(success ((t (:foreground ,base0B :weight bold))))
+   `(error ((t (:foreground ,base08 :weight bold))))
+   `(warning ((t (:foreground ,base09 :weight bold))))
+
    ;; Compilation (most faces politely inherit from 'success, 'error, 'warning etc.)
    `(compilation-column-number ((t (:foreground ,base0A))))
    `(compilation-line-number ((t (:foreground ,base0A))))
