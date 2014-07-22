@@ -280,6 +280,7 @@ If already there, go to actual beginning of line."
 (require 'projectile)
 (require 'helm-projectile)
 (projectile-global-mode)
+(setq projectile-enable-caching t)
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
 (require 'multiple-cursors)
