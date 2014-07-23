@@ -219,6 +219,10 @@ If already there, go to actual beginning of line."
 ;; Enable syntax highlighting/theme.
 (require 'base16-default-dark-theme)
 
+;; Key-chord
+(require 'key-chord)
+(key-chord-mode 1)
+
 ;; Configure Helm
 (require 'helm-config)
 (helm-mode 1)
@@ -265,7 +269,7 @@ If already there, go to actual beginning of line."
 
 (require 'ace-jump-mode)
 (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(key-chord-define-global "jk" 'ace-jump-mode)
 
 (require 'recentf)
 (setq recentf-max-saved-items 50)
