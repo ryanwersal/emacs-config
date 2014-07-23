@@ -219,13 +219,18 @@ If already there, go to actual beginning of line."
 ;; Enable syntax highlighting/theme.
 (require 'base16-default-dark-theme)
 
-;; Configure Helm/Anything.el just for find-files and buffer selection for now.
+;; Configure Helm
 (require 'helm-config)
 (helm-mode 1)
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 (global-set-key (kbd "C-x C-f") 'helm-for-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
+
+(require 'helm-swoop)
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
 
 ;; Configure company-mode
 (require 'company)
