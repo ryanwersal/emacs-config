@@ -304,6 +304,9 @@ If already there, go to actual beginning of line."
 (setq win-switch-idle-time (* 10 60))
 (global-set-key (kbd "C-x o") 'win-switch-dispatch)
 
+;; vc-mode
+(setq vc-stay-local nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
