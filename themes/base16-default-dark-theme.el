@@ -10,7 +10,6 @@
 (let ((base00 "#151515")
       (base01 "#202020")
       (base02 "#303030")
-      (base0203 "#404040")
       (base03 "#505050")
       (base04 "#b0b0b0")
       (base05 "#d0d0d0")
@@ -210,6 +209,12 @@
    `(font-latex-string-face ((t (:foreground ,base0A))))
    `(font-latex-verbatim-face ((t (:foreground ,base09))))
    `(font-latex-warning-face ((t (:foreground ,base08))))
+
+   ;; eshell
+   `(eshell-prompt ((t (:foreground ,base03 :weight bold))))
+   `(eshell-ls-directory ((t (:foreground ,base0D))))
+   `(eshell-ls-executable ((t (:foreground ,base0B :weight bold))))
+   `(eshell-ls-symlink ((t (:foreground ,base0C :weight bold))))
 
    ;; dired+
    `(diredp-compressed-file-suffix ((t (:foreground ,base0D))))
