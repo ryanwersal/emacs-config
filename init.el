@@ -286,6 +286,9 @@ If already there, go to actual beginning of line."
 (require 'json-mode)
 
 (require 'flx-ido)
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
+
 (require 'projectile)
 (require 'helm-projectile)
 (projectile-global-mode)
