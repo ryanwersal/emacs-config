@@ -455,8 +455,14 @@
 
    `(custom-variable-tag ((t (:foreground ,base0D))))
    `(custom-group-tag ((t (:foreground ,base0D))))
-   `(custom-state ((t (:foreground ,base0B)))))
+   `(custom-state ((t (:foreground ,base0B))))
 
+   `(zmonitor-debug-face ((t (:foreground ,base0B))))
+   `(zmonitor-info-face ((t (:foreground ,base0D))))
+   `(zmonitor-warn-face ((t (:foreground ,base09))))
+   `(zmonitor-error-face ((t (:foreground ,base08))))
+   `(zmonitor-critical-face ((t (:foreground ,base0E))))
+   )
 
   (custom-theme-set-variables
    'base16-default-dark
