@@ -9,44 +9,28 @@
   "Name of the zmonitor process.")
 
 ;; faces
-(defface zmonitor-info-face
-  '((default :foreground "black")
-	(((class color) (min-colors 88) (background light))
-	 :background "cornsilk")
-	(((class color) (min-colors 88) (background dark))
-	 :background "yellow"))
-  "Face used for info keywords.")
-
 (defface zmonitor-debug-face
-  '((default :foreground "black")
-	(((class color) (min-colors 88) (background light))
-	 :background "darkgreen")
-	(((class color) (min-colors 88) (background dark))
-	 :background "lightgreen"))
+  '((default :foreground "green"))
   "Face used for debug keywords.")
 
+(defface zmonitor-info-face
+  '((default :foreground "blue"))
+  "Face used for info keywords.")
+
 (defface zmonitor-warn-face
-  '((default :foreground "black")
-	(((class color) (min-colors 88) (background light))
-	 :background "darkblue")
-	(((class color) (min-colors 88) (background dark))
-	 :background "lightblue"))
+  '((default :foreground "yellow"))
   "Face used for warn keywords.")
 
 (defface zmonitor-error-face
-  '((default :foreground "black")
-	(((class color) (min-colors 88) (background light))
-	 :background "darkred")
-	(((class color) (min-colors 88) (background dark))
-	 :background "lightred"))
+  '((default :foreground "red"))
   "Face used for error keywords.")
 
 (defface zmonitor-critical-face
   '((default :foreground "black")
 	(((class color) (min-colors 88) (background light))
-	 :background "darkred")
+	 :background "red")
 	(((class color) (min-colors 88) (background dark))
-	 :background "lightred"))
+	 :background "red"))
   "Face used for critical keywords.")
 
 ;; defuns
@@ -65,7 +49,8 @@
   (interactive)
   (let ((proc zmonitor-process-name))
 	(if (process-status proc)
-		(delete-process proc))))
+		(delete-process proc))
+	(kill-buffer zmonitor-buffer-name)))
 
 (defun zmonitor-filter (proc string)
   (let ((buff zmonitor-buffer-name))
@@ -87,9 +72,12 @@
 ;;;###autoload
 (define-minor-mode zmonitor-mode
   "Font locks and provides additional features for the zmonitor buffer."
-  :lighter " zmonitor")
-
-(font-lock-add-keywords 'zmonitor-mode
-						'(("info" 0 zmonitor-info-face t)))
+  :lighter " zmonitor"
+  (font-lock-mode)
+  (font-lock-add-keywords nil '(("debug:" . 'zmonitor-debug-face)
+								("info:" . 'zmonitor-info-face)
+								("warn:" . 'zmonitor-warn-face)
+								("error:" . 'zmonitor-error-face)
+								("critical:" . 'zmonitor-critical-face))))
 
 (provide 'zmonitor)
