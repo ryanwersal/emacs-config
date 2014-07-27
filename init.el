@@ -149,6 +149,7 @@ If already there, go to actual beginning of line."
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Always show line & column numbers.
+
 (global-linum-mode t)
 (setq line-number-mode t
 	  column-number-mode t)
@@ -203,7 +204,9 @@ If already there, go to actual beginning of line."
 ;; Setup Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup load-path
-(dolist (path '("themes" "themes/base16-emacs")) (add-to-list 'load-path (libdir-file path)))
+(defvar search-paths '("plugins" "plugins/zmonitor.el"
+					   "themes" "themes/base16-emacs"))
+(dolist (path search-paths) (add-to-list 'load-path (libdir-file path)))
 
 ;; Configure ELPA
 (require 'package)
@@ -314,6 +317,8 @@ If already there, go to actual beginning of line."
 (require 'win-switch)
 (setq win-switch-idle-time (* 10 60))
 (global-set-key (kbd "C-x o") 'win-switch-dispatch)
+
+(require 'zmonitor)
 
 ;; vc-mode
 (setq vc-stay-local nil)

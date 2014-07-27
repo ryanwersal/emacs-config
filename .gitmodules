@@ -7,3 +7,6 @@
 [submodule "themes/base16-emacs"]
 	path = themes/base16-emacs
 	url = https://github.com/milkypostman/base16-emacs
+[submodule "plugins/zmonitor.el"]
+	path = plugins/zmonitor.el
+	url = git@github.com:ryanwersal/zmonitor.el
