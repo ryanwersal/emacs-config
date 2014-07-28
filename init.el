@@ -315,7 +315,8 @@ If already there, go to actual beginning of line."
 (define-key clojure-mode-map (kbd "C-;") 'clojure-toggle-keyword-string)
 
 (require 'win-switch)
-(setq win-switch-idle-time (* 10 60))
+(setq win-switch-idle-time (* 10 60)
+	  win-switch-other-window-first nil)
 (global-set-key (kbd "C-x o") 'win-switch-dispatch)
 
 (require 'zmonitor)
