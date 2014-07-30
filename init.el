@@ -239,8 +239,18 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
 (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
 
+(require 'dash)
+
 ;; Configure company-mode
 (require 'company)
+
+(defun is-unneeded-company-backend? (backend)
+  (let ((unneeded-backends '(company-bbdb company-eclim company-semantic
+							 company-xcode company-ropemacs company-capf
+							 company-oddmuse)))
+	(if (-contains? unneeded-backends backend) nil backend)))
+(setq company-backends (-filter 'is-unneeded-company-backend? company-backends))
+
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-active-map (kbd "C-h") 'company-show-doc-buffer)
