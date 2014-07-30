@@ -243,6 +243,7 @@ If already there, go to actual beginning of line."
 
 ;; Configure company-mode
 (require 'company)
+(setq company-idle-delay 0.25)
 
 (defun is-unneeded-company-backend? (backend)
   (let ((unneeded-backends '(company-bbdb company-eclim company-semantic
