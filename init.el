@@ -116,13 +116,13 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq default-buffer-file-coding-system 'iso-latin-1-unix)
+(setq-default buffer-file-coding-system 'iso-latin-1-unix)
 
 (add-to-list 'default-frame-alist `(font . ,default-font-name))
 
 ;; Configure tabs
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
+(setq-default tab-width 4
+			  indent-tabs-mode t)
 
 ;; Configure title bar
 (setq-default frame-title-format
@@ -148,12 +148,6 @@ If already there, go to actual beginning of line."
 ;; Allow y/n instead of yes/no at prompts.
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Always show line & column numbers.
-
-(global-linum-mode t)
-(setq line-number-mode t
-	  column-number-mode t)
-
 (global-hl-line-mode +1)
 
 (custom-set-variables
@@ -164,7 +158,6 @@ If already there, go to actual beginning of line."
  '(bell-volumne 0)
  '(c-basic-offset 4)
  '(c-default-style (quote ((c-mode . "bsd") (c++-mode . "bsd") (java-mode . "java") (other . "bsd"))))
- '(column-number-mode t)
  '(get-frame-for-buffer-default-instance-limit nil)
  '(gutter-buffers-tab-visible-p nil)
  '(inhibit-startup-screen t)
