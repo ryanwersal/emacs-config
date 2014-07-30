@@ -103,10 +103,11 @@
    `(company-tooltip ((t (:background ,base01))))
    `(company-scrollbar-bg ((t (:background ,base01))))
    `(company-scrollbar-fg ((t (:background ,base03))))
-   `(company-tooltip-selection ((t (:foreground ,base00 :background ,base0C))))
+   `(company-tooltip-selection ((t (:background ,base01))))
    `(company-tooltip-common ((t (:foreground ,base08 :background ,base01))))
-   `(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground ,base08))))
+   `(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground ,base0D))))
    `(company-preview ((t (:foreground ,base0B :background ,base0A))))
+   `(company-preview-common ((t (:inherit company-tooltip-common))))
 
    ;; org-mode
    `(org-date ((t (:foreground ,base0E))))
