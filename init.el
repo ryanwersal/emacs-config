@@ -10,13 +10,6 @@
 (defvar is-osx-p (eq system-type 'darwin))
 (defvar is-linux-p (eq system-type 'gnu/linux))
 
-(defvar office-email-address "ryan.wersal@zuerchertech.com")
-(defvar home-email-address "ryan@ryanwersal.com")
-
-(defvar my-email-address
-  (cond (is-windows-p office-email-address)
-		(t home-email-address)))
-
 (defvar default-font-name
   (cond (is-windows-p "PragmataPro-8")
 		(is-osx-p "PragmataPro-12")
@@ -130,9 +123,6 @@ If already there, go to actual beginning of line."
 						   (abbreviate-file-name (buffer-file-name))
 						 "%b"))))
 (setq-default icon-title-format 'frame-title-format)
-
-;; Set appropriate email
-(setq user-mail-address my-email-address)
 
 ;; Fully setup PATH
 (defun append-to-path (dir)
