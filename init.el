@@ -32,11 +32,11 @@
 (global-set-key (kbd "C-x C-c") 'confirm-exit)
 (global-unset-key (kbd "C-z"))
 
-(defun unix-line-endings-plox ()
+(defun z-normalize-newlines ()
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-unix))
 
-(defun whitespace-plox ()
+(defun z-normalize-whitespace ()
   (interactive)
   (let ((beg (region-beginning))
 		(end (region-end)))
@@ -93,7 +93,7 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-x i") 'imenu)
 
 (global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c w") 'whitespace-plox)
+(global-set-key (kbd "C-c w") 'z-normalize-whitespace)
 (global-set-key (kbd "C-c l") 'goto-line)
 (global-set-key (kbd "C-c x") 'execute-extended-command)
 
@@ -103,28 +103,20 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default buffer-file-coding-system 'iso-latin-1-unix)
-
+(setq-default buffer-file-coding-system 'iso-latin-1-unix
+			  tab-width 4
+			  indent-tabs-mode t)
 (add-to-list 'default-frame-alist `(font . ,default-font-name))
 
-;; Configure tabs
-(setq-default tab-width 4
-			  indent-tabs-mode t)
-
-;; Configure title bar
 (setq-default frame-title-format
-			  '((:eval (if (buffer-file-name)
-						   (abbreviate-file-name (buffer-file-name))
-						 "%b"))))
+			  '((:eval
+				 (concat
+				  (projectile-project-name)
+				  " - "
+				  (if (buffer-file-name)
+					  (abbreviate-file-name (buffer-file-name))
+					"%b")))))
 (setq-default icon-title-format 'frame-title-format)
-
-;; Fully setup PATH
-(defun append-to-path (dir)
-  "Add DIR to path and 'exec-path'."
-  (setenv "PATH" (concat (getenv "PATH") ":" dir))
-  (setq exec-path (append exec-path 'dir)))
-(if is-linux-p (dolist (dir '("~/bin")) (append-to-path dir)))
-(if is-windows-p (dolist (dir '("/c/bin")) (append-to-path dir)))
 
 ;; Typing replaces selected region.
 (delete-selection-mode t)
