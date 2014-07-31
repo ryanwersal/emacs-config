@@ -231,13 +231,10 @@ If already there, go to actual beginning of line."
 (require 'helm-c-yasnippet)
 (setq yas/snippet-dirs (libdir-file "snippets")) ;; Only load my snippets.
 (yas-global-mode t)
-(set-face-background 'yas-field-highlight-face "#333399")
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 (autoload 'js2-mode "js2-mode" "Major mode for editing javascript files" t)
-
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-
 (autoload 'cmake-mode "cmake-mode" "Major mode for editing CMake files" t)
 
 (require 'expand-region)

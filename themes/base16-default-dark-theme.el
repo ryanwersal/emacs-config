@@ -458,6 +458,8 @@
    `(custom-group-tag ((t (:foreground ,base0D))))
    `(custom-state ((t (:foreground ,base0B))))
 
+   `(yas-field-highlight-face ((t (:background ,base0C :foreground ,base00))))
+
    `(zmonitor-debug-face ((t (:foreground ,base0B))))
    `(zmonitor-info-face ((t (:foreground ,base0D))))
    `(zmonitor-warn-face ((t (:foreground ,base09))))
