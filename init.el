@@ -240,13 +240,6 @@ If already there, go to actual beginning of line."
 (require 'expand-region)
 (global-set-key (kbd "C-h") 'er/expand-region)
 
-(require 'highlight-symbol)
-(global-set-key (kbd "<C-f3>") 'highlight-symbol-at-point)
-(global-set-key (kbd "<M-f3>") 'highlight-symbol-remove-all)
-(global-set-key (kbd "<f3>") 'highlight-symbol-next)
-(global-set-key (kbd "<S-f3>") 'highlight-symbol-prev)
-(global-set-key (kbd "<C-M-f3>") 'highlight-symbol-query-replace)
-
 (require 'ace-jump-mode)
 (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
 (key-chord-define-global "jk" 'ace-jump-mode)
@@ -273,12 +266,6 @@ If already there, go to actual beginning of line."
 (projectile-global-mode)
 (setq projectile-enable-caching t)
 (global-set-key (kbd "C-c h") 'helm-projectile)
-
-(require 'multiple-cursors)
-(global-set-key (kbd "C-c m") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
 (require 'tagedit)
 (tagedit-add-paredit-like-keybindings)
