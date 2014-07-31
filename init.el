@@ -30,13 +30,7 @@
   (if (yes-or-no-p "Do you want to exit? ")
 	  (save-buffers-kill-emacs)))
 (global-set-key (kbd "C-x C-c") 'confirm-exit)
-
-(defun confirm-suspend ()
-  "Prompt before suspending."
-  (interactive)
-  (if (yes-or-no-p "Do you want to suspend? ")
-	  (suspend-emacs)))
-(global-set-key (kbd "C-z") 'confirm-suspend)
+(global-unset-key (kbd "C-z"))
 
 (defun unix-line-endings-plox ()
   (interactive)
