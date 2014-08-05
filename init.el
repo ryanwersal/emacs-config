@@ -234,6 +234,10 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
 (autoload 'js2-mode "js2-mode" "Major mode for editing javascript files" t)
+(eval-after-load 'js2-mode
+  (lambda ()
+	(define-key js2-mode-map (kbd "C-c C-s") nil)))
+
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (autoload 'cmake-mode "cmake-mode" "Major mode for editing CMake files" t)
 
@@ -286,6 +290,9 @@ If already there, go to actual beginning of line."
 (require 'fill-column-indicator)
 (setq fci-rule-color "#333333")
 
+(require 'ag)
+(global-set-key (kbd "C-c C-s") 'ag)
+
 (require 'zmonitor)
 
 ;; vc-mode
@@ -303,7 +310,8 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			(subword-mode) ;; Make each part of CamelCase a word.
 			(whitespace-mode)
-			(highlight-fixme-tokens)))
+			(highlight-fixme-tokens)
+			(fci-mode)))
 
 (add-hook 'text-mode-hook
 		  (lambda ()
