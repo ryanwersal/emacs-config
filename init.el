@@ -217,7 +217,7 @@ If already there, go to actual beginning of line."
 (defun is-unneeded-company-backend? (backend)
   (let ((unneeded-backends '(company-bbdb company-eclim company-semantic
 							 company-xcode company-ropemacs company-capf
-							 company-oddmuse)))
+							 company-oddmuse company-clang)))
 	(if (-contains? unneeded-backends backend) nil backend)))
 (setq company-backends (-filter 'is-unneeded-company-backend? company-backends))
 
@@ -283,10 +283,16 @@ If already there, go to actual beginning of line."
 	  win-switch-other-window-first nil)
 (global-set-key (kbd "C-x o") 'win-switch-dispatch)
 
+(require 'fill-column-indicator)
+(setq fci-rule-color "#333333")
+
 (require 'zmonitor)
 
 ;; vc-mode
 (setq vc-stay-local nil)
+
+;; ediff
+(setq ediff-split-window-function 'split-window-horizontally)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure Modes
