@@ -283,9 +283,6 @@ If already there, go to actual beginning of line."
 	  win-switch-other-window-first nil)
 (global-set-key (kbd "C-x o") 'win-switch-dispatch)
 
-(require 'fill-column-indicator)
-(setq fci-rule-color "#333333")
-
 (require 'ag)
 (global-set-key (kbd "C-x C-a") 'ag)
 
