@@ -306,8 +306,7 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			(subword-mode) ;; Make each part of CamelCase a word.
 			(whitespace-mode)
-			(highlight-fixme-tokens)
-			(fci-mode)))
+			(highlight-fixme-tokens)))
 
 (add-hook 'text-mode-hook
 		  (lambda ()
