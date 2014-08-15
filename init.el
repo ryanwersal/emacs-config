@@ -408,7 +408,10 @@ If already there, go to actual beginning of line."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(server-start)
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 (provide 'init)
 ;;; init.el ends here
