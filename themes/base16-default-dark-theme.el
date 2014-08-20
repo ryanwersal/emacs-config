@@ -475,7 +475,9 @@
      [,base00 ,base08 ,base0B ,base0A ,base0D ,base0E ,base0D ,base05])
    `(ansi-term-color-vector
      ;; black, base08, base0B, base0A, base0D, magenta, cyan, white
-     [unspecified ,base00 ,base08 ,base0B ,base0A ,base0D ,base0E ,base0D ,base05])))
+     [unspecified ,base00 ,base08 ,base0B ,base0A ,base0D ,base0E ,base0D ,base05]))
+
+  (set-mouse-color base04))
 
 (provide-theme 'base16-default-dark)
 
