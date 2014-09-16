@@ -322,6 +322,10 @@ If already there, go to actual beginning of line."
 			(whitespace-mode)
 			(tagedit-mode 1)))
 
+(add-hook 'nxml-mode-hook
+		  (lambda ()
+			(setq nxml-slash-auto-complete-flag 1)))
+
 (add-hook 'c-mode-common-hook
 		  (lambda ()
 			;; Make it easier to jump between .h/.cpp files
