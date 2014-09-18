@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (cider-connect cider-jack-in cider-version) "cider"
-;;;;;;  "cider.el" (21528 35391 542699 780000))
+;;;;;;  "cider.el" (21531 18831 359630 35000))
 ;;; Generated autoloads from cider.el
 
 (autoload 'cider-version "cider" "\
@@ -30,7 +30,7 @@ Create REPL buffer and start an nREPL client connection.
 ;;;***
 
 ;;;### (autoloads (cider-browse-ns-all cider-browse-ns) "cider-browse-ns"
-;;;;;;  "cider-browse-ns.el" (21528 35391 612700 146000))
+;;;;;;  "cider-browse-ns.el" (21531 18831 422964 147000))
 ;;; Generated autoloads from cider-browse-ns.el
 
 (autoload 'cider-browse-ns "cider-browse-ns" "\
@@ -46,7 +46,7 @@ List all loaded namespaces in BUFFER.
 ;;;***
 
 ;;;### (autoloads (cider-open-classpath-entry cider-classpath) "cider-classpath"
-;;;;;;  "cider-classpath.el" (21528 35391 582699 987000))
+;;;;;;  "cider-classpath.el" (21531 18831 392963 777000))
 ;;; Generated autoloads from cider-classpath.el
 
 (autoload 'cider-classpath "cider-classpath" "\
@@ -62,7 +62,7 @@ Open a classpath entry.
 ;;;***
 
 ;;;### (autoloads (cider-inspect) "cider-inspector" "cider-inspector.el"
-;;;;;;  (21528 35391 502699 570000))
+;;;;;;  (21531 18831 326296 292000))
 ;;; Generated autoloads from cider-inspector.el
 
 (autoload 'cider-inspect "cider-inspector" "\
@@ -73,7 +73,7 @@ Eval the string EXPRESSION and inspect the result.
 ;;;***
 
 ;;;### (autoloads (cider-macroexpand-all cider-macroexpand-1) "cider-macroexpansion"
-;;;;;;  "cider-macroexpansion.el" (21528 35391 536033 79000))
+;;;;;;  "cider-macroexpansion.el" (21531 18831 352963 286000))
 ;;; Generated autoloads from cider-macroexpansion.el
 
 (autoload 'cider-macroexpand-1 "cider-macroexpansion" "\
@@ -91,7 +91,7 @@ Invoke 'clojure.walk/macroexpand-all' on the expression preceding point.
 ;;;***
 
 ;;;### (autoloads (cider-mode cider-mode-line) "cider-mode" "cider-mode.el"
-;;;;;;  (21528 35391 562699 883000))
+;;;;;;  (21531 18831 379630 281000))
 ;;; Generated autoloads from cider-mode.el
 
 (defvar cider-mode-line '(:eval (format " cider[%s]" (cider-current-ns))) "\
@@ -118,7 +118,7 @@ Minor mode for REPL interaction from a Clojure buffer.
 ;;;***
 
 ;;;### (autoloads (cider-scratch) "cider-scratch" "cider-scratch.el"
-;;;;;;  (21528 35391 512699 623000))
+;;;;;;  (21531 18831 332963 41000))
 ;;; Generated autoloads from cider-scratch.el
 
 (autoload 'cider-scratch "cider-scratch" "\
@@ -129,7 +129,7 @@ Create a scratch buffer.
 ;;;***
 
 ;;;### (autoloads (cider-selector) "cider-selector" "cider-selector.el"
-;;;;;;  (21528 35391 496032 869000))
+;;;;;;  (21531 18831 322962 918000))
 ;;; Generated autoloads from cider-selector.el
 
 (autoload 'cider-selector "cider-selector" "\
@@ -146,8 +146,8 @@ See `def-cider-selector-method' for defining new methods.
 
 ;;;### (autoloads nil nil ("cider-client.el" "cider-doc.el" "cider-eldoc.el"
 ;;;;;;  "cider-interaction.el" "cider-pkg.el" "cider-repl.el" "cider-stacktrace.el"
-;;;;;;  "cider-test.el" "cider-util.el" "nrepl-client.el") (21528
-;;;;;;  35391 621966 991000))
+;;;;;;  "cider-test.el" "cider-util.el" "nrepl-client.el") (21531
+;;;;;;  18831 431516 337000))
 
 ;;;***
 

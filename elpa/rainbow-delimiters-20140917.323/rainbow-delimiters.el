@@ -4,7 +4,7 @@
 ;; Author: Jeremy Rayman <opensource@jeremyrayman.com>
 ;; Maintainer: Jeremy Rayman <opensource@jeremyrayman.com>
 ;; Created: 2010-09-02
-;; Version: 20140914.1120
+;; Version: 20140917.323
 ;; X-Original-Version: 1.3.11
 ;; Keywords: faces, convenience, lisp, matching, tools, rainbow, rainbow parentheses, rainbow parens
 ;; EmacsWiki: http://www.emacswiki.org/emacs/RainbowDelimiters
@@ -109,7 +109,9 @@
   :group 'applications)
 
 (defcustom rainbow-delimiters-ignore-modes
-  '(special-mode eshell-mode)
+  '(special-mode eshell-mode completion-list-mode
+    ;; Special RefTeX modes
+    reftex-toc-mode reftex-select-label-mode reftex-select-bib-mode)
   "List of modes in which `rainbow-delimiters-mode' should not be automatically enabled.
 
 If the mode of a buffer is derived from one of these modes, then
@@ -573,7 +575,7 @@ Used by font-lock for dynamic highlighting."
   (when font-lock-mode
     (if (fboundp 'font-lock-flush)
         (font-lock-flush)
-      (font-lock-fontify-buffer))))
+      (with-no-warnings (font-lock-fontify-buffer)))))
 
 ;;;###autoload
 (defun rainbow-delimiters-mode-enable ()
