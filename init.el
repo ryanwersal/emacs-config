@@ -184,6 +184,8 @@ If already there, go to actual beginning of line."
 						 ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
+(require 'async-bytecomp)
+
 ;; Maximize window
 (require 'maxframe)
 (add-hook 'window-setup-hook 'maximize-frame t)
