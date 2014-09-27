@@ -254,7 +254,6 @@ If already there, go to actual beginning of line."
 (global-set-key (kbd "C-x C-r") 'vr/query-replace)
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
 
 (require 'zencoding-mode)
 
@@ -305,7 +304,8 @@ If already there, go to actual beginning of line."
 		  (lambda ()
 			(subword-mode) ;; Make each part of CamelCase a word.
 			(whitespace-mode)
-			(highlight-fixme-tokens)))
+			(highlight-fixme-tokens)
+			(rainbow-delimiters-mode)))
 
 (add-hook 'text-mode-hook
 		  (lambda ()
