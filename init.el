@@ -287,6 +287,9 @@ If already there, go to actual beginning of line."
 (require 'skewer-mode)
 (setq httpd-port 9999)
 
+(require 'highlight-symbol)
+(setq highlight-symbol-idle-delay 0.7)
+
 (require 'zmonitor)
 
 ;; vc-mode
@@ -305,7 +308,8 @@ If already there, go to actual beginning of line."
 			(subword-mode) ;; Make each part of CamelCase a word.
 			(whitespace-mode)
 			(highlight-fixme-tokens)
-			(rainbow-delimiters-mode)))
+			(rainbow-delimiters-mode)
+			(highlight-symbol-mode)))
 
 (add-hook 'text-mode-hook
 		  (lambda ()
