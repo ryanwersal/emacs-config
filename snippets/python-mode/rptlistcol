@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rptlistcol
+# key: rptlistcol
+# --
+t.add_col("<b>${1:Header}</b>", Text("%${2:column}%"), ${3:width}*inch)

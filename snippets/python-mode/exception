@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: exception
-# key: exception
-# --
-print zutil.get_stack_string()
-print e
-raise

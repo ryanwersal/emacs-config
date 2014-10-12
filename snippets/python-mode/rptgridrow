@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rptgridrow
+# key: rptgridrow
+# --
+${1:g}.add_row("<b>${2:Header}</b>", "%${3:column}%", " ")

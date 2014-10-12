@@ -2,4 +2,4 @@
 # name: shebang
 # key: shebang
 # --
-#!/usr/bin/env leds_python
+#!/usr/bin/env ${1:leds_python}

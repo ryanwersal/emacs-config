@@ -2,9 +2,9 @@
 # name: rptlist
 # key: rptlist
 # --
-t = SqlTable(
-	"""
+t = SqlTable("""
+	
 	""")
-t.add_col("<b>${1:Header}</b>", Text("%${2:column}%"), ${3:width}*inch)
 $0
+
 rpt.add_item(t)

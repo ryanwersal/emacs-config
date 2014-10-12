@@ -2,12 +2,8 @@
 # name: rpt
 # key: rpt
 # --
-#!/usr/bin/env leds_python
-
-# ==============================================================================
 from reporter import *
 from leds_style import *
-# ==============================================================================
 
 title = "${1:Title}"
 comments = ""
@@ -20,7 +16,6 @@ report_template = "${2:portrait}"
 def build_report(env):
 	rpt = Report()
 	env.extend("${3:reportname}")
-	# ----------------------------
 
 	$0
 

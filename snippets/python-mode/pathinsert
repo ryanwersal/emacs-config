@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: pathinsert
-# key: pathinsert
-# --
-${1:import sys, os
-}sys.path.insert(0, os.path.abspath(os.path.join(${2:os.path.dirname(__file__)}, ${3:".."})))
