@@ -292,6 +292,12 @@ If already there, go to actual beginning of line."
 
 (require 'zmonitor)
 
+;; OmniSharp
+(require 'omnisharp)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-omnisharp))
+(setq omnisharp-server-executable-path "~/src/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
+
 ;; vc-mode
 (setq vc-stay-local nil)
 
@@ -390,6 +396,10 @@ If already there, go to actual beginning of line."
 (add-hook 'diff-mode-hook
 		  (lambda ()
 			(whitespace-mode)))
+
+(add-hook 'csharp-mode-hook
+		  (lambda ()
+			(omnisharp-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure file type/mode associations.
