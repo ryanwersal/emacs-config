@@ -86,7 +86,7 @@ If already there, go to actual beginning of line."
 (defun byte-recompile ()
   "Recompile .emacs.d directory."
   (interactive)
-  (byte-recompile-directory (libdir-file ".") 0))
+  (byte-recompile-directory (libdir-file ".") 0 'force))
 
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region)
 
@@ -185,6 +185,12 @@ If already there, go to actual beginning of line."
 (package-initialize)
 
 (require 'async-bytecomp)
+
+;; OmniSharp
+(require 'omnisharp)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-omnisharp))
+(setq-default omnisharp-server-executable-path "~/src/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
 
 ;; Maximize window
 (require 'maxframe)
@@ -291,12 +297,6 @@ If already there, go to actual beginning of line."
 (setq highlight-symbol-idle-delay 0.7)
 
 (require 'zmonitor)
-
-;; OmniSharp
-(require 'omnisharp)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-(setq omnisharp-server-executable-path "~/src/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
 
 ;; vc-mode
 (setq vc-stay-local nil)
