@@ -180,7 +180,6 @@ If already there, go to actual beginning of line."
 ;; Configure ELPA
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-						 ("marmalade" . "http://marmalade-repo.org/packages/")
 						 ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
@@ -295,6 +294,10 @@ If already there, go to actual beginning of line."
 
 (require 'highlight-symbol)
 (setq highlight-symbol-idle-delay 0.7)
+
+(require 'web-mode)
+(setq web-mode-engines-alist
+	  '(("razor" . "\\.cshtml\\'")))
 
 (require 'zmonitor)
 
@@ -421,6 +424,9 @@ If already there, go to actual beginning of line."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 
 (add-to-list 'auto-mode-alist '("\\.wsgi\\'" . python-mode))
+
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start Emacs Server
