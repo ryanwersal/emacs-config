@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ms-index
+# key: ms-index
+# binding: direct-keybinding
+# --
+CREATE INDEX IX_$2_$3 ON ${1:schema}.${2:table}(${3:column});

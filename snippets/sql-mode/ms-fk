@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ms-fk
+# key: ms-fk
+# binding: direct-keybinding
+# --
+ALTER TABLE ${1:schema}.${2:table} WITH NOCHECK
+	ADD CONSTRAINT FK_$2_$4 FOREIGN KEY (${5:fk_column}) REFERENCES ${6:schema}.${4:table}(${7:ref_column});
